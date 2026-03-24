@@ -1,0 +1,27 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-border py-8">
+  <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+    <p class="text-sm text-muted-foreground">
+      &copy; {year} Erwan Sagnardon
+    </p>
+    <div class="flex items-center gap-4">
+      <a
+        href="https://github.com/ErwanCodes"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm text-muted-foreground transition-colors hover:text-foreground"
+      >
+        GitHub
+      </a>
+      <a
+        href="mailto:erwan.sagnardon@campus-la-chataigneraie.org"
+        class="text-sm text-muted-foreground transition-colors hover:text-foreground"
+      >
+        Email
+      </a>
+    </div>
+  </div>
+</footer>

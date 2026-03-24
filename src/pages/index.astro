@@ -1,0 +1,293 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+interface GitHubRepo {
+  name: string;
+  description: string | null;
+  html_url: string;
+  language: string | null;
+  stargazers_count: number;
+  fork: boolean;
+  archived: boolean;
+  updated_at: string;
+  topics: string[];
+}
+
+let repos: GitHubRepo[] = [];
+try {
+  const res = await fetch('https://api.github.com/users/ErwanCodes/repos?sort=updated&per_page=100&type=owner');
+  if (res.ok) {
+    const data: GitHubRepo[] = await res.json();
+    repos = data.filter((r) => !r.fork && !r.archived && r.name.toLowerCase() !== 'erwancodes').slice(0, 6);
+  }
+} catch {}
+
+const langColors: Record<string, string> = {
+  TypeScript: '#3178c6',
+  JavaScript: '#f1e05a',
+  Python: '#3572A5',
+  'C#': '#178600',
+  PHP: '#4F5D95',
+  HTML: '#e34c26',
+  CSS: '#563d7c',
+  Astro: '#ff5a03',
+  Java: '#b07219',
+};
+---
+
+<Layout title="Erwan Sagnardon - Portfolio">
+  <!-- Hero -->
+  <section class="pb-12">
+    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Erwan Sagnardon</h1>
+    <p class="mt-2 font-mono text-sm text-muted-foreground">Etudiant BTS SIO option SLAM</p>
+    <p class="mt-1 font-mono text-sm text-muted-foreground">En recherche de stage en dev du 25/05 au 26/06/2026</p>
+    <p class="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
+      Passionne par les technologies, je cherche un stage en BTS SIO option SLAM pour mettre en
+      pratique mes competences en developpement logiciel. Rigoureux et curieux, je suis motive a
+      apprendre et a contribuer activement aux projets informatiques.
+    </p>
+    <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+      <a
+        href="https://github.com/ErwanCodes"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-1.5 transition-colors hover:text-foreground"
+      >
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+        </svg>
+        ErwanCodes
+      </a>
+      <a
+        href="mailto:erwan.sagnardon@campus-la-chataigneraie.org"
+        class="flex items-center gap-1.5 transition-colors hover:text-foreground"
+      >
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        Email
+      </a>
+      <span class="flex items-center gap-1.5">
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        Etrepagny (27) &mdash; Permis B
+      </span>
+    </div>
+  </section>
+
+  <!-- Competences -->
+  <section class="border-t border-border py-12">
+    <h2 class="text-lg font-semibold tracking-tight">Competences</h2>
+    <div class="mt-6 space-y-4">
+      <div>
+        <h3 class="text-sm font-medium text-muted-foreground">Web</h3>
+        <div class="mt-2 flex flex-wrap gap-2">
+          {['HTML', 'CSS', 'JavaScript', 'TypeScript', 'PHP', 'ReactJS', 'NextJS', 'Stripe'].map((skill) => (
+            <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground transition-colors">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div>
+        <h3 class="text-sm font-medium text-muted-foreground">Langages</h3>
+        <div class="mt-2 flex flex-wrap gap-2">
+          {['C#', '.NET', 'Python'].map((skill) => (
+            <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground transition-colors">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div>
+        <h3 class="text-sm font-medium text-muted-foreground">Bases de donnees</h3>
+        <div class="mt-2 flex flex-wrap gap-2">
+          {['SQL', 'MySQL', 'SQL Server', 'PostgreSQL'].map((skill) => (
+            <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground transition-colors">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div>
+        <h3 class="text-sm font-medium text-muted-foreground">Systemes & Administration</h3>
+        <div class="mt-2 flex flex-wrap gap-2">
+          {['Installation OS', 'Configuration services', 'Gestion parc informatique', 'Deploiement'].map((skill) => (
+            <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground transition-colors">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div>
+        <h3 class="text-sm font-medium text-muted-foreground">Scripting & Autres</h3>
+        <div class="mt-2 flex flex-wrap gap-2">
+          {['MS-DOS', 'PowerShell', 'Algorithmie', 'Certification RGPD'].map((skill) => (
+            <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground transition-colors">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experiences -->
+  <section class="border-t border-border py-12">
+    <h2 class="text-lg font-semibold tracking-tight">Experiences</h2>
+    <div class="mt-6 space-y-8">
+      <div class="group">
+        <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
+          <h3 class="font-medium">Stagiaire &mdash; LDLC Rouen</h3>
+          <span class="font-mono text-xs text-muted-foreground">Jan. 2025 &ndash; Fev. 2025</span>
+        </div>
+        <p class="mt-0.5 text-sm text-muted-foreground">Rouen, France</p>
+        <ul class="mt-2 space-y-1 text-sm text-muted-foreground">
+          <li class="flex items-start gap-2">
+            <span class="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted-foreground"></span>
+            Conseil client et vente de materiel informatique
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted-foreground"></span>
+            Montage, configuration et depannage d'ordinateurs
+          </li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
+          <h3 class="font-medium">Stagiaire &mdash; ECAM</h3>
+          <span class="font-mono text-xs text-muted-foreground">Mars 2024 &ndash; Avr. 2024</span>
+        </div>
+        <p class="mt-0.5 text-sm text-muted-foreground">Valdemoro, Madrid, Espagne</p>
+        <ul class="mt-2 space-y-1 text-sm text-muted-foreground">
+          <li class="flex items-start gap-2">
+            <span class="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted-foreground"></span>
+            Maintenance informatique et fibre optique
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted-foreground"></span>
+            Reparation et configuration d'equipements
+          </li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
+          <h3 class="font-medium">Stagiaire &mdash; Trafic Technologie Systeme</h3>
+          <span class="font-mono text-xs text-muted-foreground">Nov. 2023 &ndash; Dec. 2024</span>
+        </div>
+        <p class="mt-0.5 text-sm text-muted-foreground">Jouy-le-Moutier, France</p>
+        <ul class="mt-2 space-y-1 text-sm text-muted-foreground">
+          <li class="flex items-start gap-2">
+            <span class="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted-foreground"></span>
+            Reparation et mise en service de panneaux electroniques
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted-foreground"></span>
+            Diagnostic technique et cablage
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formations -->
+  <section class="border-t border-border py-12">
+    <h2 class="text-lg font-semibold tracking-tight">Formations</h2>
+    <div class="mt-6 space-y-6">
+      <div>
+        <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
+          <h3 class="font-medium">BTS Services Informatiques aux Organisations</h3>
+          <span class="font-mono text-xs text-muted-foreground">2025 &ndash; 2027</span>
+        </div>
+        <p class="mt-0.5 text-sm text-muted-foreground">Le Mesnil-Esnard, France &mdash; En cours</p>
+      </div>
+      <div>
+        <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
+          <h3 class="font-medium">Bac Pro Systemes Numeriques</h3>
+          <span class="font-mono text-xs text-muted-foreground">2022 &ndash; 2025</span>
+        </div>
+        <p class="mt-0.5 text-sm text-muted-foreground">Le Mesnil-Esnard, France &mdash; Option RISC</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projets GitHub -->
+  {repos.length > 0 && (
+    <section class="border-t border-border py-12">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-semibold tracking-tight">Projets GitHub</h2>
+        <a
+          href="https://github.com/ErwanCodes"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          Voir tout &rarr;
+        </a>
+      </div>
+      <div class="mt-6 grid gap-3 sm:grid-cols-2">
+        {repos.map((repo) => (
+          <a
+            href={repo.html_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"
+          >
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="font-mono text-sm font-medium group-hover:text-foreground">{repo.name}</h3>
+              {repo.stargazers_count > 0 && (
+                <span class="flex items-center gap-1 text-xs text-muted-foreground">
+                  <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                  {repo.stargazers_count}
+                </span>
+              )}
+            </div>
+            {repo.description && (
+              <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground line-clamp-2">
+                {repo.description}
+              </p>
+            )}
+            <div class="mt-3 flex flex-wrap items-center gap-2">
+              {repo.language && (
+                <span class="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <span
+                    class="h-2.5 w-2.5 rounded-full"
+                    style={`background-color: ${langColors[repo.language] || '#6e7681'}`}
+                  />
+                  {repo.language}
+                </span>
+              )}
+              {repo.topics?.slice(0, 3).map((topic) => (
+                <span class="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                  {topic}
+                </span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Centres d'interet -->
+  <section class="border-t border-border py-12">
+    <h2 class="text-lg font-semibold tracking-tight">Centres d'interet</h2>
+    <div class="mt-6 flex flex-wrap gap-3">
+      {[
+        'Astronomie et exploration spatiale',
+        'Voyages et decouvertes culturelles',
+        'Nouvelles technologies et IA',
+      ].map((interest) => (
+        <span class="inline-flex items-center rounded-md border border-border bg-card px-3 py-1.5 text-sm text-card-foreground">
+          {interest}
+        </span>
+      ))}
+    </div>
+  </section>
+</Layout>

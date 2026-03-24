@@ -1,0 +1,99 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { articles, formatDate } from '../../data/veille';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+};
+
+const { article } = Astro.props;
+---
+
+<Layout title={`${article.title} - Veille Technologique`}>
+  <article>
+    <a
+      href="/veille"
+      class="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+    >
+      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path d="M15 19l-7-7 7-7" />
+      </svg>
+      Retour a la veille
+    </a>
+
+    <!-- Header -->
+    <div class="mt-8">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="inline-flex items-center rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+          {article.tag}
+        </span>
+        <span class="font-mono text-xs text-muted-foreground">
+          {formatDate(article.date)}
+        </span>
+      </div>
+      <h1 class="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">{article.title}</h1>
+      <p class="mt-1 font-mono text-xs text-muted-foreground">{article.bornage}</p>
+      <p class="mt-4 leading-relaxed text-muted-foreground">{article.summary}</p>
+    </div>
+
+    <!-- Points cles -->
+    <div class="mt-8">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Points cles</h2>
+      <div class="mt-3 overflow-hidden rounded-lg border border-border">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-border bg-muted">
+              <th class="px-4 py-2.5 text-left font-medium text-muted-foreground">Aspect</th>
+              <th class="px-4 py-2.5 text-left font-medium text-muted-foreground">Detail</th>
+            </tr>
+          </thead>
+          <tbody>
+            {article.keyPoints.map((point, i) => (
+              <tr class:list={[i < article.keyPoints.length - 1 && 'border-b border-border']}>
+                <td class="px-4 py-2.5 font-mono text-xs font-medium">{point.aspect}</td>
+                <td class="px-4 py-2.5 text-muted-foreground">{point.detail}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="mt-8 space-y-4 leading-relaxed text-foreground/90">
+      {article.description.split('\n\n').map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </div>
+
+    <!-- Actions -->
+    <div class="mt-10 flex flex-wrap items-center gap-3 border-t border-border pt-6">
+      <a
+        href={article.pdf}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-md border border-border bg-card px-4 py-2 text-sm font-medium transition-colors hover:bg-accent"
+      >
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        Telecharger le PDF
+      </a>
+      <a
+        href={article.source}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-md border border-border bg-card px-4 py-2 text-sm font-medium transition-colors hover:bg-accent"
+      >
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+        {article.sourceLabel}
+      </a>
+    </div>
+  </article>
+</Layout>

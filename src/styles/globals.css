@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/GeistVF.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/fonts/GeistMonoVF.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #09090b;
+    --card: #ffffff;
+    --card-foreground: #09090b;
+    --muted: #f4f4f5;
+    --muted-foreground: #71717a;
+    --border: #e4e4e7;
+    --primary: #18181b;
+    --primary-foreground: #fafafa;
+    --accent: #f4f4f5;
+    --accent-foreground: #18181b;
+  }
+
+  .dark {
+    --background: #1c1c1e;
+    --foreground: #f5f5f7;
+    --card: #2c2c2e;
+    --card-foreground: #f5f5f7;
+    --muted: #3a3a3c;
+    --muted-foreground: #a1a1a6;
+    --border: #3a3a3c;
+    --primary: #f5f5f7;
+    --primary-foreground: #1c1c1e;
+    --accent: #3a3a3c;
+    --accent-foreground: #f5f5f7;
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Geist', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
