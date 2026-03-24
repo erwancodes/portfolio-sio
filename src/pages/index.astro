@@ -15,7 +15,9 @@ interface GitHubRepo {
 
 let repos: GitHubRepo[] = [];
 try {
-  const res = await fetch('https://api.github.com/users/ErwanCodes/repos?sort=updated&per_page=100&type=owner');
+  const headers: Record<string, string> = { 'User-Agent': 'portfolio-sio' };
+  if (import.meta.env.GITHUB_TOKEN) headers['Authorization'] = `Bearer ${import.meta.env.GITHUB_TOKEN}`;
+  const res = await fetch('https://api.github.com/users/ErwanCodes/repos?sort=updated&per_page=100&type=owner', { headers });
   if (res.ok) {
     const data: GitHubRepo[] = await res.json();
     repos = data.filter((r) => !r.fork && !r.archived && r.name.toLowerCase() !== 'erwancodes').slice(0, 6);
