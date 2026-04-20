@@ -18,7 +18,7 @@ export const articles: Article[] = [
     title: 'Tesla Optimus Gen3 : Production de masse & integration industrielle',
     date: '2026-02-02',
     tag: 'Humanoide',
-    bornage: 'Bornage 1 — Evolution de l\'autonomie / IA generaliste',
+    bornage: 'Bornage 1 — Startups robotique & open source humanoide',
     summary: "Tesla a lance la production a grande echelle de son robot humanoide Optimus Gen3, avec une IA embarquee capable de gerer le centre de masse pour une marche fluide et des taches logistiques autonomes.",
     description: `Tesla a officiellement lance la production a grande echelle de son robot humanoide Optimus Gen3. L'IA embarquee permet desormais une gestion autonome du centre de masse pour une marche fluide et l'execution de taches logistiques complexes sans intervention humaine.
 
