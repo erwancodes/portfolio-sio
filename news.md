@@ -46,25 +46,25 @@ Le CES 2026 a marqué une étape historique : l'IA générative s'est totalement
 
 ---
 
-## 📰 News 3 — Startups robotique : les humanoïdes à suivre en 2026
+## 📰 News 3 — Infineon lance un challenge startups dédié à la robotique humanoïde
 
-**Date :** 6 mars 2026  
+**Date :** 15 mars 2026  
 **Bornage :** Bornage 1 — Startups robotique & open source humanoïde
 
 ### Résumé
 
-Plusieurs startups de robotique humanoïde sont mises en avant en mars 2026 pour leur potentiel de rupture. L’article présente les acteurs les plus surveillés du secteur, avec un focus sur les humanoïdes, l’industrialisation et les approches open source qui accélèrent l’innovation.
+En mars 2026, Infineon organise un challenge spécialement dédié aux startups de robotique humanoïde. L’objectif est de soutenir l’innovation matérielle, de simplifier l’accès aux composants et de favoriser l’émergence de nouveaux acteurs dans l’humanoïde, y compris dans une logique de partenariats open source.
 
 ### Points clés
 
 | Aspect | Détail |
 |--------|--------|
-| Sujet | Startups robotique humanoïde à surveiller |
-| Tendances | Humanoïdes, industrialisation, open source |
-| Intérêt | Accélération de l’innovation et baisse des coûts |
-| Contexte | Marché 2026 en forte croissance |
+| Acteur | Infineon |
+| Mécanisme | Challenge startups dédié à la robotique humanoïde |
+| Objectif | Soutien à l’innovation matérielle et à l’écosystème |
+| Angle | Startups, open source, composants pour robots humanoïdes |
 
-**Source :** Business 2.0 News · [business20channel.tv/top-10-robotics-startups-to-watch-in-2026-07-03-2026](https://business20channel.tv/top-10-robotics-startups-to-watch-in-2026-07-03-2026)
+**Source :** Infineon · [infineon.com/partners/startups/humanoid-robotics](https://www.infineon.com/partners/startups/humanoid-robotics)
 
 ---
 

@@ -57,25 +57,25 @@ Le concept de Physical AI depasse la simple robotique : il englobe l'integration
     ],
   },
   {
-    slug: 'startups-robotique-humanoide-2026',
-    title: 'Startups robotique : les humanoïdes a suivre en 2026',
-    date: '2026-03-06',
+    slug: 'infineon-challenge-startups-robotique-humanoide',
+    title: 'Infineon lance un challenge startups dedie a la robotique humanoïde',
+    date: '2026-03-15',
     tag: 'Humanoide',
     bornage: 'Bornage 1 — Startups robotique & open source humanoide',
-    summary: "Plusieurs startups de robotique humanoide sont mises en avant en mars 2026 pour leur potentiel de rupture, avec un focus sur l'industrialisation et les approches open source.",
-    description: `Plusieurs startups de robotique humanoide sont mises en avant en mars 2026 pour leur potentiel de rupture. L'article presente les acteurs les plus surveilles du secteur, avec un focus sur les humanoïdes, l'industrialisation et les approches open source qui accelerent l'innovation.
+    summary: "Infineon organise en mars 2026 un challenge dedie aux startups de robotique humanoide pour soutenir l'innovation materielle et favoriser l'emergence de nouveaux acteurs dans l'ecosysteme.",
+    description: `En mars 2026, Infineon organise un challenge specialement dedie aux startups de robotique humanoide. L'objectif est de soutenir l'innovation materielle, de simplifier l'acces aux composants et de favoriser l'emergence de nouveaux acteurs dans l'humanoide, y compris dans une logique de partenariats open source.
 
-Le marche 2026 est en forte croissance : les investissements se multiplient et les couts de production baissent grace aux architectures open source partagees entre acteurs. Cette dynamique accelere considerablement le rythme de deploiement des robots humanoïdes.
+Ce challenge s'inscrit dans un contexte de forte acceleration du marche de la robotique humanoide. En facilitant l'acces aux composants electroniques cles — capteurs, microcontroleurs, modules de puissance — Infineon cherche a abaisser les barrieres a l'entree pour les startups innovantes.
 
-Les startups les plus prometteuses combinent IA embarquee avancee, mecatronique legere et strategies d'integration industrielle rapide, positionnant la robotique humanoide comme un secteur strategique majeur pour la decennie a venir.`,
-    source: 'https://business20channel.tv/top-10-robotics-startups-to-watch-in-2026-07-03-2026',
-    sourceLabel: 'Business 2.0 News',
-    pdf: '/pdfs/news_mars_3_startups_robotique.pdf',
+L'initiative illustre la montee en puissance des acteurs industriels traditionnels dans l'ecosysteme robotique, qui misent sur le soutien aux jeunes pousses pour integrer leurs composants au coeur des prochaines generations de robots humanoïdes.`,
+    source: 'https://www.infineon.com/partners/startups/humanoid-robotics',
+    sourceLabel: 'Infineon',
+    pdf: '/pdfs/news_mars_3_infineon_challenge.pdf',
     keyPoints: [
-      { aspect: 'Sujet', detail: 'Startups robotique humanoide a surveiller' },
-      { aspect: 'Tendances', detail: 'Humanoïdes, industrialisation, open source' },
-      { aspect: 'Interet', detail: "Acceleration de l'innovation et baisse des couts" },
-      { aspect: 'Contexte', detail: 'Marche 2026 en forte croissance' },
+      { aspect: 'Acteur', detail: 'Infineon' },
+      { aspect: 'Mecanisme', detail: 'Challenge startups dedie a la robotique humanoide' },
+      { aspect: 'Objectif', detail: "Soutien a l'innovation materielle et a l'ecosysteme" },
+      { aspect: 'Angle', detail: 'Startups, open source, composants pour robots humanoïdes' },
     ],
   },
   {
