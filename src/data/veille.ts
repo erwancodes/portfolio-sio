@@ -36,24 +36,25 @@ Le robot est concu pour effectuer des taches repetitives et physiquement exigean
     ],
   },
   {
-    slug: 'ces-2026-physical-ai',
-    title: 'CES 2026 : Le tournant du « Physical AI »',
-    date: '2026-02-23',
+    slug: 'google-deepmind-genie-3-world-model-robotique',
+    title: 'Google DeepMind Genie 3 : un World Model pour la robotique',
+    date: '2025-08-01',
     tag: 'IA & Robotique',
-    bornage: 'Bornage 2 — Collaboration Homme-Machine / Cobotique',
-    summary: "Le CES 2026 a marque une etape historique : l'IA generative s'est totalement integree dans les objets physiques, transformant la cobotique industrielle.",
-    description: `Le CES 2026 a marque une etape historique : l'IA generative s'est totalement integree dans les objets physiques (Physical AI). Les robots peuvent desormais percevoir et interpreter leur environnement en temps reel pour collaborer de maniere securisee avec les humains.
+    bornage: 'Bornage 2 — World Models IA : comprendre le monde physique pour la robotique',
+    summary: "Google DeepMind a presente Genie 3, un world model capable de generer des environnements de simulation pour entrainer des robots de maniere infinie sans environnement physique reel.",
+    description: `Google DeepMind a presente Genie 3, un world model capable de generer des environnements de simulation interactifs et realistes pour entrainer des robots de maniere infinie. Grace a l'IA, les robots peuvent s'entrainer dans des milliers de scenarios synthetiques sans necessiter d'environnement physique reel.
 
-Cette evolution transforme profondement la cobotique industrielle. Les robots ne sont plus confines dans des cages de protection mais travaillent cote a cote avec les operateurs humains, certifies CE pour garantir la securite.
+Cette approche accelere considerablement l'apprentissage par renforcement : la ou un robot aurait besoin de semaines d'essais en conditions reelles, Genie 3 permet de simuler ces experiences a grande echelle et a moindre cout.
 
-Le concept de Physical AI depasse la simple robotique : il englobe l'integration de l'IA generative dans tous les objets physiques — robots, capteurs, vehicules — ouvrant la voie a un monde ou les machines comprennent et s'adaptent a leur environnement de maniere autonome.`,
-    source: 'https://airmessoft.fr/robotique-ia-en-2026/',
-    sourceLabel: 'Airmessoft / Polymedia',
-    pdf: '/pdfs/news_fevrier_2_intelligence_physique.pdf',
+Le modele marque une etape importante dans la convergence entre IA generative et robotique, en offrant une source quasi-illimitee de donnees d'entrainement diversifiees et controlees pour developper des comportements robotiques robustes.`,
+    source: 'https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/',
+    sourceLabel: 'Google DeepMind',
+    pdf: '/pdfs/news2.pdf',
     keyPoints: [
-      { aspect: 'Physical AI', detail: "L'IA generative s'integre dans des objets physiques (robots, capteurs, vehicules)" },
-      { aspect: 'Perception temps reel', detail: 'Les robots percoivent et interpretent leur environnement de maniere autonome' },
-      { aspect: 'Collaboration securisee', detail: "Travail cote a cote avec l'humain, sans cage de protection, certifie CE" },
+      { aspect: 'Modele', detail: 'Google DeepMind Genie 3' },
+      { aspect: 'Approche', detail: 'World model generatif pour la simulation robotique' },
+      { aspect: 'Avantage', detail: 'Entrainement infini via environnements synthetiques' },
+      { aspect: 'Impact', detail: "Acceleration de l'apprentissage par renforcement pour la robotique" },
     ],
   },
   {

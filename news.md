@@ -25,24 +25,25 @@ Tesla a officiellement lancé la production à grande échelle de son robot huma
 
 ---
 
-## 📰 News 2 — CES 2026 : Le tournant du « Physical AI »
+## 📰 News 2 — Google DeepMind Genie 3 : un World Model pour la robotique
 
-**Date :** 23 février 2026  
-**Bornage :** Bornage 2 — Collaboration Homme-Machine / Cobotique
+**Date :** août 2025  
+**Bornage :** BORNAGE 2 · World Models IA : comprendre le monde physique pour la robotique
 
 ### Résumé
 
-Le CES 2026 a marqué une étape historique : l'IA générative s'est totalement intégrée dans les objets physiques (Physical AI). Les robots peuvent désormais percevoir et interpréter leur environnement en temps réel pour collaborer de manière sécurisée avec les humains, transformant profondément la cobotique industrielle.
+Google DeepMind a présenté Genie 3, un world model capable de générer des environnements de simulation interactifs et réalistes pour entraîner des robots de manière infinie. Grâce à l'IA, les robots peuvent s'entraîner dans des milliers de scénarios synthétiques sans nécessiter d'environnement physique réel, accélérant considérablement l'apprentissage par renforcement.
 
 ### Points clés
 
 | Aspect | Détail |
 |--------|--------|
-| Physical AI | L'IA générative s'intègre dans des objets physiques (robots, capteurs, véhicules) |
-| Perception temps réel | Les robots perçoivent et interprètent leur environnement de manière autonome |
-| Collaboration sécurisée | Travail côte à côte avec l'humain, sans cage de protection, certifié CE |
+| Modèle | Google DeepMind Genie 3 |
+| Approche | World model génératif pour la simulation robotique |
+| Avantage | Entraînement infini via environnements synthétiques |
+| Impact | Accélération de l'apprentissage par renforcement pour la robotique |
 
-**Source :** Airmessoft / Polymedia · [airmessoft.fr/robotique-ia-en-2026/](https://airmessoft.fr/robotique-ia-en-2026/)
+**Source :** Google DeepMind · [deepmind.google/blog/genie-3-a-new-frontier-for-world-models/](https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/)
 
 ---
 
