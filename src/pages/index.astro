@@ -280,15 +280,35 @@ const langColors: Record<string, string> = {
   <!-- Centres d'interet -->
   <section class="border-t border-border py-12">
     <h2 class="text-lg font-semibold tracking-tight">Centres d'interet</h2>
-    <div class="mt-6 flex flex-wrap gap-3">
+    <div class="mt-6 grid gap-4 sm:grid-cols-3">
       {[
-        'Astronomie et exploration spatiale',
-        'Voyages et decouvertes culturelles',
-        'Nouvelles technologies et IA',
+        {
+          title: 'Astronomie',
+          image: '/images/interets/astronomie.jpg',
+          alt: 'Galaxie etoilee',
+        },
+        {
+          title: 'Voyage',
+          image: '/images/interets/voyage.jpg',
+          alt: 'Paysage de voyage',
+        },
+        {
+          title: 'Coding',
+          image: '/images/interets/coding.jpg',
+          alt: 'Coding',
+        },
       ].map((interest) => (
-        <span class="inline-flex items-center rounded-md border border-border bg-card px-3 py-1.5 text-sm text-card-foreground">
-          {interest}
-        </span>
+        <div class="group relative aspect-[4/5] overflow-hidden rounded-lg border border-border bg-card">
+          <img
+            src={interest.image}
+            alt={interest.alt}
+            loading="lazy"
+            class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+          />
+          <div class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent p-3 pt-10">
+            <p class="text-sm font-medium text-white">{interest.title}</p>
+          </div>
+        </div>
       ))}
     </div>
   </section>
