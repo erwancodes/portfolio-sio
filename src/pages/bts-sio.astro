@@ -4,134 +4,168 @@ import Layout from '../layouts/Layout.astro';
 interface Competence {
   code: string;
   title: string;
-  description: string;
-  proof: string;
+  items: string[];
 }
 
-interface Bloc {
-  name: string;
-  description: string;
-  competences: Competence[];
+interface Realisation {
+  nom: string;
+  periode: string;
+  competences: string[];
 }
 
-const blocs: Bloc[] = [
+const competences: Competence[] = [
   {
-    name: 'Bloc 1 — Support et mise a disposition de services informatiques',
-    description: "Competences transversales communes aux deux options du BTS SIO, centrees sur le support, l'administration et la gestion de services informatiques.",
-    competences: [
-      {
-        code: 'B1.1',
-        title: "Gerer le patrimoine informatique",
-        description: "Recenser, identifier, mettre a jour les elements du patrimoine informatique et en assurer la gestion.",
-        proof: "Stage LDLC : gestion du parc informatique, inventaire materiel, configuration et deploiement de postes de travail.",
-      },
-      {
-        code: 'B1.2',
-        title: "Repondre aux incidents et aux demandes d'assistance",
-        description: "Diagnostiquer et resoudre les incidents techniques, assister les utilisateurs dans l'utilisation des services informatiques.",
-        proof: "Stage Trafic Technologie Systeme : diagnostic technique, depannage de panneaux electroniques, resolution de problemes de cablage.",
-      },
-      {
-        code: 'B1.3',
-        title: "Developper la presence en ligne de l'organisation",
-        description: "Participer a la valorisation de l'image de l'organisation sur Internet via des contenus web et des services en ligne.",
-        proof: "Projet portfolio : conception et developpement de ce site web avec Astro, TailwindCSS, deploiement sur Vercel.",
-      },
-      {
-        code: 'B1.4',
-        title: "Travailler en mode projet",
-        description: "Planifier les activites, respecter les delais, collaborer avec les membres de l'equipe et rendre compte de l'avancement.",
-        proof: "Projets scolaires en equipe : utilisation de Git/GitHub pour le versioning, repartition des taches, suivi d'avancement.",
-      },
-      {
-        code: 'B1.5',
-        title: "Mettre a disposition des utilisateurs un service informatique",
-        description: "Installer, configurer et maintenir un service informatique en repondant aux besoins des utilisateurs.",
-        proof: "Stage ECAM (Madrid) : maintenance informatique, configuration d'equipements reseau, mise en service de connexions fibre optique.",
-      },
-      {
-        code: 'B1.6',
-        title: "Organiser son developpement professionnel",
-        description: "Assurer une veille technologique, developper ses competences et s'adapter aux evolutions du secteur.",
-        proof: "Veille technologique sur la robotique, certification RGPD, auto-formation sur les frameworks modernes (React, Next.js).",
-      },
+    code: 'C1',
+    title: 'Gerer le patrimoine informatique',
+    items: [
+      'Recenser et identifier les ressources numeriques',
+      'Exploiter des referentiels, normes et standards adoptes par le prestataire informatique',
+      "Mettre en place et verifier les niveaux d'habilitation associes a un service",
+      "Verifier les conditions de la continuite d'un service informatique",
+      'Gerer des sauvegardes',
+      "Verifier le respect des regles d'utilisation des ressources numeriques",
     ],
   },
   {
-    name: 'Bloc 2 — Conception et developpement d\'applications (SLAM)',
-    description: "Competences specifiques a l'option SLAM, axees sur le developpement, la maintenance et l'evolution d'applications.",
-    competences: [
-      {
-        code: 'B2.1',
-        title: "Concevoir et developper une solution applicative",
-        description: "Analyser les besoins, concevoir l'architecture et developper une application repondant au cahier des charges.",
-        proof: "Developpement d'applications web avec React/Next.js, utilisation de TypeScript, integration de Stripe pour les paiements.",
-      },
-      {
-        code: 'B2.2',
-        title: "Assurer la maintenance corrective ou evolutive d'une solution applicative",
-        description: "Corriger les dysfonctionnements et faire evoluer une application existante en fonction des nouveaux besoins.",
-        proof: "Maintenance et evolution de projets scolaires : correction de bugs, ajout de fonctionnalites, refactoring de code existant.",
-      },
-      {
-        code: 'B2.3',
-        title: "Gerer les donnees",
-        description: "Concevoir, mettre en oeuvre et administrer des bases de donnees relationnelles ou NoSQL.",
-        proof: "Utilisation de MySQL, SQL Server et Supabase dans les projets. Conception de schemas, requetes SQL, gestion des donnees.",
-      },
-      {
-        code: 'B2.4',
-        title: "Developper une solution applicative avec un environnement de developpement",
-        description: "Utiliser un IDE, un framework et des outils de developpement pour produire du code de qualite.",
-        proof: "Maitrise de VS Code, utilisation de Git, developpement avec .NET/C# et PHP. Scripting PowerShell et algorithmie.",
-      },
+    code: 'C2',
+    title: "Repondre aux incidents et aux demandes d'assistance et d'evolution",
+    items: [
+      'Collecter, suivre et orienter des demandes',
+      'Traiter des demandes concernant les services reseau et systeme, applicatifs',
+      'Traiter des demandes concernant les applications',
+    ],
+  },
+  {
+    code: 'C3',
+    title: "Developper la presence en ligne de l'organisation",
+    items: [
+      "Participer a la valorisation de l'image de l'organisation sur les medias numeriques en tenant compte du cadre juridique et des enjeux economiques",
+      "Referencer les services en ligne de l'organisation et mesurer leur visibilite",
+      "Participer a l'evolution d'un site Web exploitant les donnees de l'organisation",
+    ],
+  },
+  {
+    code: 'C4',
+    title: 'Travailler en mode projet',
+    items: [
+      "Analyser les objectifs et les modalites d'organisation d'un projet",
+      'Planifier les activites',
+      "Evaluer les indicateurs de suivi d'un projet et analyser les ecarts",
+    ],
+  },
+  {
+    code: 'C5',
+    title: 'Mettre a disposition des utilisateurs un service informatique',
+    items: [
+      "Realiser les tests d'integration et d'acceptation d'un service",
+      'Deployer un service',
+      "Accompagner les utilisateurs dans la mise en place d'un service",
+    ],
+  },
+  {
+    code: 'C6',
+    title: 'Organiser son developpement professionnel',
+    items: [
+      "Mettre en place son environnement d'apprentissage personnel",
+      'Mettre en oeuvre des outils et strategies de veille informationnelle',
+      'Gerer son identite professionnelle',
+      'Developper son projet professionnel',
     ],
   },
 ];
+
+const realisationsFormation: Realisation[] = [
+  { nom: 'AP - CyberNews', periode: '', competences: ['C1', 'C5', 'C6'] },
+  { nom: 'LinkedIn', periode: '', competences: ['C3'] },
+  { nom: 'AP - Site Web Equipe', periode: '', competences: ['C1', 'C4', 'C5'] },
+  { nom: 'AP - CMS WordPress', periode: '', competences: ['C5'] },
+  { nom: 'TP2 Windows 10 et la journalisation', periode: '', competences: ['C1', 'C2'] },
+  { nom: 'TP MS-DOS', periode: '', competences: ['C1', 'C2'] },
+  { nom: 'TP PowerShell', periode: '', competences: ['C1', 'C2'] },
+];
+
+const codes = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6'];
 ---
 
 <Layout title="Competences BTS SIO SLAM - Erwan Sagnardon">
   <section class="pb-12">
     <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">BTS SIO &mdash; Option SLAM</h1>
     <p class="mt-2 font-mono text-sm text-muted-foreground">
-      Solutions Logicielles et Applications Metiers
+      Tableau de synthese &middot; Epreuve E5 &middot; Session 2026
     </p>
     <p class="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
-      Tableau des competences du referentiel BTS SIO option SLAM, avec la correspondance
-      entre les attendus officiels et mes realisations concretes (stages, projets, certifications).
+      Referentiel officiel des 6 competences du BTS SIO option SLAM (Solutions Logicielles
+      et Applications Metiers), avec le recensement de mes realisations en cours de formation
+      et en milieu professionnel.
     </p>
   </section>
 
-  <div class="space-y-12">
-    {blocs.map((bloc) => (
-      <section>
-        <div class="rounded-lg border border-border bg-card p-5">
-          <h2 class="font-semibold leading-snug">{bloc.name}</h2>
-          <p class="mt-1.5 text-sm text-muted-foreground">{bloc.description}</p>
-        </div>
-
-        <div class="mt-4 space-y-3">
-          {bloc.competences.map((comp) => (
-            <div class="rounded-lg border border-border p-5">
-              <div class="flex items-start gap-3">
-                <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
-                  {comp.code}
-                </span>
-                <div class="min-w-0">
-                  <h3 class="font-medium leading-snug">{comp.title}</h3>
-                  <p class="mt-1 text-sm text-muted-foreground">{comp.description}</p>
-                  <div class="mt-3 rounded-md bg-muted px-3 py-2.5">
-                    <p class="text-sm">
-                      <span class="font-mono text-xs font-medium text-muted-foreground">Mise en pratique :</span>
-                    </p>
-                    <p class="mt-0.5 text-sm text-foreground">{comp.proof}</p>
-                  </div>
-                </div>
-              </div>
+  <section class="space-y-4">
+    <h2 class="text-xl font-semibold tracking-tight">Les 6 competences du referentiel</h2>
+    <div class="space-y-3">
+      {competences.map((comp) => (
+        <div class="rounded-lg border border-border p-5">
+          <div class="flex items-start gap-3">
+            <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
+              {comp.code}
+            </span>
+            <div class="min-w-0">
+              <h3 class="font-medium leading-snug">{comp.title}</h3>
+              <ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+                {comp.items.map((item) => <li>{item}</li>)}
+              </ul>
             </div>
-          ))}
+          </div>
         </div>
-      </section>
-    ))}
-  </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-12 space-y-4">
+    <h2 class="text-xl font-semibold tracking-tight">Realisations en cours de formation</h2>
+    <div class="overflow-x-auto rounded-lg border border-border">
+      <table class="w-full text-sm">
+        <thead class="bg-muted">
+          <tr>
+            <th class="px-4 py-2.5 text-left font-medium">Realisation</th>
+            <th class="px-4 py-2.5 text-left font-medium">Periode</th>
+            {codes.map((c) => (
+              <th class="px-2 py-2.5 text-center font-mono text-xs font-medium">{c}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {realisationsFormation.map((r) => (
+            <tr class="border-t border-border">
+              <td class="px-4 py-2.5">{r.nom}</td>
+              <td class="px-4 py-2.5 font-mono text-xs text-muted-foreground">{r.periode || '—'}</td>
+              {codes.map((c) => (
+                <td class="px-2 py-2.5 text-center">
+                  {r.competences.includes(c) ? (
+                    <span class="font-mono text-xs font-medium text-foreground">X</span>
+                  ) : (
+                    <span class="font-mono text-xs text-muted-foreground/30">·</span>
+                  )}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mt-12 space-y-4">
+    <h2 class="text-xl font-semibold tracking-tight">Realisations en milieu professionnel &mdash; 1ere annee</h2>
+    <div class="rounded-lg border border-dashed border-border p-5 text-sm text-muted-foreground">
+      A completer avec les missions du stage de 1ere annee.
+    </div>
+  </section>
+
+  <section class="mt-12 space-y-4">
+    <h2 class="text-xl font-semibold tracking-tight">Realisations en milieu professionnel &mdash; 2eme annee</h2>
+    <div class="rounded-lg border border-dashed border-border p-5 text-sm text-muted-foreground">
+      A completer avec les missions du stage de 2eme annee.
+    </div>
+  </section>
 </Layout>
