@@ -277,6 +277,47 @@ const langColors: Record<string, string> = {
     </section>
   )}
 
+  <!-- Projets phares -->
+  <section class="border-t border-border py-12">
+    <h2 class="text-lg font-semibold tracking-tight">Projets phares</h2>
+    <div class="mt-6 grid gap-3 sm:grid-cols-2">
+      {[
+        {
+          name: 'AlgoTrainer',
+          description: "Plateforme d'entrainement au CCF d'algorithmique pour le BTS SIO : sujets officiels, correction immediate et editeur Python embarque qui execute ton code en local.",
+          url: 'https://algotrainer.erwancodes.me/',
+        },
+        {
+          name: 'OpenFlux',
+          description: "Agregateur de veille tech via flux RSS. Construit avec Astro, mis a jour automatiquement chaque jour via GitHub Actions.",
+          url: 'https://openflux.erwancodes.me/',
+        },
+        {
+          name: 'StagePilot',
+          description: "CRM de recherche de stage pour etudiants. Organise, suit et optimise tes candidatures.",
+          url: 'https://stagepilot.app',
+        },
+        {
+          name: 'ReactLearning',
+          description: "Projet open source : ressources et exercices pour apprendre React.",
+          url: 'https://github.com/erwancodes/ReactLeaning',
+        },
+      ].map((project) => (
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"
+        >
+          <h3 class="font-mono text-sm font-medium group-hover:text-foreground">{project.name}</h3>
+          <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+            {project.description}
+          </p>
+        </a>
+      ))}
+    </div>
+  </section>
+
   <!-- Centres d'interet -->
   <section class="border-t border-border py-12">
     <h2 class="text-lg font-semibold tracking-tight">Centres d'interet</h2>
