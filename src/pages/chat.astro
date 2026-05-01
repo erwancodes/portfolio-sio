@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ChatInterface from '../components/ChatInterface.tsx';
+
+export const prerender = true;
+---
+
+<Layout
+  title="Chat IA — Erwan Sagnardon"
+  description="Discute avec un assistant IA qui connaît le profil d'Erwan Sagnardon : parcours, projets, compétences, veille."
+>
+  <section class="pb-6">
+    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Discute avec mon assistant IA</h1>
+    <p class="mt-2 font-mono text-sm text-muted-foreground">
+      Une autre façon d'explorer le portfolio
+    </p>
+    <p class="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
+      Plutôt que de naviguer entre les pages, pose tes questions directement à un assistant
+      qui connaît mon parcours, mes projets, ma veille technologique et mes disponibilités.
+      Idéal si tu cherches une info précise rapidement.
+    </p>
+  </section>
+
+  <ChatInterface client:load />
+</Layout>
