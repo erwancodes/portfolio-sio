@@ -126,13 +126,68 @@ const langColors: Record<string, string> = {
       <div>
         <h3 class="text-sm font-medium text-muted-foreground">Scripting & Autres</h3>
         <div class="mt-2 flex flex-wrap gap-2">
-          {['MS-DOS', 'PowerShell', 'Algorithmie', 'Certification RGPD'].map((skill) => (
+          {['MS-DOS', 'PowerShell', 'Algorithmie'].map((skill) => (
             <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground transition-colors">
               {skill}
             </span>
           ))}
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Certifications & Cybersecurite -->
+  <section class="border-t border-border py-12">
+    <h2 class="text-lg font-semibold tracking-tight">Certifications & Cybersecurite</h2>
+    <div class="mt-6 grid gap-3 sm:grid-cols-3">
+      <a
+        href="/certifications/rgpd"
+        class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"
+      >
+        <div class="flex items-center justify-between">
+          <h3 class="font-mono text-sm font-medium group-hover:text-foreground">RGPD</h3>
+          <span class="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+            5 preuves
+          </span>
+        </div>
+        <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+          Sensibilisation a la protection des donnees personnelles. Voir les copies d'ecran.
+        </p>
+      </a>
+
+      <a
+        href="/pdfs/certificat-anssi.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"
+      >
+        <div class="flex items-center justify-between">
+          <h3 class="font-mono text-sm font-medium group-hover:text-foreground">ANSSI</h3>
+          <span class="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+            PDF
+          </span>
+        </div>
+        <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+          MOOC SecNumacademie &mdash; certificat officiel (ouvre le PDF).
+        </p>
+      </a>
+
+      <a
+        href="https://pix.fr/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"
+      >
+        <div class="flex items-center justify-between">
+          <h3 class="font-mono text-sm font-medium group-hover:text-foreground">PIX</h3>
+          <span class="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+            ___ pix
+          </span>
+        </div>
+        <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+          Certification des competences numeriques (a completer avec le score obtenu).
+        </p>
+      </a>
     </div>
   </section>
 
