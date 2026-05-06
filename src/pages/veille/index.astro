@@ -1,57 +1,241 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { articles, formatDate } from '../../data/veille';
+import {
+  articles,
+  bornages,
+  outils,
+  misesEnOeuvre,
+  themeVeille,
+  formatDate,
+} from '../../data/veille';
+
+const articlesParBornage = bornages.map((b) => ({
+  bornage: b,
+  articles: articles
+    .filter((a) => a.bornageId === b.id)
+    .sort((a, c) => new Date(c.date).getTime() - new Date(a.date).getTime()),
+}));
+
+const outilsPermanents = outils.filter((o) => o.type === 'permanent');
+const outilsMensuels = outils.filter((o) => o.type === 'mensuel');
 ---
 
-<Layout title="Veille Technologique - Erwan Sagnardon">
+<Layout title="Veille - Erwan Sagnardon">
+  <!-- Hero + theme -->
   <section class="pb-12">
-    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Veille Technologique</h1>
-    <p class="mt-2 font-mono text-sm text-muted-foreground">Theme : La robotique humanoide et industrielle</p>
+    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Veille technologique</h1>
+    <p class="mt-2 font-mono text-sm text-muted-foreground">Theme : {themeVeille}</p>
     <p class="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
-      Suivi des avancees en robotique humanoide et en intelligence artificielle physique.
-      Cette veille s'inscrit dans le cadre du BTS SIO (B1.6) et reflete ma curiosite
-      pour les nouvelles technologies et leur integration dans le monde industriel.
+      Suivi des avancees en robotique humanoide et industrielle, et des modeles d'IA
+      capables de simuler le monde physique. Cette veille s'inscrit dans le cadre du BTS
+      SIO (B1.6) et reflete ma curiosite pour les technologies emergentes.
     </p>
   </section>
 
-  <section class="space-y-4">
-    {[...articles].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((article) => (
-      <a
-        href={`/veille/${article.slug}`}
-        class="group block rounded-lg border border-border bg-card p-5 transition-colors hover:bg-accent"
-      >
-        <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div class="min-w-0 flex-1">
-            <div class="flex flex-wrap items-center gap-2">
-              <span class="inline-flex items-center rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
-                {article.tag}
-              </span>
-              <span class="font-mono text-xs text-muted-foreground">
-                {formatDate(article.date)}
-              </span>
-            </div>
-            <h2 class="mt-2 font-medium leading-snug group-hover:text-foreground">
-              {article.title}
-            </h2>
-            <p class="mt-1 font-mono text-[10px] text-muted-foreground">{article.bornage}</p>
-            <p class="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-              {article.summary}
-            </p>
-            <p class="mt-2 font-mono text-[10px] text-muted-foreground">
-              Source : {article.sourceLabel}
-            </p>
+  <!-- Bornage -->
+  <section class="border-t border-border py-12">
+    <h2 class="text-lg font-semibold tracking-tight">Bornage</h2>
+    <p class="mt-2 max-w-2xl text-sm text-muted-foreground">
+      Perimetre de la veille : ce que je suis, et ce que je laisse de cote.
+    </p>
+    <div class="mt-6 grid gap-3 sm:grid-cols-2">
+      {bornages.map((b) => (
+        <article class="rounded-lg border border-border bg-card p-4">
+          <div class="flex items-start gap-2">
+            <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
+              {b.id}
+            </span>
+            <h3 class="font-medium leading-snug">{b.titre.replace(/^Bornage \d+ — /, '')}</h3>
           </div>
-          <svg
-            class="mt-1 h-4 w-4 flex-shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M9 5l7 7-7 7" />
-          </svg>
+          <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{b.description}</p>
+          <div class="mt-3">
+            <p class="font-mono text-[10px] uppercase tracking-wide text-muted-foreground">Mots-cles</p>
+            <div class="mt-1.5 flex flex-wrap gap-1.5">
+              {b.motsCles.map((mc) => (
+                <span class="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                  {mc}
+                </span>
+              ))}
+            </div>
+          </div>
+          {b.exclusions && b.exclusions.length > 0 && (
+            <div class="mt-3">
+              <p class="font-mono text-[10px] uppercase tracking-wide text-muted-foreground">Exclusions</p>
+              <p class="mt-1 text-xs text-muted-foreground">{b.exclusions.join(' · ')}</p>
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Outils de veille -->
+  <section class="border-t border-border py-12">
+    <h2 class="text-lg font-semibold tracking-tight">Outils de veille</h2>
+    <p class="mt-2 max-w-2xl text-sm text-muted-foreground">
+      Deux outils permanents, plus un nouvel outil teste chaque mois a partir de mars 2026.
+    </p>
+
+    <div class="mt-6 space-y-6">
+      <div>
+        <h3 class="font-mono text-xs uppercase tracking-wide text-muted-foreground">Outils permanents</h3>
+        <div class="mt-3 grid gap-3 sm:grid-cols-2">
+          {outilsPermanents.map((o) => (
+            <a
+              href={o.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"
+            >
+              <div class="flex items-center justify-between">
+                <h4 class="font-medium group-hover:text-foreground">{o.nom}</h4>
+                <span class="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                  {o.categorie}
+                </span>
+              </div>
+              <p class="mt-2 text-sm text-muted-foreground">{o.description}</p>
+              {o.retourExperience && (
+                <p class="mt-2 text-xs italic text-muted-foreground">{o.retourExperience}</p>
+              )}
+            </a>
+          ))}
         </div>
-      </a>
-    ))}
+      </div>
+
+      {outilsMensuels.length > 0 && (
+        <div>
+          <h3 class="font-mono text-xs uppercase tracking-wide text-muted-foreground">
+            Outils testes chaque mois
+          </h3>
+          <div class="mt-3 grid gap-3 sm:grid-cols-2">
+            {outilsMensuels.map((o) => (
+              <a
+                href={o.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"
+              >
+                <div class="flex items-center justify-between">
+                  <h4 class="font-medium group-hover:text-foreground">{o.nom}</h4>
+                  {o.moisTeste && (
+                    <span class="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                      {o.moisTeste}
+                    </span>
+                  )}
+                </div>
+                <p class="mt-1 font-mono text-[10px] text-muted-foreground">{o.categorie}</p>
+                <p class="mt-2 text-sm text-muted-foreground">{o.description}</p>
+                {o.retourExperience && (
+                  <p class="mt-2 text-xs italic text-muted-foreground">{o.retourExperience}</p>
+                )}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- News par bornage -->
+  <section class="border-t border-border py-12">
+    <h2 class="text-lg font-semibold tracking-tight">News</h2>
+    <p class="mt-2 max-w-2xl text-sm text-muted-foreground">
+      News regroupees par bornage, triees par ordre chronologique decroissant. Cadence
+      cible : 2 news minimum par bornage et par mois a partir de mars 2026.
+    </p>
+
+    <div class="mt-6 space-y-8">
+      {articlesParBornage.map(({ bornage, articles: list }) => (
+        <div>
+          <header class="flex items-baseline gap-2">
+            <span class="inline-flex items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
+              {bornage.id}
+            </span>
+            <h3 class="text-sm font-semibold">{bornage.titre.replace(/^Bornage \d+ — /, '')}</h3>
+          </header>
+          {list.length === 0 ? (
+            <p class="mt-3 rounded-lg border border-dashed border-border p-4 text-sm text-muted-foreground">
+              Aucune news pour le moment sur ce bornage.
+            </p>
+          ) : (
+            <div class="mt-3 space-y-3">
+              {list.map((article) => (
+                <a
+                  href={`/veille/${article.slug}`}
+                  class="group block rounded-lg border border-border bg-card p-5 transition-colors hover:bg-accent"
+                >
+                  <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                    <div class="min-w-0 flex-1">
+                      <div class="flex flex-wrap items-center gap-2">
+                        <span class="inline-flex items-center rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                          {article.tag}
+                        </span>
+                        <span class="font-mono text-xs text-muted-foreground">
+                          {formatDate(article.date)}
+                        </span>
+                      </div>
+                      <h4 class="mt-2 font-medium leading-snug group-hover:text-foreground">
+                        {article.title}
+                      </h4>
+                      <p class="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                        {article.summary}
+                      </p>
+                      <p class="mt-2 font-mono text-[10px] text-muted-foreground">
+                        Source : {article.sourceLabel}
+                      </p>
+                    </div>
+                    <svg
+                      class="mt-1 h-4 w-4 flex-shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Mise en oeuvre -->
+  <section class="border-t border-border py-12">
+    <h2 class="text-lg font-semibold tracking-tight">A quoi sert ma veille ?</h2>
+    <p class="mt-2 max-w-2xl text-sm text-muted-foreground">
+      Mises en oeuvre concretes : decisions techniques, projets ou interventions
+      directement issues de cette veille.
+    </p>
+    {misesEnOeuvre.length === 0 ? (
+      <div class="mt-6 rounded-lg border border-dashed border-border p-4 text-sm text-muted-foreground">
+        A completer : projet ou decision technique directement issu de cette veille.
+      </div>
+    ) : (
+      <div class="mt-6 space-y-3">
+        {misesEnOeuvre.map((m) => (
+          <article class="rounded-lg border border-border bg-card p-4">
+            <h3 class="font-medium">{m.titre}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{m.description}</p>
+            {m.lien && (
+              <a
+                href={m.lien.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-3 inline-flex items-center gap-1.5 font-mono text-xs text-foreground transition-colors hover:underline"
+              >
+                {m.lien.label}
+                <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path d="M14 3h7v7M10 14L21 3M21 14v7H3V3h7" />
+                </svg>
+              </a>
+            )}
+          </article>
+        ))}
+      </div>
+    )}
   </section>
 </Layout>

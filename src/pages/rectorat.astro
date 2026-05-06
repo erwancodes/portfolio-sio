@@ -1,0 +1,191 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+interface Competence {
+  code: string;
+  title: string;
+  items: string[];
+}
+
+const competences: Competence[] = [
+  {
+    code: 'C1',
+    title: 'Gerer le patrimoine informatique',
+    items: [
+      'Recenser et identifier les ressources numeriques',
+      'Exploiter des referentiels, normes et standards adoptes par le prestataire informatique',
+      "Mettre en place et verifier les niveaux d'habilitation associes a un service",
+      "Verifier les conditions de la continuite d'un service informatique",
+      'Gerer des sauvegardes',
+      "Verifier le respect des regles d'utilisation des ressources numeriques",
+    ],
+  },
+  {
+    code: 'C2',
+    title: "Repondre aux incidents et aux demandes d'assistance et d'evolution",
+    items: [
+      'Collecter, suivre et orienter des demandes',
+      'Traiter des demandes concernant les services reseau et systeme, applicatifs',
+      'Traiter des demandes concernant les applications',
+    ],
+  },
+  {
+    code: 'C3',
+    title: "Developper la presence en ligne de l'organisation",
+    items: [
+      "Participer a la valorisation de l'image de l'organisation sur les medias numeriques en tenant compte du cadre juridique et des enjeux economiques",
+      "Referencer les services en ligne de l'organisation et mesurer leur visibilite",
+      "Participer a l'evolution d'un site Web exploitant les donnees de l'organisation",
+    ],
+  },
+  {
+    code: 'C4',
+    title: 'Travailler en mode projet',
+    items: [
+      "Analyser les objectifs et les modalites d'organisation d'un projet",
+      'Planifier les activites',
+      "Evaluer les indicateurs de suivi d'un projet et analyser les ecarts",
+    ],
+  },
+  {
+    code: 'C5',
+    title: 'Mettre a disposition des utilisateurs un service informatique',
+    items: [
+      "Realiser les tests d'integration et d'acceptation d'un service",
+      'Deployer un service',
+      "Accompagner les utilisateurs dans la mise en place d'un service",
+    ],
+  },
+  {
+    code: 'C6',
+    title: 'Organiser son developpement professionnel',
+    items: [
+      "Mettre en place son environnement d'apprentissage personnel",
+      'Mettre en oeuvre des outils et strategies de veille informationnelle',
+      'Gerer son identite professionnelle',
+      'Developper son projet professionnel',
+    ],
+  },
+];
+---
+
+<Layout title="Rectorat - BTS SIO SLAM - Erwan Sagnardon">
+  <section class="pb-12">
+    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Rectorat</h1>
+    <p class="mt-2 font-mono text-sm text-muted-foreground">
+      BTS SIO option SLAM &middot; Session 2026
+    </p>
+    <p class="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
+      Documents officiels destines au jury : tableau de synthese des realisations,
+      attestations de stage, et elements specifiques aux epreuves E5 et E6.
+    </p>
+  </section>
+
+  <section class="space-y-4">
+    <h2 class="text-xl font-semibold tracking-tight">Les 6 competences du referentiel</h2>
+    <div class="space-y-3">
+      {competences.map((comp) => (
+        <div class="rounded-lg border border-border p-5">
+          <div class="flex items-start gap-3">
+            <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
+              {comp.code}
+            </span>
+            <div class="min-w-0">
+              <h3 class="font-medium leading-snug">{comp.title}</h3>
+              <ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+                {comp.items.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-16 space-y-6">
+    <div class="flex items-baseline gap-3 border-b border-border pb-3">
+      <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
+        E5
+      </span>
+      <h2 class="text-2xl font-semibold tracking-tight">Sous option E5</h2>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-lg font-medium">Tableau de synthese</h3>
+      <p class="text-sm text-muted-foreground">
+        Recensement des realisations professionnelles avec les competences mobilisees.
+      </p>
+      <a
+        href="/files/tableau-synthese.xlsx"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-md border border-border bg-muted/50 px-4 py-2.5 text-sm font-medium transition-colors hover:bg-accent"
+      >
+        <svg class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+        </svg>
+        <span>Telecharger le tableau de synthese (.xlsx)</span>
+      </a>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-lg font-medium">Attestations de stage</h3>
+      <p class="text-sm text-muted-foreground">
+        Justificatifs des periodes en milieu professionnel.
+      </p>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <figure class="space-y-2">
+          <div class="relative aspect-[1/1.414] overflow-hidden rounded-lg border border-dashed border-border bg-muted/30">
+            <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 p-6 text-center">
+              <svg class="h-10 w-10 text-muted-foreground/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <p class="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                Attestation - 1ere annee
+              </p>
+              <span class="mt-2 inline-flex items-center rounded border border-border bg-background px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                A remplacer en juillet
+              </span>
+            </div>
+          </div>
+          <figcaption class="text-xs text-muted-foreground">
+            Stage de 1ere annee &middot; document provisoire
+          </figcaption>
+        </figure>
+
+        <figure class="space-y-2">
+          <div class="relative aspect-[1/1.414] overflow-hidden rounded-lg border border-dashed border-border bg-muted/30">
+            <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 p-6 text-center">
+              <svg class="h-10 w-10 text-muted-foreground/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <p class="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                Attestation - 2eme annee
+              </p>
+              <span class="mt-2 inline-flex items-center rounded border border-border bg-background px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                A venir
+              </span>
+            </div>
+          </div>
+          <figcaption class="text-xs text-muted-foreground">
+            Stage de 2eme annee &middot; document provisoire
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-16 space-y-6">
+    <div class="flex items-baseline gap-3 border-b border-border pb-3">
+      <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
+        E6
+      </span>
+      <h2 class="text-2xl font-semibold tracking-tight">Sous option E6</h2>
+    </div>
+
+    <div class="rounded-lg border border-dashed border-border p-6 text-sm text-muted-foreground">
+      Contenu donne ulterieurement.
+    </div>
+  </section>
+</Layout>

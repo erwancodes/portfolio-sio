@@ -1,0 +1,174 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { realisations, competencesB1, sousCompetenceByCode } from '../../data/realisations';
+
+const typeColors: Record<string, string> = {
+  TP: 'bg-muted text-muted-foreground',
+  Stage: 'bg-muted text-muted-foreground',
+  RP: 'bg-muted text-muted-foreground',
+};
+---
+
+<Layout title="Realisations professionnelles - Erwan Sagnardon">
+  <section class="pb-12">
+    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Realisations professionnelles</h1>
+    <p class="mt-2 font-mono text-sm text-muted-foreground">
+      Bloc 1 &middot; BTS SIO option SLAM
+    </p>
+    <p class="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
+      Liste des realisations (TP, stages, RP de l'epreuve E6) avec les sous-competences
+      du Bloc 1 mobilisees pour chacune. Le tableau de synthese complet est disponible
+      sur la page Rectorat.
+    </p>
+
+    <div class="mt-6 flex items-center gap-2">
+      <span class="font-mono text-xs text-muted-foreground">Vue :</span>
+      <div class="inline-flex rounded-md border border-border bg-card p-0.5" role="tablist">
+        <button
+          id="tab-realisation"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          class="rounded px-3 py-1 font-mono text-xs"
+        >
+          Par realisation
+        </button>
+        <button
+          id="tab-competence"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="rounded px-3 py-1 font-mono text-xs"
+        >
+          Par competence
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vue par realisation -->
+  <section id="view-realisation" class="space-y-3">
+    {realisations.map((r) => (
+      <a
+        href={`/realisations/${r.slug}`}
+        class="group block rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"
+      >
+        <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+          <div class="min-w-0 flex-1">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class={`inline-flex items-center rounded border border-border px-1.5 py-0.5 font-mono text-[10px] ${typeColors[r.type] ?? ''}`}>
+                {r.type}
+              </span>
+              {r.periode && (
+                <span class="font-mono text-xs text-muted-foreground">{r.periode}</span>
+              )}
+            </div>
+            <h2 class="mt-2 font-medium leading-snug group-hover:text-foreground">{r.nom}</h2>
+            {r.resume && (
+              <p class="mt-1 text-sm text-muted-foreground">{r.resume}</p>
+            )}
+            <div class="mt-3 flex flex-wrap gap-1.5">
+              {r.sousCompetences.map((code) => {
+                const sub = sousCompetenceByCode(code);
+                return (
+                  <span
+                    class="inline-flex items-center rounded border border-border bg-background px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground"
+                    title={sub?.label ?? code}
+                  >
+                    {code}
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+          <svg
+            class="mt-1 h-4 w-4 flex-shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
+      </a>
+    ))}
+  </section>
+
+  <!-- Vue par competence -->
+  <section id="view-competence" class="hidden space-y-6">
+    {competencesB1.map((comp) => {
+      const subsWithRealisations = comp.sousCompetences
+        .map((sub) => ({
+          sub,
+          realisations: realisations.filter((r) => r.sousCompetences.includes(sub.code)),
+        }))
+        .filter((entry) => entry.realisations.length > 0);
+
+      if (subsWithRealisations.length === 0) return null;
+
+      return (
+        <article class="rounded-lg border border-border bg-card p-5">
+          <header class="flex items-start gap-3">
+            <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
+              {comp.code}
+            </span>
+            <h2 class="font-medium leading-snug">{comp.title}</h2>
+          </header>
+          <div class="mt-4 space-y-4">
+            {subsWithRealisations.map(({ sub, realisations: rs }) => (
+              <div>
+                <p class="font-mono text-xs text-muted-foreground">
+                  <span class="text-foreground">{sub.code}</span> &middot; {sub.label}
+                </p>
+                <ul class="mt-2 space-y-1">
+                  {rs.map((r) => (
+                    <li>
+                      <a
+                        href={`/realisations/${r.slug}`}
+                        class="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      >
+                        <span class="rounded border border-border px-1.5 py-0.5 font-mono text-[10px]">
+                          {r.type}
+                        </span>
+                        {r.nom}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </article>
+      );
+    })}
+  </section>
+</Layout>
+
+<script>
+  const tabRealisation = document.getElementById('tab-realisation');
+  const tabCompetence = document.getElementById('tab-competence');
+  const viewRealisation = document.getElementById('view-realisation');
+  const viewCompetence = document.getElementById('view-competence');
+
+  const ACTIVE = ['bg-accent', 'text-accent-foreground', 'font-medium'];
+  const INACTIVE = ['text-muted-foreground'];
+
+  function setActive(active: 'realisation' | 'competence') {
+    const isReal = active === 'realisation';
+    tabRealisation?.setAttribute('aria-selected', String(isReal));
+    tabCompetence?.setAttribute('aria-selected', String(!isReal));
+    viewRealisation?.classList.toggle('hidden', !isReal);
+    viewCompetence?.classList.toggle('hidden', isReal);
+
+    [tabRealisation, tabCompetence].forEach((btn) => {
+      btn?.classList.remove(...ACTIVE, ...INACTIVE);
+    });
+    (isReal ? tabRealisation : tabCompetence)?.classList.add(...ACTIVE);
+    (isReal ? tabCompetence : tabRealisation)?.classList.add(...INACTIVE);
+  }
+
+  tabRealisation?.addEventListener('click', () => setActive('realisation'));
+  tabCompetence?.addEventListener('click', () => setActive('competence'));
+  setActive('realisation');
+</script>

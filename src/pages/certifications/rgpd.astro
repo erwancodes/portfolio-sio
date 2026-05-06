@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const modules = [
+  { titre: 'Module 1 — Definitions et principes', pdf: '/pdfs/certificat-rgpd-module-1.pdf' },
+  { titre: 'Module 2 — Droits des personnes', pdf: '/pdfs/certificat-rgpd-module-2.pdf' },
+  { titre: 'Module 3 — Obligations du responsable', pdf: '/pdfs/certificat-rgpd-module-3.pdf' },
+  { titre: 'Module 4 — Securite des donnees', pdf: '/pdfs/certificat-rgpd-module-4.pdf' },
+  { titre: 'Module 5 — Synthese et bilan', pdf: '/pdfs/certificat-rgpd-module-5.pdf' },
+];
+---
+
+<Layout title="Certification RGPD - Erwan Sagnardon">
+  <section class="pb-12">
+    <p class="font-mono text-xs text-muted-foreground">
+      <a href="/" class="transition-colors hover:text-foreground">&larr; Retour au CV</a>
+    </p>
+    <h1 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">Certification RGPD</h1>
+    <p class="mt-2 font-mono text-sm text-muted-foreground">5 modules &middot; 5 certificats</p>
+    <p class="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
+      Sensibilisation au Reglement General sur la Protection des Donnees : definitions,
+      droits des personnes concernees, obligations du responsable de traitement et mesures
+      de securite. Chaque module est valide par un certificat PDF distinct.
+    </p>
+  </section>
+
+  <section class="space-y-3">
+    {modules.map((m, i) => (
+      <a
+        href={m.pdf}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group flex items-center justify-between gap-4 rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"
+      >
+        <div class="flex min-w-0 items-center gap-3">
+          <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <p class="truncate text-sm font-medium group-hover:text-foreground">{m.titre}</p>
+        </div>
+        <span class="inline-flex flex-shrink-0 items-center gap-1.5 font-mono text-xs text-muted-foreground">
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path d="M14 3h7v7M10 14L21 3M21 14v7H3V3h7" />
+          </svg>
+          PDF
+        </span>
+      </a>
+    ))}
+  </section>
+</Layout>

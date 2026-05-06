@@ -1,0 +1,212 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import {
+  realisations,
+  competenceByCode,
+  sousCompetenceByCode,
+} from '../../data/realisations';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return realisations.map((realisation) => ({
+    params: { slug: realisation.slug },
+    props: { realisation },
+  }));
+};
+
+const { realisation } = Astro.props;
+
+const competencesMobilisees = Array.from(
+  new Set(realisation.sousCompetences.map((code) => code.split('.')[0]))
+)
+  .map((code) => competenceByCode(code))
+  .filter(Boolean);
+
+const blocLabels: Record<string, string> = {
+  B1: 'Bloc 1 — Support et mise a disposition de services informatiques',
+  B2: 'Bloc 2 — Conception et developpement d\'applications',
+  B3: 'Bloc 3 — Cybersecurite des services informatiques',
+};
+---
+
+<Layout title={`${realisation.nom} - Realisations professionnelles`}>
+  <article>
+    <a
+      href="/realisations"
+      class="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+    >
+      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path d="M15 19l-7-7 7-7" />
+      </svg>
+      Retour aux realisations
+    </a>
+
+    <!-- En-tete -->
+    <header class="mt-8">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="inline-flex items-center rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+          {realisation.type}
+        </span>
+        {realisation.periode && (
+          <span class="font-mono text-xs text-muted-foreground">{realisation.periode}</span>
+        )}
+      </div>
+      <h1 class="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">{realisation.nom}</h1>
+      {realisation.resume && (
+        <p class="mt-3 leading-relaxed text-muted-foreground">{realisation.resume}</p>
+      )}
+    </header>
+
+    <!-- Competences B1 mobilisees -->
+    <section class="mt-10">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+        Competences et sous-competences mobilisees (Bloc 1)
+      </h2>
+      <div class="mt-4 space-y-3">
+        {competencesMobilisees.map((comp) => {
+          const subsActives = realisation.sousCompetences
+            .filter((code) => code.startsWith(`${comp.code}.`))
+            .map((code) => sousCompetenceByCode(code))
+            .filter(Boolean);
+          return (
+            <div class="rounded-lg border border-border p-4">
+              <div class="flex items-start gap-3">
+                <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
+                  {comp.code}
+                </span>
+                <div class="min-w-0">
+                  <h3 class="font-medium leading-snug">{comp.title}</h3>
+                  <ul class="mt-2 space-y-1">
+                    {subsActives.map((sub) => (
+                      <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                        <span class="font-mono text-[10px] text-foreground">{sub.code}</span>
+                        <span>{sub.label}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- Contexte -->
+    <section class="mt-10">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Contexte</h2>
+      {realisation.contexte ? (
+        <div class="mt-3 space-y-3 leading-relaxed text-foreground/90">
+          {realisation.contexte.split('\n\n').map((p) => <p>{p}</p>)}
+        </div>
+      ) : (
+        <p class="mt-3 rounded-lg border border-dashed border-border p-4 text-sm text-muted-foreground">
+          A completer : problematique, besoin, environnement humain et organisationnel.
+        </p>
+      )}
+    </section>
+
+    <!-- Environnement technologique -->
+    <section class="mt-10">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+        Environnement technologique
+      </h2>
+      {realisation.environnementTechno && realisation.environnementTechno.length > 0 ? (
+        <div class="mt-3 flex flex-wrap gap-2">
+          {realisation.environnementTechno.map((tech) => (
+            <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground">
+              {tech}
+            </span>
+          ))}
+        </div>
+      ) : (
+        <p class="mt-3 rounded-lg border border-dashed border-border p-4 text-sm text-muted-foreground">
+          A completer : langages, frameworks, OS, outils.
+        </p>
+      )}
+    </section>
+
+    <!-- Preuves -->
+    <section class="mt-10">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Preuves</h2>
+      {realisation.preuves && realisation.preuves.length > 0 ? (
+        <div class="mt-4 space-y-6">
+          {realisation.preuves.map((groupe) => (
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="font-medium">{blocLabels[groupe.bloc] ?? groupe.bloc}</h3>
+                {groupe.obligatoire && (
+                  <span class="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                    obligatoire
+                  </span>
+                )}
+              </div>
+              <div class="mt-3 space-y-3">
+                {groupe.preuves.map((p) => {
+                  if (p.type === 'image') {
+                    return (
+                      <figure class="overflow-hidden rounded-lg border border-border bg-card">
+                        <img src={p.src} alt={p.caption ?? 'Preuve'} loading="lazy" class="h-auto w-full" />
+                        {p.caption && (
+                          <figcaption class="border-t border-border px-4 py-2 font-mono text-xs text-muted-foreground">
+                            {p.caption}
+                          </figcaption>
+                        )}
+                      </figure>
+                    );
+                  }
+                  if (p.type === 'pdf') {
+                    return (
+                      <a
+                        href={p.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 rounded-md border border-border bg-card px-3 py-2 text-sm transition-colors hover:bg-accent"
+                      >
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                          <path d="M14 2v6h6" />
+                        </svg>
+                        {p.label}
+                      </a>
+                    );
+                  }
+                  if (p.type === 'lien') {
+                    return (
+                      <a
+                        href={p.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 rounded-md border border-border bg-card px-3 py-2 text-sm transition-colors hover:bg-accent"
+                      >
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        {p.label}
+                      </a>
+                    );
+                  }
+                  return (
+                    <figure class="overflow-hidden rounded-lg border border-border bg-card">
+                      <pre class="overflow-x-auto px-4 py-3 font-mono text-xs"><code>{p.content}</code></pre>
+                      {p.caption && (
+                        <figcaption class="border-t border-border px-4 py-2 font-mono text-xs text-muted-foreground">
+                          {p.caption}
+                        </figcaption>
+                      )}
+                    </figure>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="mt-3 rounded-lg border border-dashed border-border p-4 text-sm text-muted-foreground">
+          A completer : preuves du Bloc 1 (obligatoire) ; Blocs 2 et 3 pour valoriser le travail.
+          Stockage suggere : <span class="font-mono">public/realisations/{realisation.slug}/</span>.
+        </div>
+      )}
+    </section>
+  </article>
+</Layout>
