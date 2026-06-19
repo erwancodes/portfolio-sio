@@ -83,6 +83,16 @@ export const outils: Outil[] = [
       "Complementaire de Feedly : capte les annonces presse et les publications hors blogs RSS.",
   },
   {
+    nom: 'Perplexity',
+    type: 'permanent',
+    categorie: 'Moteur de recherche IA',
+    url: 'https://www.perplexity.ai/',
+    description:
+      "Recherche assistee par IA pour croiser rapidement plusieurs sources, obtenir des pistes documentees et verifier la pertinence d'une actualite avant de l'integrer a la veille.",
+    retourExperience:
+      "Utile pour gagner du temps sur la phase de qualification : je l'utilise comme point de depart, puis je verifie les sources primaires avant de retenir une news.",
+  },
+  {
     nom: 'OpenFlux',
     type: 'mensuel',
     categorie: 'Agregateur de veille perso',
@@ -199,6 +209,98 @@ Cette approche ameliore la robustesse des systemes robotiques en leur donnant un
       { aspect: 'Approche', detail: 'World models pour la Physical AI' },
       { aspect: 'Usage', detail: 'Simulation, donnees synthetiques, comprehension du monde physique' },
       { aspect: 'Objectif', detail: "Ameliorer l'apprentissage et la robustesse des robots" },
+    ],
+  },
+  {
+    slug: 'robotis-ai-sapiens-k0-open-source-humanoide',
+    title: 'ROBOTIS AI Sapiens K0 : un humanoide open source pour la recherche',
+    date: '2026-04-21',
+    tag: 'Open source',
+    bornage: 'Bornage 1 â€” Startups robotique & open source humanoide',
+    bornageId: 'B1',
+    summary: "ROBOTIS a presente AI Sapiens K0, un humanoide open source de recherche livre avec fichiers CAD, nomenclature materielle, code source et assets de simulation pour reduire la friction de reconstruction.",
+    description: `ROBOTIS a presente AI Sapiens K0, un humanoide de recherche entierement open source. La plateforme met a disposition les fichiers CAD, la nomenclature materielle, le code source et les assets de simulation afin de permettre aux chercheurs de reconstruire plus rapidement une base robotique comparable.
+
+Le K0 mesure 1,3 metre, pese 34 kg et dispose de 23 degres de liberte. Il s'appuie sur les actionneurs Dynamixel-Q de ROBOTIS, concus pour offrir une meilleure backdrivability, une faible impedance et un controle plus fin du couple, des proprietes importantes pour la marche dynamique et les interactions physiques.
+
+L'interet pour ma veille est double : la plateforme renforce l'ecosysteme humanoide ouvert, tout en proposant une base reproductible pour entrainer et comparer des approches de Physical AI via NVIDIA Isaac Sim, l'apprentissage par renforcement et l'imitation learning.`,
+    source: 'https://www.humanoidsdaily.com/news/robotis-enters-the-open-source-humanoid-arena-with-ai-sapiens-k0-platform',
+    sourceLabel: 'Humanoids Daily',
+    pdf: '/pdfs/news_avril_5_robotis_ai_sapiens_k0.pdf',
+    keyPoints: [
+      { aspect: 'Acteur', detail: 'ROBOTIS' },
+      { aspect: 'Plateforme', detail: 'AI Sapiens K0, humanoide open source de recherche' },
+      { aspect: 'Ouverture', detail: 'CAD, BoM, code source et assets de simulation publies' },
+      { aspect: 'Angle veille', detail: 'Base reproductible pour Physical AI et humanoides ouverts' },
+    ],
+  },
+  {
+    slug: 'trois-world-models-3d-robotique-avril-2026',
+    title: 'Trois world models 3D deviennent une infrastructure cle pour la robotique',
+    date: '2026-04-21',
+    tag: 'IA & Robotique',
+    bornage: 'Bornage 2 â€” World Models IA : comprendre le monde physique pour la robotique',
+    bornageId: 'B2',
+    summary: "Un panorama IA d'avril 2026 met en avant trois world models 3D publies par de grands labs, avec des usages directs pour la robotique, la generation d'environnements et les vehicules autonomes.",
+    description: `Un panorama IA publie le 21 avril 2026 souligne que trois grands labs ont publie des world models 3D selon trois strategies differentes : Tencent avec HY-World 2.0 en open source commercial, NVIDIA avec Lyra 2.0 sous licence de recherche, et Alibaba avec Happy Oyster via acces anticipe.
+
+Ces systemes cherchent a comprendre l'espace 3D, la physique et la permanence des objets afin de generer des environnements navigables. Pour la robotique, cela peut servir a creer des scenes de simulation, varier les situations d'entrainement et reduire la dependance aux essais physiques couteux.
+
+Cette news est pertinente pour le bornage 2 car elle montre que les world models ne sont plus seulement des demonstrations generatives : ils deviennent une couche d'infrastructure pour les pipelines de robot training, la simulation, les environnements virtuels et les vehicules autonomes.`,
+    source: 'https://www.linkedin.com/pulse/ai-daily-briefing-monday-21st-april-2026-david-wright-iyh8e',
+    sourceLabel: 'LinkedIn - David Wright',
+    pdf: '/pdfs/news_avril_6_world_models_3d_robotique.pdf',
+    keyPoints: [
+      { aspect: 'Date', detail: '21 avril 2026' },
+      { aspect: 'Modeles cites', detail: 'Tencent HY-World 2.0, NVIDIA Lyra 2.0, Alibaba Happy Oyster' },
+      { aspect: 'Capacite', detail: 'Generation et comprehension de scenes 3D navigables' },
+      { aspect: 'Impact robotique', detail: 'Simulation, entrainement robotique et environnements synthetiques' },
+    ],
+  },
+  {
+    slug: 'hugging-face-robot-humanoide-open-source',
+    title: 'Hugging Face Robot : une plateforme humanoide bipede open source',
+    date: '2026-05-31',
+    tag: 'Open source',
+    bornage: 'Bornage 1 - Startups robotique & open source humanoide',
+    bornageId: 'B1',
+    summary: "La veille robotique de l'INRS mentionne Hugging Face Robot comme une plateforme humanoide bipede open source et abordable, pensee pour l'apprentissage de bout en bout.",
+    description: `La veille Robots, AMR et exosquelettes de l'INRS, publiee le 8 juin 2026, mentionne Hugging Face Robot comme une plateforme humanoide bipede open source et abordable pour l'apprentissage de bout en bout.
+
+Cette actualite est rattachee au mois de mai car le bulletin INRS compile des signaux recents de l'ecosysteme robotique, dont l'ouverture de plateformes humanoides accessibles pour la recherche, le prototypage et l'entrainement de comportements robotiques.
+
+L'interet pour ma veille est clair : Hugging Face, deja central dans l'IA open source, se positionne aussi sur la robotique physique. Une plateforme humanoide ouverte peut reduire les barrieres d'entree pour les chercheurs, les etudiants et les startups qui veulent tester des modeles d'apprentissage robotique sans repartir de zero.`,
+    source: 'https://portaildocumentaire.inrs.fr/blog-view/60/veille-robots-amr-et-exosquelettes/2189/bulletin-de-veille-robots-amr-et-exosquelettes-8-juin-2026',
+    sourceLabel: 'INRS - Veille Robots, AMR et exosquelettes',
+    pdf: '/pdfs/news_mai_7_hugging_face_robot_humanoide_open_source.pdf',
+    keyPoints: [
+      { aspect: 'Acteur', detail: 'Hugging Face' },
+      { aspect: 'Plateforme', detail: 'Robot humanoide bipede open source' },
+      { aspect: 'Objectif', detail: "Apprentissage robotique de bout en bout" },
+      { aspect: 'Angle veille', detail: 'Accessibilite, open source et prototypage humanoide' },
+    ],
+  },
+  {
+    slug: 'cap-digital-demains-world-models-robotique',
+    title: 'Cap Digital DEMAIN(S) : les World Models pour comprendre et simuler le monde',
+    date: '2026-05-28',
+    tag: 'IA & Robotique',
+    bornage: 'Bornage 2 - World Models IA : comprendre le monde physique pour la robotique',
+    bornageId: 'B2',
+    summary: "Cap Digital consacre une edition DEMAIN(S) aux World Models, presentes comme des IA capables de predire des etats du monde, simuler des situations et raisonner dans des environnements dynamiques.",
+    description: `Cap Digital consacre son edition DEMAIN(S) du 28 mai 2026 aux World Models. La publication explique que ces modeles cherchent a predire des etats du monde, simuler des situations, anticiper ce qui va se passer et raisonner dans des environnements dynamiques.
+
+La source relie directement ces capacites a des secteurs comme la robotique, l'industrie ou la sante. Elle met aussi en avant plusieurs briques techniques importantes : architectures JEPA, modelisation temporelle, simulation physique, environnements 3D, multimodalite native et apprentissage par interaction.
+
+Pour ma veille, cette news montre pourquoi les World Models deviennent une brique importante de la robotique : ils peuvent aider un robot a anticiper une trajectoire, comprendre une interaction physique et prendre de meilleures decisions dans un environnement reel ou simule.`,
+    source: 'https://www.capdigital.com/decouvrez-notre-nouvelle-edition-de-demains-dediee-aux-world-models/',
+    sourceLabel: 'Cap Digital',
+    pdf: '/pdfs/news_mai_8_cap_digital_world_models_robotique.pdf',
+    keyPoints: [
+      { aspect: 'Evenement', detail: 'DEMAIN(S) - les World Models, 28 mai 2026' },
+      { aspect: 'Capacite', detail: 'Predire des etats du monde et simuler des situations' },
+      { aspect: 'Briques', detail: 'Simulation physique, environnements 3D, multimodalite et interaction' },
+      { aspect: 'Impact robotique', detail: 'Anticipation de trajectoires, interactions physiques et decision en environnement dynamique' },
     ],
   },
 ];
