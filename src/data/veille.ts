@@ -303,6 +303,52 @@ Pour ma veille, cette news montre pourquoi les World Models deviennent une briqu
       { aspect: 'Impact robotique', detail: 'Anticipation de trajectoires, interactions physiques et decision en environnement dynamique' },
     ],
   },
+  {
+    slug: 'figure-ai-humanoide-usines-maisons',
+    title: 'Figure AI : un humanoide generaliste pour les usines et les maisons',
+    date: '2026-06-30',
+    tag: 'Humanoide',
+    bornage: 'Bornage 1 - Startups robotique & open source humanoide',
+    bornageId: 'B1',
+    summary: "Robot Magazine analyse la trajectoire de Figure AI, startup valorisee 39 milliards de dollars, qui veut industrialiser des robots humanoides capables d'agir dans les usines, la logistique puis les environnements domestiques.",
+    description: `Robot Magazine revient sur la progression de Figure AI, fondee en 2022 par Brett Adcock, et sur son ambition de placer des robots humanoides generalistes dans les usines, les entrepots puis, a terme, dans les maisons. L'entreprise illustre la bascule de la robotique humanoide vers une logique industrielle : levees de fonds massives, pilotes chez BMW et construction d'une usine dediee a la production de robots.
+
+L'article met en avant Figure 02 comme premier deploiement industriel significatif, avec des tests prolonges dans l'usine BMW de Spartanburg, puis Figure 03 comme generation pensee pour des usages plus larges. La partie IA repose sur Helix, un modele Vision-Language-Action embarque qui transforme les images et les consignes en commandes motrices sans pipeline robotique classique.
+
+Pour ma veille, cette news est importante car elle montre qu'une startup humanoide ne se limite plus a la demonstration : elle doit aussi prouver sa capacite a produire, collecter des donnees terrain et reduire les couts. La prudence reste necessaire, car la valorisation repose encore beaucoup sur le potentiel et les deploiements massifs ne sont pas encore confirmes.`,
+    source: 'https://www.robot-magazine.fr/la-startup-qui-veut-mettre-un-humanoide-dans-chaque-usine-et-peut-etre-dans-chaque-maison/?utm_source=rss&utm_medium=rss&utm_campaign=la-startup-qui-veut-mettre-un-humanoide-dans-chaque-usine-et-peut-etre-dans-chaque-maison',
+    sourceLabel: 'Robot Magazine',
+    pdf: '/pdfs/news_juin_9_figure_ai_humanoide_usines_maisons.pdf',
+    keyPoints: [
+      { aspect: 'Acteur', detail: 'Figure AI, startup americaine fondee en 2022' },
+      { aspect: 'Robot', detail: 'Figure 02 pour les pilotes industriels, Figure 03 pour des usages plus polyvalents' },
+      { aspect: 'IA', detail: 'Helix, modele Vision-Language-Action embarque' },
+      { aspect: 'Angle veille', detail: 'Passage du prototype humanoide a une logique de production industrielle' },
+    ],
+  },
+  {
+    slug: 'vivatech-2026-robots-humanoides-realite-industrielle',
+    title: 'VivaTech 2026 : les robots humanoides deviennent une realite industrielle',
+    date: '2026-06-18',
+    tag: 'Humanoide',
+    bornage: 'Bornage 1 - Startups robotique & open source humanoide',
+    bornageId: 'B1',
+    summary: "A VivaTech 2026, les demonstrations de robots humanoides ont confirme la montee en maturite de l'Embodied AI, avec des cas d'usage plus concrets pour l'industrie, la logistique et la maintenance.",
+    description: `Robot Magazine presente VivaTech 2026 comme une edition charniere pour la robotique humanoide. Les demonstrations observees les 17 et 18 juin a Paris montrent des robots capables de marcher, manipuler des objets, interagir avec des humains et viser des taches professionnelles concretes.
+
+L'article insiste sur l'Embodied AI : l'IA ne reste plus seulement dans les logiciels, elle s'incarne dans des machines capables d'agir dans le monde physique. Des plateformes comme KANGAROO de PAL Robotics illustrent la volonte europeenne de rester presente dans cette course, avec une approche tournee vers les usages industriels, logistiques et scientifiques.
+
+Pour ma veille, cette actualite confirme que le sujet humanoide arrive dans une phase de maturite plus economique : les entreprises ne cherchent plus seulement a impressionner, mais a demontrer un retour sur investissement face a la penurie de main-d'oeuvre, aux taches repetitives et aux enjeux de souverainete industrielle.`,
+    source: 'https://www.robot-magazine.fr/vivatech-2026-lannee-ou-les-robots-humanoides-sont-devenus-une-realite-industrielle/?utm_source=rss&utm_medium=rss&utm_campaign=vivatech-2026-lannee-ou-les-robots-humanoides-sont-devenus-une-realite-industrielle',
+    sourceLabel: 'Robot Magazine',
+    pdf: '/pdfs/news_juin_10_vivatech_2026_robots_humanoides.pdf',
+    keyPoints: [
+      { aspect: 'Evenement', detail: 'VivaTech 2026, Paris, 17 et 18 juin' },
+      { aspect: 'Tendance', detail: 'L Embodied AI rapproche IA et action physique' },
+      { aspect: 'Exemple', detail: 'KANGAROO de PAL Robotics comme vitrine europeenne' },
+      { aspect: 'Angle veille', detail: 'Humanoides orientes industrie, logistique, maintenance et ROI' },
+    ],
+  },
 ];
 
 export function formatDate(dateStr: string): string {
