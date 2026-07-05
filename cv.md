@@ -1,6 +1,6 @@
 # ERWAN SAGNARDON
 
-**ETUDIANT BTS SIO EN RECHERCHE DE STAGE EN DEV DU 25/05 AU 26/06/2026**
+**ETUDIANT BTS SIO EN RECHERCHE DE STAGE EN DEV DU 11/01 AU 19/02/2027**
 
 ---
 
@@ -32,7 +32,7 @@ Passionné par les technologies, je cherche un stage en BTS SIO option SLAM pour
 ## EXPÉRIENCES PROFESSIONNELLES
 
 ### Stagiaire — Ville des Andelys
-*Mai 2026 - Juillet 2026 | Les Andelys, France*
+*11 janvier 2027 - 19 fevrier 2027 | Les Andelys, France*
 
 - Service informatique : développement d'une application web
 - Analyse des besoins, tests et amélioration des fonctionnalités
