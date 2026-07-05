@@ -32,7 +32,7 @@ Passionné par les technologies, je cherche un stage en BTS SIO option SLAM pour
 ## EXPÉRIENCES PROFESSIONNELLES
 
 ### Stagiaire — Ville des Andelys
-*11 janvier 2027 - 19 fevrier 2027 | Les Andelys, France*
+*Juin 2026 - Juillet 2026 | Les Andelys, France*
 
 - Service informatique : développement d'une application web
 - Analyse des besoins, tests et amélioration des fonctionnalités
