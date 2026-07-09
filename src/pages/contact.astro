@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact | Erwan Codes">
+  <main class="max-w-2xl mx-auto px-6 py-16">
+    <h1 class="text-4xl font-bold tracking-tight mb-4">Contact</h1>
+    <p class="text-muted-foreground text-lg mb-10">
+      Tu peux me contacter par email ou via mes réseaux.
+    </p>
+
+    <div class="space-y-8">
+      <!-- Email -->
+      <div>
+        <h2 class="font-semibold text-sm tracking-widest text-muted-foreground mb-3">EMAIL</h2>
+        <a 
+          href="mailto:erwan.codes@gmail.com" 
+          class="text-2xl font-medium hover:underline"
+        >
+          erwan.codes@gmail.com
+        </a>
+      </div>
+
+      <!-- Réseaux -->
+      <div>
+        <h2 class="font-semibold text-sm tracking-widest text-muted-foreground mb-3">RÉSEAUX</h2>
+        <div class="flex flex-col gap-3 text-lg">
+          <a href="https://github.com/erwancodes" target="_blank" class="hover:underline">GitHub</a>
+          <a href="https://x.com/erwancodes" target="_blank" class="hover:underline">X (Twitter)</a>
+          <a href="https://www.linkedin.com/in/erwan-codes/" target="_blank" class="hover:underline">LinkedIn</a>
+        </div>
+      </div>
+
+      <!-- Message -->
+      <div class="pt-8 border-t border-border">
+        <p class="text-muted-foreground">
+          Tu peux aussi m’envoyer un message directement sur X ou LinkedIn.
+        </p>
+      </div>
+    </div>
+  </main>
+</Layout>
