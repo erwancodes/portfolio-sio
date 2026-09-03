@@ -349,6 +349,98 @@ Pour ma veille, cette actualite confirme que le sujet humanoide arrive dans une 
       { aspect: 'Angle veille', detail: 'Humanoides orientes industrie, logistique, maintenance et ROI' },
     ],
   },
+  {
+    slug: 'alia-humanoid-open-source-developpement-juillet-2026',
+    title: 'Alia Humanoid : un humanoide open source en developpement ouvert',
+    date: '2026-07-18',
+    tag: 'Open source',
+    bornage: 'Bornage 1 — Startups robotique & open source humanoide',
+    bornageId: 'B1',
+    summary: "Alia Humanoid documente un nouveau jalon de son humanoide open source : la boucle de controle de la cheville a ete validee sur banc a 625 Hz, avec des ameliorations du suivi des articulations et du demarrage a chaud.",
+    description: `Alia Humanoid documente publiquement un nouveau jalon de son humanoide open source. La boucle de controle de la cheville a ete validee sur banc a 625 Hz, avec des ameliorations du suivi des articulations, du demarrage a chaud et de la securite du mouvement.
+
+Le projet publie aussi une note technique sur la reconstruction deterministe des offsets au demarrage et fait evoluer le logiciel vers une licence GPLv3. La feuille de route prevoit une ouverture progressive des composants mecaniques, des STL aux futures sources CAD.
+
+Pour ma veille, ce projet montre comment une plateforme humanoide peut avancer par iterations materielles et logicielles partagees, avec des limites de validation clairement distinguees entre simulation et materiel.`,
+    source: 'https://github.com/aliahumanoid/alia-humanoid-core',
+    sourceLabel: 'Alia Humanoid - GitHub',
+    pdf: '/pdfs/news_juillet_11_alia_humanoid_open_source.pdf',
+    keyPoints: [
+      { aspect: 'Projet', detail: 'Alia Humanoid, robot humanoide a actionnement par tendons' },
+      { aspect: 'Avancee', detail: 'Boucle de controle de cheville validee a 625 Hz sur banc' },
+      { aspect: 'Ouverture', detail: 'Firmware, documentation materielle et STL publics' },
+      { aspect: 'Angle veille', detail: 'Reproductibilite et developpement open source d une plateforme humanoide' },
+    ],
+  },
+  {
+    slug: 'xiaomi-robotics-u0-world-model-juillet-2026',
+    title: 'Xiaomi-Robotics-U0 : un World Model pour les robots',
+    date: '2026-07-13',
+    tag: 'IA & Robotique',
+    bornage: 'Bornage 2 — World Models IA : comprendre le monde physique pour la robotique',
+    bornageId: 'B2',
+    summary: "Xiaomi presente Xiaomi-Robotics-U0, un modele de monde autoregressif de 38 milliards de parametres capable de generer des scenes robotiques multi-vues, des transferts d embodiment et des videos d interaction.",
+    description: `Xiaomi presente Xiaomi-Robotics-U0, un modele de monde autoregressif de 38 milliards de parametres entraine pour l intelligence incarnee. Le modele relie generation d images, generation de scenes robotiques multi-vues, transfert d embodiment et generation de videos robotiques.
+
+Le modele peut produire des observations robotiques physiquement plausibles et predire des interactions futures a partir d une image, d une consigne et d une action. Xiaomi met egalement en avant une acceleration FlashAR+ destinee a rendre la generation plus exploitable.
+
+Pour ma veille, U0 illustre l usage des world models comme moteurs de donnees synthetiques pour diversifier l entrainement des politiques robotiques et ameliorer leur robustesse sur des taches de manipulation.`,
+    source: 'https://robotics.xiaomi.com/xiaomi-robotics-u0.html',
+    sourceLabel: 'Xiaomi Robotics',
+    pdf: '/pdfs/news_juillet_12_xiaomi_robotics_u0_world_model.pdf',
+    keyPoints: [
+      { aspect: 'Modele', detail: 'Xiaomi-Robotics-U0, world foundation model de 38 milliards de parametres' },
+      { aspect: 'Capacites', detail: 'Scenes robotiques multi-vues, transfert d embodiment et videos d interaction' },
+      { aspect: 'Architecture', detail: 'Modele multimodal autoregressif avec acceleration FlashAR+' },
+      { aspect: 'Angle veille', detail: 'Generation de donnees synthetiques pour l entrainement robotique' },
+    ],
+  },
+  {
+    slug: 'nvidia-world-action-models-manipulation-robotique-aout-2026',
+    title: 'NVIDIA : les World Action Models pour la manipulation robotique',
+    date: '2026-08-04',
+    tag: 'IA & Robotique',
+    bornage: 'Bornage 2 — World Models IA : comprendre le monde physique pour la robotique',
+    bornageId: 'B2',
+    summary: "NVIDIA explique comment les World Action Models associent un modele video du monde a une politique robotique pour predire l evolution d une scene lorsqu une action est executee.",
+    description: `NVIDIA explique comment les World Action Models (WAM) peuvent associer un modele video du monde a une politique robotique. Au lieu de seulement reconnaitre une scene, le systeme cherche a predire son evolution lorsqu une action est executee.
+
+Cette approche apporte un a priori physique aux politiques de manipulation : le robot peut evaluer les consequences probables d un mouvement avant de l appliquer. NVIDIA presente Cosmos 3, modele de monde ouvert, comme une base pour construire ces systemes specialises.
+
+Pour ma veille, le world model devient une brique directement reliee au controle et a la planification, et non plus uniquement un outil de generation de videos ou de simulations.`,
+    source: 'https://developer.nvidia.com/blog/beyond-vlas-how-world-action-models-reshape-robot-manipulation/',
+    sourceLabel: 'NVIDIA Developer Blog',
+    pdf: '/pdfs/news_aout_13_nvidia_world_action_models_robotique.pdf',
+    keyPoints: [
+      { aspect: 'Concept', detail: 'World Action Model, modele de monde couple a une politique d action' },
+      { aspect: 'Capacite', detail: 'Prediction de l evolution d une scene conditionnee par une action' },
+      { aspect: 'Plateforme', detail: 'NVIDIA Cosmos 3 comme base ouverte pour la Physical AI' },
+      { aspect: 'Angle veille', detail: 'Passage des world models vers la manipulation et le controle robotique' },
+    ],
+  },
+  {
+    slug: 'xpeng-iron-financement-robotique-humanoide-aout-2026',
+    title: 'XPENG Robotics leve plus de 900 millions de dollars',
+    date: '2026-08-24',
+    tag: 'Humanoide',
+    bornage: 'Bornage 1 — Startups robotique & open source humanoide',
+    bornageId: 'B1',
+    summary: "XPENG annonce une levee de plus de 900 millions de dollars pour accelerer la production de ses robots humanoides et les iterations de ses modeles de Physical AI.",
+    description: `XPENG annonce une levee de plus de 900 millions de dollars pour son activite robotique, valorisee a plus de 6,3 milliards de dollars. Ce financement doit accelerer la production de robots humanoides et les iterations de ses modeles de Physical AI.
+
+Le robot humanoide XPENG IRON est developpe comme une plateforme generaliste : il combine une architecture mecanique integree, 76 degres de liberte et une informatique embarquee fondee sur trois puces Turing AI. XPENG vise une production de masse d ici la fin de 2026.
+
+Pour ma veille, cette annonce montre que l industrialisation des humanoides depend autant du financement, de la fabrication et de la qualite industrielle que des performances de l IA embarquee.`,
+    source: 'https://www.xpeng.com/pressroom/news/01a03797fccda01e0de68a02a256006a',
+    sourceLabel: 'XPENG - communique officiel',
+    pdf: '/pdfs/news_aout_14_xpeng_iron_financement_robotique.pdf',
+    keyPoints: [
+      { aspect: 'Acteur', detail: 'XPENG Robotics, entreprise de Physical AI et de robotique humanoide' },
+      { aspect: 'Financement', detail: 'Plus de 900 millions de dollars, valorisation superieure a 6,3 milliards' },
+      { aspect: 'Robot', detail: 'XPENG IRON, plateforme generaliste de 76 degres de liberte' },
+      { aspect: 'Angle veille', detail: 'Passage de la R&D humanoide a la production et au deploiement commercial' },
+    ],
+  },
 ];
 
 export function formatDate(dateStr: string): string {
