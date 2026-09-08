@@ -86,7 +86,19 @@ const langColors: Record<string, string> = {
       <div>
         <h3 class="text-sm font-medium text-muted-foreground">Web</h3>
         <div class="mt-2 flex flex-wrap gap-2">
-          {['HTML', 'CSS', 'JavaScript', 'TypeScript', 'PHP', 'ReactJS', 'NextJS', 'Stripe'].map((skill) => (
+          {[
+            'HTML',
+            'CSS',
+            'JavaScript',
+            'TypeScript',
+            'PHP',
+            'ReactJS',
+            'NextJS',
+            'TanStack',
+            'Symfony',
+            'Tailwind CSS',
+            'Stripe',
+          ].map((skill) => (
             <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground transition-colors">
               {skill}
             </span>
@@ -116,7 +128,7 @@ const langColors: Record<string, string> = {
       <div>
         <h3 class="text-sm font-medium text-muted-foreground">Systemes & Administration</h3>
         <div class="mt-2 flex flex-wrap gap-2">
-          {['Installation OS', 'Configuration services', 'Gestion parc informatique', 'Deploiement'].map((skill) => (
+          {['Installation OS', 'Configuration services', 'Gestion parc informatique', 'Deploiement', 'Docker'].map((skill) => (
             <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground transition-colors">
               {skill}
             </span>
@@ -127,6 +139,16 @@ const langColors: Record<string, string> = {
         <h3 class="text-sm font-medium text-muted-foreground">Scripting & Autres</h3>
         <div class="mt-2 flex flex-wrap gap-2">
           {['MS-DOS', 'PowerShell', 'Algorithmie'].map((skill) => (
+            <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground transition-colors">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div>
+        <h3 class="text-sm font-medium text-muted-foreground">Outils IA &amp; développement assisté</h3>
+        <div class="mt-2 flex flex-wrap gap-2">
+          {['Claude Code', 'Codex', 'OpenCode', 'Cursor'].map((skill) => (
             <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground transition-colors">
               {skill}
             </span>
