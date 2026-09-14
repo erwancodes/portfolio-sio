@@ -1,6 +1,5 @@
 ---
 const year = new Date().getFullYear();
-const isHomePage = Astro.url.pathname === '/';
 ---
 
 <footer class="border-t border-border py-8">
@@ -28,8 +27,7 @@ const isHomePage = Astro.url.pathname === '/';
   <p class="mt-4 text-center text-sm text-muted-foreground">
     Conçu avec ❤️ par Erwan Sagnardon
   </p>
-  {isHomePage && (
-    <div class="mt-6 flex justify-center">
+    <div data-back-to-top-container class="mt-6 hidden justify-center">
       <button
         type="button"
         data-back-to-top
@@ -43,10 +41,23 @@ const isHomePage = Astro.url.pathname === '/';
         <span>Retour en haut</span>
       </button>
     </div>
-  )}
 </footer>
 
 <script>
+  const backToTopContainer = document.querySelector<HTMLElement>('[data-back-to-top-container]');
+  const main = document.querySelector('main');
+
+  const updateBackToTopVisibility = () => {
+    // Base the threshold on content, so showing the button cannot affect it.
+    const isLongPage = (main?.scrollHeight ?? 0) > window.innerHeight * 1.5;
+    backToTopContainer?.classList.toggle('hidden', !isLongPage);
+    backToTopContainer?.classList.toggle('flex', isLongPage);
+  };
+
+  updateBackToTopVisibility();
+  window.addEventListener('resize', updateBackToTopVisibility);
+  if (main) new ResizeObserver(updateBackToTopVisibility).observe(main);
+
   document.querySelector<HTMLButtonElement>('[data-back-to-top]')?.addEventListener('click', () => {
     window.scrollTo({
       top: 0,
