@@ -31,7 +31,7 @@
 | AP - CyberNews | *(à compléter)* | X | | | | X | X |
 | LinkedIn | *(à compléter)* | | | X | | | |
 | AP - Site Web Equipe | *(à compléter)* | X | | | X | X | |
-| AP - CMS Worldpress | *(à compléter)* | | | | | X | |
+| AP - CMS WordPress | *(à compléter)* | | | | | X | |
 | TP2 Windows10 et la journalisation | *(à compléter)* | X | X | | | | |
 | TP MS-DOS | *(à compléter)* | X | X | | | | |
 | TP POWERSHELL | *(à compléter)* | X | X | | | | |

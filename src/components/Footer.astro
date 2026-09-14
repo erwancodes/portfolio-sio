@@ -1,5 +1,6 @@
 ---
 const year = new Date().getFullYear();
+const isHomePage = Astro.url.pathname === '/';
 ---
 
 <footer class="border-t border-border py-8">
@@ -27,4 +28,30 @@ const year = new Date().getFullYear();
   <p class="mt-4 text-center text-sm text-muted-foreground">
     Conçu avec ❤️ par Erwan Sagnardon
   </p>
+  {isHomePage && (
+    <div class="mt-6 flex justify-center">
+      <button
+        type="button"
+        data-back-to-top
+        aria-label="Retour en haut de la page"
+        title="Retour en haut"
+        class="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground active:scale-95"
+      >
+        <svg aria-hidden="true" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 19V5m-6 6 6-6 6 6" />
+        </svg>
+        <span>Retour en haut</span>
+      </button>
+    </div>
+  )}
 </footer>
+
+<script>
+  document.querySelector<HTMLButtonElement>('[data-back-to-top]')?.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+    });
+    document.querySelector<HTMLAnchorElement>('header a')?.focus({ preventScroll: true });
+  });
+</script>

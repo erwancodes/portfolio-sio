@@ -5,6 +5,7 @@ import {
   competenceByCode,
   sousCompetenceByCode,
 } from '../../data/realisations';
+import { frenchText } from '../../text';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths: GetStaticPaths = () => {
@@ -23,13 +24,15 @@ const competencesMobilisees = Array.from(
   .filter(Boolean);
 
 const blocLabels: Record<string, string> = {
-  B1: 'Bloc 1 — Support et mise a disposition de services informatiques',
-  B2: 'Bloc 2 — Conception et developpement d\'applications',
-  B3: 'Bloc 3 — Cybersecurite des services informatiques',
+  B1: 'Bloc 1 — Support et mise à disposition de services informatiques',
+  B2: 'Bloc 2 — Conception et développement d\'applications',
+  B3: 'Bloc 3 — Cybersécurité des services informatiques',
 };
+
+const hasDetails = Boolean(realisation.contexte && realisation.environnementTechno?.length && realisation.preuves?.length);
 ---
 
-<Layout title={`${realisation.nom} - Realisations professionnelles`}>
+<Layout title={`${frenchText(realisation.nom)} - Réalisations professionnelles`}>
   <article>
     <a
       href="/realisations"
@@ -38,7 +41,7 @@ const blocLabels: Record<string, string> = {
       <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path d="M15 19l-7-7 7-7" />
       </svg>
-      Retour aux realisations
+      Retour aux réalisations
     </a>
 
     <!-- En-tete -->
@@ -51,16 +54,30 @@ const blocLabels: Record<string, string> = {
           <span class="font-mono text-xs text-muted-foreground">{realisation.periode}</span>
         )}
       </div>
-      <h1 class="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">{realisation.nom}</h1>
+      <h1 class="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">{frenchText(realisation.nom)}</h1>
       {realisation.resume && (
-        <p class="mt-3 leading-relaxed text-muted-foreground">{realisation.resume}</p>
+        <p class="mt-3 leading-relaxed text-muted-foreground">{frenchText(realisation.resume)}</p>
       )}
     </header>
+
+    {hasDetails ? null : (
+      <section class="mt-8 rounded-lg border border-border bg-muted/30 p-4">
+        <div class="flex items-center gap-2">
+          <span class="rounded border border-border bg-card px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-muted-foreground">
+            Synthèse
+          </span>
+          <p class="text-sm font-medium">Réalisation référencée dans le tableau de synthèse</p>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+          Les documents de travail ne sont pas publiés sur cette page.
+        </p>
+      </section>
+    )}
 
     <!-- Competences mobilisees -->
     <section class="mt-10">
       <h2 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-        Competences et sous-competences mobilisees
+        Compétences et sous-compétences mobilisées
       </h2>
       <div class="mt-4 space-y-3">
         {competencesMobilisees.map((comp) => {
@@ -75,12 +92,12 @@ const blocLabels: Record<string, string> = {
                   {comp.code}
                 </span>
                 <div class="min-w-0">
-                  <h3 class="font-medium leading-snug">{comp.title}</h3>
+                  <h3 class="font-medium leading-snug">{frenchText(comp.title)}</h3>
                   <ul class="mt-2 space-y-1">
                     {subsActives.map((sub) => (
                       <li class="flex items-start gap-2 text-sm text-muted-foreground">
                         <span class="font-mono text-[10px] text-foreground">{sub.code}</span>
-                        <span>{sub.label}</span>
+                        <span>{frenchText(sub.label)}</span>
                       </li>
                     ))}
                   </ul>
@@ -92,44 +109,33 @@ const blocLabels: Record<string, string> = {
       </div>
     </section>
 
-    <!-- Contexte -->
-    <section class="mt-10">
-      <h2 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Contexte</h2>
-      {realisation.contexte ? (
+    {realisation.contexte && (
+      <section class="mt-10">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Contexte</h2>
         <div class="mt-3 space-y-3 leading-relaxed text-foreground/90">
-          {realisation.contexte.split('\n\n').map((p) => <p>{p}</p>)}
+          {realisation.contexte.split('\n\n').map((p) => <p>{frenchText(p)}</p>)}
         </div>
-      ) : (
-        <p class="mt-3 rounded-lg border border-dashed border-border p-4 text-sm text-muted-foreground">
-          A completer : problematique, besoin, environnement humain et organisationnel.
-        </p>
-      )}
-    </section>
+      </section>
+    )}
 
-    <!-- Environnement technologique -->
-    <section class="mt-10">
-      <h2 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-        Environnement technologique
-      </h2>
-      {realisation.environnementTechno && realisation.environnementTechno.length > 0 ? (
+    {realisation.environnementTechno && realisation.environnementTechno.length > 0 && (
+      <section class="mt-10">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+          Environnement technologique
+        </h2>
         <div class="mt-3 flex flex-wrap gap-2">
           {realisation.environnementTechno.map((tech) => (
             <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground">
-              {tech}
+              {frenchText(tech)}
             </span>
           ))}
         </div>
-      ) : (
-        <p class="mt-3 rounded-lg border border-dashed border-border p-4 text-sm text-muted-foreground">
-          A completer : langages, frameworks, OS, outils.
-        </p>
-      )}
-    </section>
+      </section>
+    )}
 
-    <!-- Preuves -->
-    <section class="mt-10">
-      <h2 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Preuves</h2>
-      {realisation.preuves && realisation.preuves.length > 0 ? (
+    {realisation.preuves && realisation.preuves.length > 0 && (
+      <section class="mt-10">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Preuves</h2>
         <div class="mt-4 space-y-6">
           {realisation.preuves.map((groupe) => (
             <div>
@@ -146,10 +152,10 @@ const blocLabels: Record<string, string> = {
                   if (p.type === 'image') {
                     return (
                       <figure class="overflow-hidden rounded-lg border border-border bg-card">
-                        <img src={p.src} alt={p.caption ?? 'Preuve'} loading="lazy" class="h-auto w-full" />
+                        <img src={p.src} alt={p.caption ? frenchText(p.caption) : 'Preuve'} loading="lazy" class="h-auto w-full" />
                         {p.caption && (
                           <figcaption class="border-t border-border px-4 py-2 font-mono text-xs text-muted-foreground">
-                            {p.caption}
+                            {frenchText(p.caption)}
                           </figcaption>
                         )}
                       </figure>
@@ -168,9 +174,9 @@ const blocLabels: Record<string, string> = {
                             <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
                             <path d="M14 2v6h6" />
                           </svg>
-                          {p.label}
+                          {frenchText(p.label)}
                         </a>
-                        {p.caption && <p class="font-mono text-xs text-muted-foreground">{p.caption}</p>}
+                        {p.caption && <p class="font-mono text-xs text-muted-foreground">{frenchText(p.caption)}</p>}
                       </div>
                     );
                   }
@@ -186,19 +192,19 @@ const blocLabels: Record<string, string> = {
                           <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>
-                          {p.label}
+                          {frenchText(p.label)}
                         </a>
-                        {p.caption && <p class="font-mono text-xs text-muted-foreground">{p.caption}</p>}
+                        {p.caption && <p class="font-mono text-xs text-muted-foreground">{frenchText(p.caption)}</p>}
                       </div>
                     );
                   }
                   return (
                     <figure class="overflow-hidden rounded-lg border border-border bg-card">
-                      <pre class="overflow-x-auto px-4 py-3 font-mono text-xs"><code>{p.content}</code></pre>
-                      {p.caption && (
-                        <figcaption class="border-t border-border px-4 py-2 font-mono text-xs text-muted-foreground">
-                          {p.caption}
-                        </figcaption>
+                      <pre class="overflow-x-auto px-4 py-3 font-mono text-xs"><code>{frenchText(p.content)}</code></pre>
+                        {p.caption && (
+                          <figcaption class="border-t border-border px-4 py-2 font-mono text-xs text-muted-foreground">
+                            {frenchText(p.caption)}
+                          </figcaption>
                       )}
                     </figure>
                   );
@@ -207,12 +213,7 @@ const blocLabels: Record<string, string> = {
             </div>
           ))}
         </div>
-      ) : (
-        <div class="mt-3 rounded-lg border border-dashed border-border p-4 text-sm text-muted-foreground">
-          A completer : preuves du Bloc 1 (obligatoire) ; Blocs 2 et 3 pour valoriser le travail.
-          Stockage suggere : <span class="font-mono">public/realisations/{realisation.slug}/</span>.
-        </div>
-      )}
-    </section>
+      </section>
+    )}
   </article>
 </Layout>

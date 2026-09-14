@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { articles, outils, themeVeille } from '../data/veille';
+import { stages } from '../data/stages';
+import { frenchText } from '../text';
 
 interface GitHubRepo {
   name: string;
@@ -35,436 +38,181 @@ const langColors: Record<string, string> = {
   Astro: '#ff5a03',
   Java: '#b07219',
 };
+
+const skillGroups = [
+  {
+    title: 'Développement d’applications',
+    description: 'Des technologies reliées à des applications métier et à des interfaces réelles.',
+    skills: [
+      { name: 'TypeScript', href: '/realisations/stage-gestion-cles-andelys' },
+      { name: 'React', href: '/realisations/stage-gestion-cles-andelys' },
+      { name: 'TanStack Start', href: '/realisations/stage-gestion-cles-andelys' },
+      { name: 'PHP / Symfony', href: '/realisations/stage-gestion-entretiens-professionnels' },
+      { name: 'Astro', href: 'https://openflux.erwancodes.me/' },
+    ],
+    evidence: { label: 'Voir les projets des Andelys', href: '/stage#stage-1' },
+  },
+  {
+    title: 'Systèmes & réseaux',
+    description: 'Installation, configuration et validation de services sur des environnements de test.',
+    skills: [
+      { name: 'Linux / Ubuntu', href: '/realisations/ap-administration-parc-fog' },
+      { name: 'Windows Server', href: '/realisations/tp-dhcp-windows-server' },
+      { name: 'Apache', href: '/realisations/installation-apache-linux' },
+      { name: 'IIS / DNS', href: '/realisations/tp-serveur-iis-windows' },
+      { name: 'Docker', href: '/realisations/stage-gestion-budget-andelys' },
+      { name: 'Cisco Packet Tracer', href: '/realisations/tp-reseau-cisco-packet-tracer' },
+    ],
+    evidence: { label: 'Voir les preuves d’administration', href: '/realisations?filter=detailed' },
+  },
+  {
+    title: 'Cybersécurité & qualité',
+    description: 'Des pratiques de protection, de traçabilité et d’analyse associées à des TP précis.',
+    skills: [
+      { name: 'Kali Linux' },
+      { name: 'Wireshark', href: '/realisations/tp-dhcp-windows-server' },
+      { name: 'Chiffrement', href: '/realisations/tp-chiffrement-fichiers' },
+      { name: 'Journalisation', href: '/realisations/tp-windows-10-journalisation' },
+      { name: 'RGPD', href: '/certifications/rgpd' },
+    ],
+    evidence: { label: 'Voir les travaux de sécurité', href: '/realisations/tp-analyse-pdf-malveillant' },
+  },
+  {
+    title: 'Données & persistance',
+    description: 'Conception de bases relationnelles, requêtes SQL et persistance des données.',
+    skills: [
+      { name: 'PostgreSQL', href: '/realisations/stage-gestion-budget-andelys' },
+      { name: 'SQL Server / T-SQL', href: '/realisations/tp-sql-base-films' },
+      { name: 'Prisma', href: '/realisations/stage-gestion-cles-andelys' },
+      { name: 'Modèle relationnel', href: '/realisations/tp-sql-base-films' },
+    ],
+    evidence: { label: 'Voir les réalisations liées aux données', href: '/realisations/tp-sql-base-films' },
+  },
+  {
+    title: 'Outils de travail',
+    description: 'Les outils utilisés pour produire, documenter, tester et partager les projets.',
+    skills: [
+      { name: 'Git / GitHub', href: 'https://github.com/ErwanCodes' },
+      { name: 'PowerShell', href: '/realisations/tp-powershell' },
+      { name: 'MS-DOS', href: '/realisations/tp-ms-dos' },
+      { name: 'Claude Code' },
+      { name: 'Codex' },
+      { name: 'Cursor' },
+    ],
+    evidence: { label: 'Voir mes projets publiés', href: 'https://github.com/ErwanCodes' },
+  },
+];
+
+const otherExperiences = [
+  { title: 'Stagiaire — ECAM', period: 'Mars — Avril 2024', place: 'Valdemoro, Madrid, Espagne', detail: 'Maintenance informatique, fibre optique et configuration d’équipements.' },
+  { title: 'Stagiaire — Trafic Technologie Système', period: 'Novembre 2023 — Décembre 2024', place: 'Jouy-le-Moutier, France', detail: 'Réparation, mise en service de panneaux électroniques, diagnostic et câblage.' },
+];
 ---
 
 <Layout title="Erwan Sagnardon - Portfolio">
-  <!-- Hero -->
-  <section class="pb-12">
-    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Erwan Sagnardon</h1>
-    <p class="mt-2 font-mono text-sm text-muted-foreground">Etudiant BTS SIO option SLAM</p>
-    <p class="mt-1 font-mono text-sm text-muted-foreground">En recherche de stage en dev du 11/01 au 19/02/2027</p>
-    <p class="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
-      Passionne par les technologies, je cherche un stage en BTS SIO option SLAM pour mettre en
-      pratique mes competences en developpement logiciel. Rigoureux et curieux, je suis motive a
-      apprendre et a contribuer activement aux projets informatiques.
+  <section class="pb-10">
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="rounded border border-border bg-muted px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-muted-foreground">Portfolio</span>
+      <span class="font-mono text-xs text-muted-foreground">BTS SIO · SLAM</span>
+    </div>
+    <h1 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">Erwan Sagnardon</h1>
+    <p class="mt-2 font-mono text-sm text-muted-foreground">Étudiant en BTS SIO, option SLAM</p>
+    <p class="mt-5 max-w-2xl text-lg leading-relaxed text-foreground/90">
+      Je conçois des applications Web et des outils métier en reliant développement, systèmes,
+      données et sécurité.
     </p>
     <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-      <a
-        href="https://github.com/ErwanCodes"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex items-center gap-1.5 transition-colors hover:text-foreground"
-      >
-        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-        </svg>
+      <a href="https://github.com/ErwanCodes" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 transition-colors hover:text-foreground">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
         ErwanCodes
       </a>
-      <a
-        href="mailto:erwan.sagnardon@campus-la-chataigneraie.org"
-        class="flex items-center gap-1.5 transition-colors hover:text-foreground"
-      >
-        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-        Email
-      </a>
-      <span class="flex items-center gap-1.5">
-        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-          <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-        Etrepagny (27) &mdash; Permis B
-      </span>
+      <a href="mailto:erwan.sagnardon@campus-la-chataigneraie.org" class="flex items-center gap-1.5 transition-colors hover:text-foreground">Email</a>
+      <span>Étrépagny (27) · Permis B</span>
+    </div>
+    <nav class="mt-8 flex flex-wrap gap-2" aria-label="Accès rapide">
+      <a href="#formations" class="rounded-md border border-border bg-card px-3 py-2 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">Formation</a>
+      <a href="#stages" class="rounded-md border border-border bg-card px-3 py-2 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">Stages</a>
+      <a href="#competences" class="rounded-md border border-border bg-card px-3 py-2 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">Compétences</a>
+      <a href="#modules" class="rounded-md border border-border bg-card px-3 py-2 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">Modules</a>
+      <a href="#veille" class="rounded-md border border-border bg-card px-3 py-2 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">Veille</a>
+    </nav>
+  </section>
+
+  <section id="formations" class="scroll-mt-6 border-t border-border py-10">
+    <div class="flex items-end justify-between gap-3"><div><p class="font-mono text-xs uppercase tracking-wide text-muted-foreground">Parcours</p><h2 class="mt-2 text-xl font-semibold tracking-tight">Formations</h2></div><span class="font-mono text-xs text-muted-foreground">2022 — 2027</span></div>
+    <div class="mt-5 grid gap-3 sm:grid-cols-2">
+      <article class="rounded-lg border border-border bg-card p-5"><p class="font-mono text-xs text-muted-foreground">2025 — 2027 · En cours</p><h3 class="mt-2 font-medium">BTS Services Informatiques aux Organisations</h3><p class="mt-1 text-sm text-muted-foreground">Option SLAM · Le Mesnil-Esnard, France</p></article>
+      <article class="rounded-lg border border-border bg-card p-5"><p class="font-mono text-xs text-muted-foreground">2022 — 2025</p><h3 class="mt-2 font-medium">Bac Pro Systèmes Numériques</h3><p class="mt-1 text-sm text-muted-foreground">Option RISC · Le Mesnil-Esnard, France</p></article>
     </div>
   </section>
 
-  <!-- Competences -->
-  <section class="border-t border-border py-12">
-    <h2 class="text-lg font-semibold tracking-tight">Competences</h2>
-    <div class="mt-6 space-y-4">
-      <div>
-        <h3 class="text-sm font-medium text-muted-foreground">Web</h3>
-        <div class="mt-2 flex flex-wrap gap-2">
-          {[
-            'HTML',
-            'CSS',
-            'JavaScript',
-            'TypeScript',
-            'PHP',
-            'ReactJS',
-            'NextJS',
-            'TanStack',
-            'Symfony',
-            'Tailwind CSS',
-            'Stripe',
-          ].map((skill) => (
-            <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground transition-colors">
-              {skill}
-            </span>
-          ))}
+  <section id="stages" class="scroll-mt-6 border-t border-border py-10">
+    <div class="flex flex-wrap items-end justify-between gap-3"><div><p class="font-mono text-xs uppercase tracking-wide text-muted-foreground">Expériences en entreprise</p><h2 class="mt-2 text-xl font-semibold tracking-tight">Stages</h2></div><a href="/stage" class="font-mono text-xs text-muted-foreground transition-colors hover:text-foreground">Voir la page Stage →</a></div>
+    <div class="mt-5 grid gap-3 sm:grid-cols-2">
+      {stages.map((stage, index) => (
+        <div class="group rounded-lg border border-border bg-card p-5">
+          <div class="flex items-start justify-between gap-3"><div><p class="font-mono text-xs uppercase tracking-wide text-muted-foreground">{stage.eyebrow}</p><h3 class="mt-2 font-medium group-hover:text-foreground">{stage.organization}</h3></div><span class="font-mono text-[10px] text-muted-foreground">{stage.period}</span></div>
+          <p class="mt-2 text-sm text-muted-foreground">{stage.title} · {stage.location}</p>
+          {index === 0 && <p class="mt-3 text-xs text-muted-foreground">3 réalisations professionnelles rattachées au stage</p>}
+          {index === 0 && <a href="/stage" class="mt-4 inline-flex text-xs font-medium text-muted-foreground transition-colors hover:text-foreground">Découvrir le stage →</a>}
         </div>
-      </div>
-      <div>
-        <h3 class="text-sm font-medium text-muted-foreground">Langages</h3>
-        <div class="mt-2 flex flex-wrap gap-2">
-          {['C#', '.NET', 'Python'].map((skill) => (
-            <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground transition-colors">
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-      <div>
-        <h3 class="text-sm font-medium text-muted-foreground">Bases de donnees</h3>
-        <div class="mt-2 flex flex-wrap gap-2">
-          {['SQL', 'MySQL', 'SQL Server', 'PostgreSQL', 'Convex'].map((skill) => (
-            <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground transition-colors">
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-      <div>
-        <h3 class="text-sm font-medium text-muted-foreground">Systemes & Administration</h3>
-        <div class="mt-2 flex flex-wrap gap-2">
-          {['Installation OS', 'Configuration services', 'Gestion parc informatique', 'Deploiement', 'Docker'].map((skill) => (
-            <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground transition-colors">
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-      <div>
-        <h3 class="text-sm font-medium text-muted-foreground">Scripting & Autres</h3>
-        <div class="mt-2 flex flex-wrap gap-2">
-          {['MS-DOS', 'PowerShell', 'Algorithmie'].map((skill) => (
-            <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground transition-colors">
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-      <div>
-        <h3 class="text-sm font-medium text-muted-foreground">Outils IA &amp; développement assisté</h3>
-        <div class="mt-2 flex flex-wrap gap-2">
-          {['Claude Code', 'Codex', 'OpenCode', 'Cursor'].map((skill) => (
-            <span class="inline-flex items-center rounded-md border border-border bg-card px-2.5 py-0.5 font-mono text-xs text-card-foreground transition-colors">
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
+      ))}
     </div>
   </section>
 
-  <!-- Certifications & Cybersecurite -->
-  <section class="border-t border-border py-12">
-    <h2 class="text-lg font-semibold tracking-tight">Certifications & Cybersecurite</h2>
-    <div class="mt-6 grid gap-3 sm:grid-cols-3">
-      <a
-        href="/certifications/rgpd"
-        class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"
-      >
-        <div class="flex items-center justify-between">
-          <h3 class="font-mono text-sm font-medium group-hover:text-foreground">RGPD</h3>
-          <span class="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
-            5 preuves
-          </span>
-        </div>
-        <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-          Sensibilisation a la protection des donnees personnelles. Voir les copies d'ecran.
-        </p>
-      </a>
-
-      <a
-        href="/pdfs/certificat-anssi.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"
-      >
-        <div class="flex items-center justify-between">
-          <h3 class="font-mono text-sm font-medium group-hover:text-foreground">ANSSI</h3>
-          <span class="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
-            PDF
-          </span>
-        </div>
-        <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-          MOOC SecNumacademie &mdash; certificat officiel (ouvre le PDF).
-        </p>
-      </a>
-
-      <a
-        href="https://pix.fr/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"
-      >
-        <div class="flex items-center justify-between">
-          <h3 class="font-mono text-sm font-medium group-hover:text-foreground">PIX</h3>
-          <span class="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
-            ___ pix
-          </span>
-        </div>
-        <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-          Certification des competences numeriques (a completer avec le score obtenu).
-        </p>
-      </a>
+  <section id="competences" class="scroll-mt-6 border-t border-border py-10">
+    <div class="max-w-2xl"><p class="font-mono text-xs uppercase tracking-wide text-muted-foreground">Compétences techniques</p><h2 class="mt-2 text-xl font-semibold tracking-tight">Des compétences illustrées par des réalisations</h2></div>
+    <div class="mt-5 grid gap-3 md:grid-cols-2">
+      {skillGroups.map((group) => (
+        <article class="rounded-lg border border-border bg-card p-5">
+          <h3 class="font-medium">{group.title}</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-muted-foreground">{group.description}</p>
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            {group.skills.map((skill) => skill.href ? (
+              <a href={skill.href} target={skill.href.startsWith('http') ? '_blank' : undefined} rel={skill.href.startsWith('http') ? 'noopener noreferrer' : undefined} class="rounded-md border border-border bg-background px-2.5 py-1 font-mono text-xs text-card-foreground transition-colors hover:bg-accent hover:text-accent-foreground" title={`Illustré par : ${group.evidence.label}`}>{skill.name}</a>
+            ) : (
+              <span class="rounded-md border border-border bg-background px-2.5 py-1 font-mono text-xs text-card-foreground">{skill.name}</span>
+            ))}
+          </div>
+          <a href={group.evidence.href} target={group.evidence.href.startsWith('http') ? '_blank' : undefined} rel={group.evidence.href.startsWith('http') ? 'noopener noreferrer' : undefined} class="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground">{group.evidence.label} <span aria-hidden="true">→</span></a>
+        </article>
+      ))}
     </div>
   </section>
 
-  <!-- Experiences -->
-  <section class="border-t border-border py-12">
-    <h2 class="text-lg font-semibold tracking-tight">Experiences</h2>
-    <div class="mt-6 space-y-8">
-      <div class="group">
-        <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-          <h3 class="font-medium">Stagiaire &mdash; Ville des Andelys</h3>
-          <span class="font-mono text-xs text-muted-foreground">Juin 2026 &ndash; Juil. 2026</span>
-        </div>
-        <p class="mt-0.5 text-sm text-muted-foreground">Les Andelys, France</p>
-        <ul class="mt-2 space-y-1 text-sm text-muted-foreground">
-          <li class="flex items-start gap-2">
-            <span class="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted-foreground"></span>
-            Service informatique : developpement d'une application web
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted-foreground"></span>
-            Analyse des besoins, tests et amelioration des fonctionnalites
-          </li>
-        </ul>
-      </div>
-
-      <div class="group">
-        <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-          <h3 class="font-medium">Stagiaire &mdash; LDLC Rouen</h3>
-          <span class="font-mono text-xs text-muted-foreground">Jan. 2025 &ndash; Fev. 2025</span>
-        </div>
-        <p class="mt-0.5 text-sm text-muted-foreground">Rouen, France</p>
-        <ul class="mt-2 space-y-1 text-sm text-muted-foreground">
-          <li class="flex items-start gap-2">
-            <span class="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted-foreground"></span>
-            Conseil client et vente de materiel informatique
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted-foreground"></span>
-            Montage, configuration et depannage d'ordinateurs
-          </li>
-        </ul>
-      </div>
-
-      <div class="group">
-        <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-          <h3 class="font-medium">Stagiaire &mdash; ECAM</h3>
-          <span class="font-mono text-xs text-muted-foreground">Mars 2024 &ndash; Avr. 2024</span>
-        </div>
-        <p class="mt-0.5 text-sm text-muted-foreground">Valdemoro, Madrid, Espagne</p>
-        <ul class="mt-2 space-y-1 text-sm text-muted-foreground">
-          <li class="flex items-start gap-2">
-            <span class="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted-foreground"></span>
-            Maintenance informatique et fibre optique
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted-foreground"></span>
-            Reparation et configuration d'equipements
-          </li>
-        </ul>
-      </div>
-
-      <div class="group">
-        <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-          <h3 class="font-medium">Stagiaire &mdash; Trafic Technologie Systeme</h3>
-          <span class="font-mono text-xs text-muted-foreground">Nov. 2023 &ndash; Dec. 2024</span>
-        </div>
-        <p class="mt-0.5 text-sm text-muted-foreground">Jouy-le-Moutier, France</p>
-        <ul class="mt-2 space-y-1 text-sm text-muted-foreground">
-          <li class="flex items-start gap-2">
-            <span class="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted-foreground"></span>
-            Reparation et mise en service de panneaux electroniques
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted-foreground"></span>
-            Diagnostic technique et cablage
-          </li>
-        </ul>
-      </div>
+  <section id="modules" class="scroll-mt-6 border-t border-border py-10">
+    <div class="max-w-2xl"><p class="font-mono text-xs uppercase tracking-wide text-muted-foreground">Validation</p><h2 class="mt-2 text-xl font-semibold tracking-tight">Certifications & modules</h2></div>
+    <div class="mt-5 grid gap-3 sm:grid-cols-3">
+      <a href="/certifications/rgpd" class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"><div class="flex items-center justify-between gap-2"><h3 class="font-mono text-sm font-medium">RGPD</h3><span class="font-mono text-[10px] text-muted-foreground">5 modules</span></div><p class="mt-2 text-xs leading-relaxed text-muted-foreground">Protection des données personnelles et cadre de conformité.</p></a>
+      <a href="/pdfs/certificat-anssi.pdf" target="_blank" rel="noopener noreferrer" class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"><div class="flex items-center justify-between gap-2"><h3 class="font-mono text-sm font-medium">ANSSI</h3><span class="font-mono text-[10px] text-muted-foreground">PDF</span></div><p class="mt-2 text-xs leading-relaxed text-muted-foreground">MOOC SecNumAcadémie et sensibilisation à la cybersécurité.</p></a>
+      <a href="https://pix.fr/" target="_blank" rel="noopener noreferrer" class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"><div class="flex items-center justify-between gap-2"><h3 class="font-mono text-sm font-medium">PIX</h3></div><p class="mt-2 text-xs leading-relaxed text-muted-foreground">Certification des compétences numériques.</p></a>
     </div>
   </section>
 
-  <!-- Formations -->
-  <section class="border-t border-border py-12">
-    <h2 class="text-lg font-semibold tracking-tight">Formations</h2>
-    <div class="mt-6 space-y-6">
-      <div>
-        <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-          <h3 class="font-medium">BTS Services Informatiques aux Organisations</h3>
-          <span class="font-mono text-xs text-muted-foreground">2025 &ndash; 2027</span>
-        </div>
-        <p class="mt-0.5 text-sm text-muted-foreground">Le Mesnil-Esnard, France &mdash; En cours</p>
-      </div>
-      <div>
-        <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-          <h3 class="font-medium">Bac Pro Systemes Numeriques</h3>
-          <span class="font-mono text-xs text-muted-foreground">2022 &ndash; 2025</span>
-        </div>
-        <p class="mt-0.5 text-sm text-muted-foreground">Le Mesnil-Esnard, France &mdash; Option RISC</p>
-      </div>
+  <section id="veille" class="scroll-mt-6 border-t border-border py-10">
+    <div class="flex flex-wrap items-end justify-between gap-3"><div><p class="font-mono text-xs uppercase tracking-wide text-muted-foreground">Curiosité technique</p><h2 class="mt-2 text-xl font-semibold tracking-tight">Veille technologique</h2><p class="mt-2 text-sm text-muted-foreground">{frenchText(themeVeille)} · {articles.length} actualités · {outils.length} outils suivis</p></div><a href="/veille" class="font-mono text-xs text-muted-foreground transition-colors hover:text-foreground">Ouvrir la veille →</a></div>
+    <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {outils.map((outil) => (
+        <a href={outil.url} target="_blank" rel="noopener noreferrer" class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"><div class="flex items-center justify-between gap-2"><h3 class="font-medium group-hover:text-foreground">{outil.nom}</h3><span class="font-mono text-[10px] text-muted-foreground">{frenchText(outil.categorie)}</span></div><p class="mt-2 text-xs leading-relaxed text-muted-foreground">{frenchText(outil.description)}</p></a>
+      ))}
     </div>
   </section>
 
-  <!-- Projets GitHub -->
   {repos.length > 0 && (
-    <section class="border-t border-border py-12">
-      <div class="flex items-center justify-between">
-        <h2 class="text-lg font-semibold tracking-tight">Projets GitHub</h2>
-        <a
-          href="https://github.com/ErwanCodes"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Voir tout &rarr;
-        </a>
-      </div>
-      <div class="mt-6 grid gap-3 sm:grid-cols-2">
+    <section class="border-t border-border py-10">
+      <div class="flex items-end justify-between gap-3"><div><p class="font-mono text-xs uppercase tracking-wide text-muted-foreground">Code public</p><h2 class="mt-2 text-xl font-semibold tracking-tight">Projets GitHub</h2></div><a href="https://github.com/ErwanCodes" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-muted-foreground transition-colors hover:text-foreground">Voir tout →</a></div>
+      <div class="mt-5 grid gap-3 sm:grid-cols-2">
         {repos.map((repo) => (
-          <a
-            href={repo.html_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"
-          >
-            <div class="flex items-start justify-between gap-2">
-              <h3 class="font-mono text-sm font-medium group-hover:text-foreground">{repo.name}</h3>
-              {repo.stargazers_count > 0 && (
-                <span class="flex items-center gap-1 text-xs text-muted-foreground">
-                  <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                  </svg>
-                  {repo.stargazers_count}
-                </span>
-              )}
-            </div>
-            {repo.description && (
-              <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground line-clamp-2">
-                {repo.description}
-              </p>
-            )}
-            <div class="mt-3 flex flex-wrap items-center gap-2">
-              {repo.language && (
-                <span class="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <span
-                    class="h-2.5 w-2.5 rounded-full"
-                    style={`background-color: ${langColors[repo.language] || '#6e7681'}`}
-                  />
-                  {repo.language}
-                </span>
-              )}
-              {repo.topics?.slice(0, 3).map((topic) => (
-                <span class="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
-                  {topic}
-                </span>
-              ))}
-            </div>
-          </a>
+          <a href={repo.html_url} target="_blank" rel="noopener noreferrer" class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"><div class="flex items-start justify-between gap-2"><h3 class="font-mono text-sm font-medium group-hover:text-foreground">{repo.name}</h3>{repo.stargazers_count > 0 && <span class="font-mono text-xs text-muted-foreground">★ {repo.stargazers_count}</span>}</div>{repo.description && <p class="mt-1.5 line-clamp-2 text-xs leading-relaxed text-muted-foreground">{frenchText(repo.description)}</p>}<div class="mt-3 flex flex-wrap items-center gap-2">{repo.language && <span class="flex items-center gap-1.5 text-xs text-muted-foreground"><span class="h-2.5 w-2.5 rounded-full" style={`background-color: ${langColors[repo.language] || '#6e7681'}`} />{repo.language}</span>}{repo.topics?.slice(0, 3).map((topic) => <span class="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">{topic}</span>)}</div></a>
         ))}
       </div>
     </section>
   )}
 
-  <!-- Projets phares -->
-  <section class="border-t border-border py-12">
-    <h2 class="text-lg font-semibold tracking-tight">Projets phares</h2>
-    <div class="mt-6 grid gap-3 sm:grid-cols-2">
-      {[
-        {
-          name: 'AlgoTrainer',
-          description: "Plateforme d'entrainement au CCF d'algorithmique pour le BTS SIO : sujets officiels, correction immediate et editeur Python embarque qui execute ton code en local.",
-          url: 'https://algotrainer.erwancodes.me/',
-        },
-        {
-          name: 'OpenFlux',
-          description: "Agregateur de veille tech via flux RSS. Construit avec Astro, mis a jour automatiquement chaque jour via GitHub Actions.",
-          url: 'https://openflux.erwancodes.me/',
-        },
-        {
-          name: 'StagePilot',
-          description: "CRM de recherche de stage pour etudiants. Organise, suit et optimise tes candidatures.",
-          url: 'https://stagepilot.app',
-        },
-        {
-          name: 'ReactLearning',
-          description: "Projet open source : ressources et exercices pour apprendre React.",
-          url: 'https://github.com/erwancodes/ReactLeaning',
-        },
-      ].map((project) => (
-        <a
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"
-        >
-          <h3 class="font-mono text-sm font-medium group-hover:text-foreground">{project.name}</h3>
-          <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-            {project.description}
-          </p>
-        </a>
-      ))}
-    </div>
+  <section class="border-t border-border py-10">
+    <div class="flex items-end justify-between gap-3"><div><p class="font-mono text-xs uppercase tracking-wide text-muted-foreground">Parcours complémentaire</p><h2 class="mt-2 text-xl font-semibold tracking-tight">Autres expériences</h2></div><a href="/stage" class="font-mono text-xs text-muted-foreground transition-colors hover:text-foreground">Voir les stages →</a></div>
+    <div class="mt-5 grid gap-3 sm:grid-cols-2">{otherExperiences.map((experience) => <article class="rounded-lg border border-border bg-card p-4"><div class="flex flex-wrap items-baseline justify-between gap-2"><h3 class="font-medium">{experience.title}</h3><span class="font-mono text-[10px] text-muted-foreground">{experience.period}</span></div><p class="mt-1 font-mono text-[10px] text-muted-foreground">{experience.place}</p><p class="mt-2 text-sm leading-relaxed text-muted-foreground">{experience.detail}</p></article>)}</div>
   </section>
 
-  <!-- Langues -->
-  <section class="border-t border-border py-12">
-    <h2 class="text-lg font-semibold tracking-tight">Langues</h2>
-    <div class="mt-6 grid gap-3 sm:grid-cols-2">
-      <div class="rounded-lg border border-border bg-card p-4">
-        <div class="flex items-baseline justify-between gap-3">
-          <h3 class="font-medium">Francais</h3>
-          <span class="font-mono text-xs text-muted-foreground">Langue maternelle</span>
-        </div>
-      </div>
-      <div class="rounded-lg border border-border bg-card p-4">
-        <div class="flex items-baseline justify-between gap-3">
-          <h3 class="font-medium">Anglais</h3>
-          <span class="font-mono text-xs text-muted-foreground">B2</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Centres d'interet -->
-  <section class="border-t border-border py-12">
-    <h2 class="text-lg font-semibold tracking-tight">Centres d'interet</h2>
-    <div class="mt-6 grid gap-4 sm:grid-cols-3">
-      {[
-        {
-          title: 'Astronomie',
-          image: '/images/interets/astronomie.jpg',
-          alt: 'Galaxie etoilee',
-        },
-        {
-          title: 'Voyage',
-          image: '/images/interets/voyage.jpg',
-          alt: 'Paysage de voyage',
-        },
-        {
-          title: 'Coding',
-          image: '/images/interets/coding.jpg',
-          alt: 'Coding',
-        },
-      ].map((interest) => (
-        <div class="group relative aspect-[4/5] overflow-hidden rounded-lg border border-border bg-card">
-          <img
-            src={interest.image}
-            alt={interest.alt}
-            loading="lazy"
-            class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-          />
-          <div class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent p-3 pt-10">
-            <p class="text-sm font-medium text-white">{interest.title}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
+  <section class="border-t border-border py-10"><div class="grid gap-3 sm:grid-cols-2"><article class="rounded-lg border border-border bg-card p-4"><h2 class="font-medium">Langues</h2><p class="mt-2 text-sm text-muted-foreground">Français · langue maternelle<br />Anglais · B2</p></article><article class="rounded-lg border border-border bg-card p-4"><h2 class="font-medium">Centres d’intérêt</h2><p class="mt-2 text-sm text-muted-foreground">Astronomie · voyages · hackathons · robotique · nouvelles technologies et intelligence artificielle.</p></article></div></section>
 </Layout>

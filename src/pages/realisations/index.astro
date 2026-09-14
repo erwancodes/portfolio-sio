@@ -1,25 +1,35 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { realisations, competencesB1, sousCompetenceByCode } from '../../data/realisations';
+import { frenchText } from '../../text';
 
 const typeColors: Record<string, string> = {
   TP: 'bg-muted text-muted-foreground',
   Stage: 'bg-muted text-muted-foreground',
   RP: 'bg-muted text-muted-foreground',
 };
+
+const stageCount = realisations.filter((r) => r.type === 'Stage').length;
+const detailedCount = realisations.filter(
+  (r) => Boolean(r.contexte && r.environnementTechno?.length && r.preuves?.length),
+).length;
 ---
 
-<Layout title="Realisations professionnelles - Erwan Sagnardon">
+<Layout title="Réalisations professionnelles - Erwan Sagnardon">
   <section class="pb-12">
-    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Realisations professionnelles</h1>
+    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Réalisations professionnelles</h1>
     <p class="mt-2 font-mono text-sm text-muted-foreground">
-      BTS SIO option SLAM &middot; Competences B1 a B6
+      BTS SIO option SLAM &middot; Compétences B1 à B6
     </p>
     <p class="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
-      Liste des realisations (TP, stages, RP de l'epreuve E6) avec les sous-competences
-      mobilisees pour chacune. Cette page reprend le contenu du tableau de
-      synthese remis au jury (telechargeable depuis la page Rectorat).
+      Projets de formation et de stage : objectifs, environnement technique et compétences mobilisées.
     </p>
+
+    <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs text-muted-foreground">
+      <span>{realisations.length} réalisations</span>
+      <span>{stageCount} stages</span>
+      <span>{detailedCount} fiches détaillées</span>
+    </div>
 
     <div class="mt-6 flex items-center gap-2">
       <span class="font-mono text-xs text-muted-foreground">Vue :</span>
@@ -29,117 +39,169 @@ const typeColors: Record<string, string> = {
           type="button"
           role="tab"
           aria-selected="true"
+          aria-controls="view-realisation"
           class="rounded px-3 py-1 font-mono text-xs"
         >
-          Par realisation
+          Par réalisation
         </button>
         <button
           id="tab-competence"
           type="button"
           role="tab"
           aria-selected="false"
+          aria-controls="view-competence"
           class="rounded px-3 py-1 font-mono text-xs"
         >
-          Par competence
+          Par compétence
         </button>
       </div>
+    </div>
+
+    <div class="mt-4 flex flex-wrap items-center gap-2" aria-label="Filtrer les réalisations">
+      <span class="mr-1 font-mono text-xs text-muted-foreground">Filtrer :</span>
+      <button
+        type="button"
+        data-realisation-filter="all"
+        aria-pressed="true"
+        class="rounded-md bg-accent px-2.5 py-1 font-mono text-xs font-medium text-accent-foreground transition-colors"
+      >
+        Toutes
+      </button>
+      <button
+        type="button"
+        data-realisation-filter="Stage"
+        aria-pressed="false"
+        class="rounded-md px-2.5 py-1 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+      >
+        Stages
+      </button>
+      <button
+        type="button"
+        data-realisation-filter="detailed"
+        aria-pressed="false"
+        class="rounded-md px-2.5 py-1 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+      >
+        Avec preuves
+      </button>
     </div>
   </section>
 
   <!-- Vue par realisation -->
-  <section id="view-realisation" class="space-y-3">
-    {realisations.map((r) => (
-      <a
-        href={`/realisations/${r.slug}`}
-        class="group block rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"
-      >
-        <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-          <div class="min-w-0 flex-1">
-            <div class="flex flex-wrap items-center gap-2">
-              <span class={`inline-flex items-center rounded border border-border px-1.5 py-0.5 font-mono text-[10px] ${typeColors[r.type] ?? ''}`}>
-                {r.type}
-              </span>
-              {r.periode && (
-                <span class="font-mono text-xs text-muted-foreground">{r.periode}</span>
+  <section id="view-realisation" role="tabpanel" aria-labelledby="tab-realisation" class="grid gap-3 md:grid-cols-2">
+    {realisations.map((r) => {
+      const hasDetails = Boolean(r.contexte && r.environnementTechno?.length && r.preuves?.length);
+      return (
+        <a
+          href={`/realisations/${r.slug}`}
+          data-realisation-card
+          data-type={r.type}
+          data-has-details={String(hasDetails)}
+          class="group block rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent"
+        >
+          <div class="flex h-full flex-col gap-3">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class={`inline-flex items-center rounded border border-border px-1.5 py-0.5 font-mono text-[10px] ${typeColors[r.type] ?? ''}`}>
+                  {r.type}
+                </span>
+                {r.periode && (
+                  <span class="font-mono text-xs text-muted-foreground">{r.periode}</span>
+                )}
+              </div>
+              <svg
+                class="mt-1 h-4 w-4 flex-shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+            <div class="min-w-0 flex-1">
+              <h2 class="font-medium leading-snug group-hover:text-foreground">{frenchText(r.nom)}</h2>
+              {r.resume && (
+                <p class="mt-1 text-sm text-muted-foreground">{frenchText(r.resume)}</p>
               )}
             </div>
-            <h2 class="mt-2 font-medium leading-snug group-hover:text-foreground">{r.nom}</h2>
-            {r.resume && (
-              <p class="mt-1 text-sm text-muted-foreground">{r.resume}</p>
-            )}
-            <div class="mt-3 flex flex-wrap gap-1.5">
-              {r.sousCompetences.map((code) => {
-                const sub = sousCompetenceByCode(code);
-                return (
-                  <span
-                    class="inline-flex items-center rounded border border-border bg-background px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground"
-                    title={sub?.label ?? code}
-                  >
-                    {code}
-                  </span>
-                );
-              })}
+            <div class="flex items-end justify-between gap-3">
+              <div class="flex flex-wrap gap-1.5">
+                {r.sousCompetences.map((code) => {
+                  const sub = sousCompetenceByCode(code);
+                  return (
+                    <span
+                      class="inline-flex items-center rounded border border-border bg-background px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground"
+                      title={sub ? frenchText(sub.label) : code}
+                    >
+                      {code}
+                    </span>
+                  );
+                })}
+              </div>
+              <span class="flex-shrink-0 font-mono text-[10px] text-muted-foreground">
+                {hasDetails ? 'Fiche détaillée' : 'Fiche synthétique'}
+              </span>
             </div>
           </div>
-          <svg
-            class="mt-1 h-4 w-4 flex-shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M9 5l7 7-7 7" />
-          </svg>
-        </div>
-      </a>
-    ))}
+        </a>
+      );
+    })}
   </section>
 
   <!-- Vue par competence -->
-  <section id="view-competence" class="hidden space-y-6">
+  <section id="view-competence" role="tabpanel" aria-labelledby="tab-competence" class="hidden space-y-3">
     {competencesB1.map((comp) => {
-      const subsWithRealisations = comp.sousCompetences
-        .map((sub) => ({
-          sub,
-          realisations: realisations.filter((r) => r.sousCompetences.includes(sub.code)),
-        }))
-        .filter((entry) => entry.realisations.length > 0);
-
-      if (subsWithRealisations.length === 0) return null;
+      const subsWithRealisations = comp.sousCompetences.map((sub) => ({
+        sub,
+        realisations: realisations.filter((r) => r.sousCompetences.includes(sub.code)),
+      }));
+      const linkedCount = subsWithRealisations.filter((entry) => entry.realisations.length > 0).length;
 
       return (
-        <article class="rounded-lg border border-border bg-card p-5">
-          <header class="flex items-start gap-3">
-            <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
-              {comp.code}
+        <details class="group rounded-lg border border-border bg-card" open={comp.code === 'B1'}>
+          <summary class="flex cursor-pointer list-none items-start justify-between gap-3 p-5 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-start gap-3">
+              <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
+                {comp.code}
+              </span>
+              <span class="font-medium leading-snug">{frenchText(comp.title)}</span>
             </span>
-            <h2 class="font-medium leading-snug">{comp.title}</h2>
-          </header>
-          <div class="mt-4 space-y-4">
-            {subsWithRealisations.map(({ sub, realisations: rs }) => (
-              <div>
-                <p class="font-mono text-xs text-muted-foreground">
-                  <span class="text-foreground">{sub.code}</span> &middot; {sub.label}
-                </p>
-                <ul class="mt-2 space-y-1">
-                  {rs.map((r) => (
-                    <li>
-                      <a
-                        href={`/realisations/${r.slug}`}
-                        class="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-                      >
-                        <span class="rounded border border-border px-1.5 py-0.5 font-mono text-[10px]">
-                          {r.type}
-                        </span>
-                        {r.nom}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            <span class="flex-shrink-0 font-mono text-[10px] text-muted-foreground">
+              {linkedCount}/{comp.sousCompetences.length} illustrées
+            </span>
+          </summary>
+          <div class="border-t border-border px-5 pb-5 pt-4">
+            <div class="space-y-4">
+              {subsWithRealisations.map(({ sub, realisations: rs }) => (
+                <div>
+                  <p class="font-mono text-xs text-muted-foreground">
+                    <span class="text-foreground">{sub.code}</span> &middot; {frenchText(sub.label)}
+                  </p>
+                  {rs.length > 0 ? (
+                    <ul class="mt-2 space-y-1">
+                      {rs.map((r) => (
+                        <li>
+                          <a
+                            href={`/realisations/${r.slug}`}
+                            class="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                          >
+                            <span class="rounded border border-border px-1.5 py-0.5 font-mono text-[10px]">
+                              {r.type}
+                            </span>
+                            {frenchText(r.nom)}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p class="mt-2 text-xs italic text-muted-foreground">Aucune réalisation associée pour le moment.</p>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </article>
+        </details>
       );
     })}
   </section>
@@ -150,9 +212,14 @@ const typeColors: Record<string, string> = {
   const tabCompetence = document.getElementById('tab-competence');
   const viewRealisation = document.getElementById('view-realisation');
   const viewCompetence = document.getElementById('view-competence');
+  const filterButtons = document.querySelectorAll<HTMLButtonElement>('[data-realisation-filter]');
+  const realizationCards = document.querySelectorAll<HTMLElement>('[data-realisation-card]');
+  const initialFilter = new URLSearchParams(window.location.search).get('filter');
 
   const ACTIVE = ['bg-accent', 'text-accent-foreground', 'font-medium'];
   const INACTIVE = ['text-muted-foreground'];
+  const FILTER_ACTIVE = ['bg-accent', 'text-accent-foreground', 'font-medium'];
+  const FILTER_INACTIVE = ['text-muted-foreground'];
 
   function setActive(active: 'realisation' | 'competence') {
     const isReal = active === 'realisation';
@@ -170,5 +237,29 @@ const typeColors: Record<string, string> = {
 
   tabRealisation?.addEventListener('click', () => setActive('realisation'));
   tabCompetence?.addEventListener('click', () => setActive('competence'));
+
+  function setFilter(filter: string) {
+    realizationCards.forEach((card) => {
+      const matches =
+        filter === 'all' ||
+        card.dataset.type === filter ||
+        (filter === 'detailed' && card.dataset.hasDetails === 'true');
+      card.hidden = !matches;
+      card.classList.toggle('hidden', !matches);
+    });
+
+    filterButtons.forEach((button) => {
+      const isActive = button.dataset.realisationFilter === filter;
+      button.setAttribute('aria-pressed', String(isActive));
+      button.classList.remove(...FILTER_ACTIVE, ...FILTER_INACTIVE);
+      button.classList.add(...(isActive ? FILTER_ACTIVE : FILTER_INACTIVE));
+    });
+  }
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => setFilter(button.dataset.realisationFilter ?? 'all'));
+  });
+
   setActive('realisation');
+  setFilter(initialFilter === 'detailed' ? 'detailed' : 'all');
 </script>

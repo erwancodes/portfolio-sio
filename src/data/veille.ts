@@ -223,7 +223,7 @@ Cette approche ameliore la robustesse des systemes robotiques en leur donnant un
 
 Le K0 mesure 1,3 metre, pese 34 kg et dispose de 23 degres de liberte. Il s'appuie sur les actionneurs Dynamixel-Q de ROBOTIS, concus pour offrir une meilleure backdrivability, une faible impedance et un controle plus fin du couple, des proprietes importantes pour la marche dynamique et les interactions physiques.
 
-L'interet pour ma veille est double : la plateforme renforce l'ecosysteme humanoide ouvert, tout en proposant une base reproductible pour entrainer et comparer des approches de Physical AI via NVIDIA Isaac Sim, l'apprentissage par renforcement et l'imitation learning.`,
+La plateforme renforce l'ecosysteme humanoide ouvert et propose une base reproductible pour entrainer et comparer des approches de Physical AI via NVIDIA Isaac Sim, l'apprentissage par renforcement et l'imitation learning.`,
     source: 'https://www.humanoidsdaily.com/news/robotis-enters-the-open-source-humanoid-arena-with-ai-sapiens-k0-platform',
     sourceLabel: 'Humanoids Daily',
     pdf: '/pdfs/news_avril_5_robotis_ai_sapiens_k0.pdf',
@@ -246,7 +246,7 @@ L'interet pour ma veille est double : la plateforme renforce l'ecosysteme humano
 
 Ces systemes cherchent a comprendre l'espace 3D, la physique et la permanence des objets afin de generer des environnements navigables. Pour la robotique, cela peut servir a creer des scenes de simulation, varier les situations d'entrainement et reduire la dependance aux essais physiques couteux.
 
-Cette news est pertinente pour le bornage 2 car elle montre que les world models ne sont plus seulement des demonstrations generatives : ils deviennent une couche d'infrastructure pour les pipelines de robot training, la simulation, les environnements virtuels et les vehicules autonomes.`,
+Au-dela des demonstrations generatives, les world models deviennent une couche d'infrastructure pour l'entrainement robotique, la simulation, les environnements virtuels et les vehicules autonomes.`,
     source: 'https://www.linkedin.com/pulse/ai-daily-briefing-monday-21st-april-2026-david-wright-iyh8e',
     sourceLabel: 'LinkedIn - David Wright',
     pdf: '/pdfs/news_avril_6_world_models_3d_robotique.pdf',
@@ -269,7 +269,7 @@ Cette news est pertinente pour le bornage 2 car elle montre que les world models
 
 Cette actualite est rattachee au mois de mai car le bulletin INRS compile des signaux recents de l'ecosysteme robotique, dont l'ouverture de plateformes humanoides accessibles pour la recherche, le prototypage et l'entrainement de comportements robotiques.
 
-L'interet pour ma veille est clair : Hugging Face, deja central dans l'IA open source, se positionne aussi sur la robotique physique. Une plateforme humanoide ouverte peut reduire les barrieres d'entree pour les chercheurs, les etudiants et les startups qui veulent tester des modeles d'apprentissage robotique sans repartir de zero.`,
+Hugging Face, deja central dans l'IA open source, se positionne aussi sur la robotique physique. Une plateforme humanoide ouverte peut reduire les barrieres d'entree pour les chercheurs, les etudiants et les startups qui veulent tester des modeles d'apprentissage robotique sans repartir de zero.`,
     source: 'https://portaildocumentaire.inrs.fr/blog-view/60/veille-robots-amr-et-exosquelettes/2189/bulletin-de-veille-robots-amr-et-exosquelettes-8-juin-2026',
     sourceLabel: 'INRS - Veille Robots, AMR et exosquelettes',
     pdf: '/pdfs/news_mai_7_hugging_face_robot_humanoide_open_source.pdf',
@@ -292,7 +292,7 @@ L'interet pour ma veille est clair : Hugging Face, deja central dans l'IA open s
 
 La source relie directement ces capacites a des secteurs comme la robotique, l'industrie ou la sante. Elle met aussi en avant plusieurs briques techniques importantes : architectures JEPA, modelisation temporelle, simulation physique, environnements 3D, multimodalite native et apprentissage par interaction.
 
-Pour ma veille, cette news montre pourquoi les World Models deviennent une brique importante de la robotique : ils peuvent aider un robot a anticiper une trajectoire, comprendre une interaction physique et prendre de meilleures decisions dans un environnement reel ou simule.`,
+Les World Models peuvent aider un robot a anticiper une trajectoire, comprendre une interaction physique et prendre de meilleures decisions dans un environnement reel ou simule.`,
     source: 'https://www.capdigital.com/decouvrez-notre-nouvelle-edition-de-demains-dediee-aux-world-models/',
     sourceLabel: 'Cap Digital',
     pdf: '/pdfs/news_mai_8_cap_digital_world_models_robotique.pdf',
@@ -315,7 +315,7 @@ Pour ma veille, cette news montre pourquoi les World Models deviennent une briqu
 
 L'article met en avant Figure 02 comme premier deploiement industriel significatif, avec des tests prolonges dans l'usine BMW de Spartanburg, puis Figure 03 comme generation pensee pour des usages plus larges. La partie IA repose sur Helix, un modele Vision-Language-Action embarque qui transforme les images et les consignes en commandes motrices sans pipeline robotique classique.
 
-Pour ma veille, cette news est importante car elle montre qu'une startup humanoide ne se limite plus a la demonstration : elle doit aussi prouver sa capacite a produire, collecter des donnees terrain et reduire les couts. La prudence reste necessaire, car la valorisation repose encore beaucoup sur le potentiel et les deploiements massifs ne sont pas encore confirmes.`,
+L'enjeu depasse la demonstration : une startup humanoide doit aussi prouver sa capacite a produire, collecter des donnees terrain et reduire les couts. La prudence reste necessaire, car la valorisation repose encore beaucoup sur le potentiel et les deploiements massifs ne sont pas encore confirmes.`,
     source: 'https://www.robot-magazine.fr/la-startup-qui-veut-mettre-un-humanoide-dans-chaque-usine-et-peut-etre-dans-chaque-maison/?utm_source=rss&utm_medium=rss&utm_campaign=la-startup-qui-veut-mettre-un-humanoide-dans-chaque-usine-et-peut-etre-dans-chaque-maison',
     sourceLabel: 'Robot Magazine',
     pdf: '/pdfs/news_juin_9_figure_ai_humanoide_usines_maisons.pdf',
@@ -338,7 +338,7 @@ Pour ma veille, cette news est importante car elle montre qu'une startup humanoi
 
 L'article insiste sur l'Embodied AI : l'IA ne reste plus seulement dans les logiciels, elle s'incarne dans des machines capables d'agir dans le monde physique. Des plateformes comme KANGAROO de PAL Robotics illustrent la volonte europeenne de rester presente dans cette course, avec une approche tournee vers les usages industriels, logistiques et scientifiques.
 
-Pour ma veille, cette actualite confirme que le sujet humanoide arrive dans une phase de maturite plus economique : les entreprises ne cherchent plus seulement a impressionner, mais a demontrer un retour sur investissement face a la penurie de main-d'oeuvre, aux taches repetitives et aux enjeux de souverainete industrielle.`,
+Les entreprises cherchent a demontrer un retour sur investissement face a la penurie de main-d'oeuvre, aux taches repetitives et aux enjeux de souverainete industrielle.`,
     source: 'https://www.robot-magazine.fr/vivatech-2026-lannee-ou-les-robots-humanoides-sont-devenus-une-realite-industrielle/?utm_source=rss&utm_medium=rss&utm_campaign=vivatech-2026-lannee-ou-les-robots-humanoides-sont-devenus-une-realite-industrielle',
     sourceLabel: 'Robot Magazine',
     pdf: '/pdfs/news_juin_10_vivatech_2026_robots_humanoides.pdf',
@@ -361,7 +361,7 @@ Pour ma veille, cette actualite confirme que le sujet humanoide arrive dans une 
 
 Le projet publie aussi une note technique sur la reconstruction deterministe des offsets au demarrage et fait evoluer le logiciel vers une licence GPLv3. La feuille de route prevoit une ouverture progressive des composants mecaniques, des STL aux futures sources CAD.
 
-Pour ma veille, ce projet montre comment une plateforme humanoide peut avancer par iterations materielles et logicielles partagees, avec des limites de validation clairement distinguees entre simulation et materiel.`,
+Le projet avance par iterations materielles et logicielles partagees, en distinguant les validations en simulation des validations sur materiel.`,
     source: 'https://github.com/aliahumanoid/alia-humanoid-core',
     sourceLabel: 'Alia Humanoid - GitHub',
     pdf: '/pdfs/news_juillet_11_alia_humanoid_open_source.pdf',
@@ -384,7 +384,7 @@ Pour ma veille, ce projet montre comment une plateforme humanoide peut avancer p
 
 Le modele peut produire des observations robotiques physiquement plausibles et predire des interactions futures a partir d une image, d une consigne et d une action. Xiaomi met egalement en avant une acceleration FlashAR+ destinee a rendre la generation plus exploitable.
 
-Pour ma veille, U0 illustre l usage des world models comme moteurs de donnees synthetiques pour diversifier l entrainement des politiques robotiques et ameliorer leur robustesse sur des taches de manipulation.`,
+U0 utilise les world models comme moteurs de donnees synthetiques pour diversifier l entrainement des politiques robotiques et ameliorer leur robustesse sur des taches de manipulation.`,
     source: 'https://robotics.xiaomi.com/xiaomi-robotics-u0.html',
     sourceLabel: 'Xiaomi Robotics',
     pdf: '/pdfs/news_juillet_12_xiaomi_robotics_u0_world_model.pdf',
@@ -407,7 +407,7 @@ Pour ma veille, U0 illustre l usage des world models comme moteurs de donnees sy
 
 Cette approche apporte un a priori physique aux politiques de manipulation : le robot peut evaluer les consequences probables d un mouvement avant de l appliquer. NVIDIA presente Cosmos 3, modele de monde ouvert, comme une base pour construire ces systemes specialises.
 
-Pour ma veille, le world model devient une brique directement reliee au controle et a la planification, et non plus uniquement un outil de generation de videos ou de simulations.`,
+Le world model devient une brique directement reliee au controle et a la planification, au-dela de la generation de videos ou de simulations.`,
     source: 'https://developer.nvidia.com/blog/beyond-vlas-how-world-action-models-reshape-robot-manipulation/',
     sourceLabel: 'NVIDIA Developer Blog',
     pdf: '/pdfs/news_aout_13_nvidia_world_action_models_robotique.pdf',
@@ -430,7 +430,7 @@ Pour ma veille, le world model devient une brique directement reliee au controle
 
 Le robot humanoide XPENG IRON est developpe comme une plateforme generaliste : il combine une architecture mecanique integree, 76 degres de liberte et une informatique embarquee fondee sur trois puces Turing AI. XPENG vise une production de masse d ici la fin de 2026.
 
-Pour ma veille, cette annonce montre que l industrialisation des humanoides depend autant du financement, de la fabrication et de la qualite industrielle que des performances de l IA embarquee.`,
+L industrialisation des humanoides depend autant du financement, de la fabrication et de la qualite industrielle que des performances de l IA embarquee.`,
     source: 'https://www.xpeng.com/pressroom/news/01a03797fccda01e0de68a02a256006a',
     sourceLabel: 'XPENG - communique officiel',
     pdf: '/pdfs/news_aout_14_xpeng_iron_financement_robotique.pdf',

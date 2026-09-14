@@ -1,72 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-interface Competence {
-  code: string;
-  title: string;
-  items: string[];
-}
-
-const competences: Competence[] = [
-  {
-    code: 'B1',
-    title: 'Gerer le patrimoine informatique',
-    items: [
-      'Recenser et identifier les ressources numeriques',
-      'Exploiter des referentiels, normes et standards adoptes par le prestataire informatique',
-      "Mettre en place et verifier les niveaux d'habilitation associes a un service",
-      "Verifier les conditions de la continuite d'un service informatique",
-      'Gerer des sauvegardes',
-      "Verifier le respect des regles d'utilisation des ressources numeriques",
-    ],
-  },
-  {
-    code: 'B2',
-    title: "Repondre aux incidents et aux demandes d'assistance et d'evolution",
-    items: [
-      'Collecter, suivre et orienter des demandes',
-      'Traiter des demandes concernant les services reseau et systeme, applicatifs',
-      'Traiter des demandes concernant les applications',
-    ],
-  },
-  {
-    code: 'B3',
-    title: "Developper la presence en ligne de l'organisation",
-    items: [
-      "Participer a la valorisation de l'image de l'organisation sur les medias numeriques en tenant compte du cadre juridique et des enjeux economiques",
-      "Referencer les services en ligne de l'organisation et mesurer leur visibilite",
-      "Participer a l'evolution d'un site Web exploitant les donnees de l'organisation",
-    ],
-  },
-  {
-    code: 'B4',
-    title: 'Travailler en mode projet',
-    items: [
-      "Analyser les objectifs et les modalites d'organisation d'un projet",
-      'Planifier les activites',
-      "Evaluer les indicateurs de suivi d'un projet et analyser les ecarts",
-    ],
-  },
-  {
-    code: 'B5',
-    title: 'Mettre a disposition des utilisateurs un service informatique',
-    items: [
-      "Realiser les tests d'integration et d'acceptation d'un service",
-      'Deployer un service',
-      "Accompagner les utilisateurs dans la mise en place d'un service",
-    ],
-  },
-  {
-    code: 'B6',
-    title: 'Organiser son developpement professionnel',
-    items: [
-      "Mettre en place son environnement d'apprentissage personnel",
-      'Mettre en oeuvre des outils et strategies de veille informationnelle',
-      'Gerer son identite professionnelle',
-      'Developper son projet professionnel',
-    ],
-  },
-];
 ---
 
 <Layout title="Rectorat - BTS SIO SLAM - Erwan Sagnardon">
@@ -76,116 +9,196 @@ const competences: Competence[] = [
       BTS SIO option SLAM &middot; Session 2026
     </p>
     <p class="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
-      Documents officiels destines au jury : tableau de synthese des realisations,
-      attestations de stage, et elements specifiques aux epreuves E5 et E6.
+      Tableau de synthèse des réalisations professionnelles,
+      attestations de stage et éléments spécifiques aux épreuves E5 et E6.
     </p>
   </section>
 
-  <section class="space-y-4">
-    <h2 class="text-xl font-semibold tracking-tight">Les 6 competences du referentiel</h2>
-    <div class="space-y-3">
-      {competences.map((comp) => (
-        <div class="rounded-lg border border-border p-5">
-          <div class="flex items-start gap-3">
-            <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
-              {comp.code}
-            </span>
-            <div class="min-w-0">
-              <h3 class="font-medium leading-snug">{comp.title}</h3>
-              <ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
-                {comp.items.map((item) => <li>{item}</li>)}
-              </ul>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <section class="mt-16 space-y-6">
-    <div class="flex items-baseline gap-3 border-b border-border pb-3">
-      <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
+  <section class="grid gap-4 sm:grid-cols-2">
+    <button
+      type="button"
+      data-modal-open="modal-e5"
+      class="group flex flex-col items-start rounded-lg border border-border bg-card p-6 text-left transition-colors hover:bg-accent"
+    >
+      <span class="inline-flex items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
         E5
       </span>
-      <h2 class="text-2xl font-semibold tracking-tight">Sous option E5</h2>
-    </div>
-
-    <div class="space-y-3">
-      <h3 class="text-lg font-medium">Tableau de synthese</h3>
-      <p class="text-sm text-muted-foreground">
-        Recensement des realisations professionnelles avec les competences mobilisees.
+      <h2 class="mt-3 text-xl font-semibold tracking-tight">Sous-option E5</h2>
+      <p class="mt-1 text-sm text-muted-foreground">
+        Tableau de synthèse et attestations de stage.
       </p>
-      <a
-        href="/files/tableau-synthese.xlsx"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 rounded-md border border-border bg-muted/50 px-4 py-2.5 text-sm font-medium transition-colors hover:bg-accent"
-      >
-        <svg class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+      <span class="mt-4 inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors group-hover:text-foreground">
+        Ouvrir
+        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
         </svg>
-        <span>Telecharger le tableau de synthese (.xlsx)</span>
-      </a>
-    </div>
+      </span>
+    </button>
 
-    <div class="space-y-3">
-      <h3 class="text-lg font-medium">Attestations de stage</h3>
-      <p class="text-sm text-muted-foreground">
-        Justificatifs des periodes en milieu professionnel.
-      </p>
-
-      <div class="grid gap-4 sm:grid-cols-2">
-        <figure class="space-y-2">
-          <div class="relative aspect-[1/1.414] overflow-hidden rounded-lg border border-dashed border-border bg-muted/30">
-            <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 p-6 text-center">
-              <svg class="h-10 w-10 text-muted-foreground/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              <p class="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                Attestation - 1ere annee
-              </p>
-              <span class="mt-2 inline-flex items-center rounded border border-border bg-background px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                A remplacer en juillet
-              </span>
-            </div>
-          </div>
-          <figcaption class="text-xs text-muted-foreground">
-            Stage de 1ere annee &middot; document provisoire
-          </figcaption>
-        </figure>
-
-        <figure class="space-y-2">
-          <div class="relative aspect-[1/1.414] overflow-hidden rounded-lg border border-dashed border-border bg-muted/30">
-            <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 p-6 text-center">
-              <svg class="h-10 w-10 text-muted-foreground/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              <p class="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                Attestation - 2eme annee
-              </p>
-              <span class="mt-2 inline-flex items-center rounded border border-border bg-background px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                A venir
-              </span>
-            </div>
-          </div>
-          <figcaption class="text-xs text-muted-foreground">
-            Stage de 2eme annee &middot; document provisoire
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="mt-16 space-y-6">
-    <div class="flex items-baseline gap-3 border-b border-border pb-3">
-      <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
+    <button
+      type="button"
+      data-modal-open="modal-e6"
+      class="group flex flex-col items-start rounded-lg border border-border bg-card p-6 text-left transition-colors hover:bg-accent"
+    >
+      <span class="inline-flex items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
         E6
       </span>
-      <h2 class="text-2xl font-semibold tracking-tight">Sous option E6</h2>
+      <h2 class="mt-3 text-xl font-semibold tracking-tight">Sous-option E6</h2>
+      <p class="mt-1 text-sm text-muted-foreground">
+        Documents non disponibles.
+      </p>
+      <span class="mt-4 inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors group-hover:text-foreground">
+        Ouvrir
+        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </span>
+    </button>
+  </section>
+
+  <!-- Modal E5 -->
+  <dialog
+    id="modal-e5"
+    class="m-auto w-full max-w-2xl rounded-lg border border-border bg-background p-0 text-foreground shadow-xl backdrop:bg-black/60"
+  >
+    <div class="flex items-center justify-between border-b border-border px-6 py-4">
+      <div class="flex items-baseline gap-3">
+        <span class="inline-flex items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
+          E5
+        </span>
+        <h3 class="text-lg font-semibold">Sous-option E5</h3>
+      </div>
+      <button
+        type="button"
+        data-modal-close
+        aria-label="Fermer"
+        class="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+      >
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
     </div>
 
-    <div class="rounded-lg border border-dashed border-border p-6 text-sm text-muted-foreground">
-      Contenu donne ulterieurement.
+    <div class="space-y-6 px-6 py-5">
+      <div class="space-y-3">
+        <h4 class="text-base font-medium">Tableau de synthèse</h4>
+        <p class="text-sm text-muted-foreground">
+          Recensement des réalisations professionnelles avec les compétences mobilisées.
+        </p>
+        <a
+          href="/files/tableau-synthese.xlsx"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-md border border-border bg-muted/50 px-4 py-2.5 text-sm font-medium transition-colors hover:bg-accent"
+        >
+          <svg class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+          </svg>
+          <span>Télécharger le tableau de synthèse (.xlsx)</span>
+        </a>
+      </div>
+
+      <div class="space-y-3">
+        <h4 class="text-base font-medium">Attestations de stage</h4>
+        <p class="text-sm text-muted-foreground">
+          Justificatifs des périodes en milieu professionnel.
+        </p>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <figure class="space-y-2">
+            <div class="relative aspect-[1/1.414] overflow-hidden rounded-lg border border-dashed border-border bg-muted/30">
+              <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 p-6 text-center">
+                <svg class="h-10 w-10 text-muted-foreground/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <p class="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                  Attestation — 1re année
+                </p>
+                <span class="mt-2 inline-flex items-center rounded border border-border bg-background px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                  Document non disponible
+                </span>
+              </div>
+            </div>
+            <figcaption class="text-xs text-muted-foreground">
+              Stage de 1re année
+            </figcaption>
+          </figure>
+
+          <figure class="space-y-2">
+            <div class="relative aspect-[1/1.414] overflow-hidden rounded-lg border border-dashed border-border bg-muted/30">
+              <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 p-6 text-center">
+                <svg class="h-10 w-10 text-muted-foreground/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <p class="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                  Attestation — 2e année
+                </p>
+                <span class="mt-2 inline-flex items-center rounded border border-border bg-background px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                  Document non disponible
+                </span>
+              </div>
+            </div>
+            <figcaption class="text-xs text-muted-foreground">
+              Stage de 2e année
+            </figcaption>
+          </figure>
+        </div>
+      </div>
     </div>
-  </section>
+  </dialog>
+
+  <!-- Modal E6 -->
+  <dialog
+    id="modal-e6"
+    class="m-auto w-full max-w-2xl rounded-lg border border-border bg-background p-0 text-foreground shadow-xl backdrop:bg-black/60"
+  >
+    <div class="flex items-center justify-between border-b border-border px-6 py-4">
+      <div class="flex items-baseline gap-3">
+        <span class="inline-flex items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
+          E6
+        </span>
+        <h3 class="text-lg font-semibold">Sous-option E6</h3>
+      </div>
+      <button
+        type="button"
+        data-modal-close
+        aria-label="Fermer"
+        class="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+      >
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="px-6 py-5">
+      <div class="rounded-lg border border-dashed border-border p-6 text-sm text-muted-foreground">
+        Documents non disponibles.
+      </div>
+    </div>
+  </dialog>
 </Layout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-modal-open]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.modalOpen;
+      if (!id) return;
+      const dialog = document.getElementById(id) as HTMLDialogElement | null;
+      dialog?.showModal();
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('[data-modal-close]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      btn.closest('dialog')?.close();
+    });
+  });
+
+  document.querySelectorAll<HTMLDialogElement>('dialog').forEach((dialog) => {
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  });
+</script>

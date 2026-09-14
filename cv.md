@@ -1,6 +1,6 @@
 # ERWAN SAGNARDON
 
-**ETUDIANT BTS SIO EN RECHERCHE DE STAGE EN DEV DU 11/01 AU 19/02/2027**
+**ETUDIANT BTS SIO — OPTION SLAM**
 
 ---
 
@@ -13,7 +13,7 @@
 
 ## À PROPOS
 
-Passionné par les technologies, je cherche un stage en BTS SIO option SLAM pour mettre en pratique mes compétences en développement logiciel. Rigoureux et curieux, je suis motivé à apprendre et à contribuer activement aux projets informatiques.
+Passionné par les technologies, je développe des applications et des outils informatiques dans le cadre de ma formation. Rigoureux et curieux, je suis motivé à apprendre et à contribuer activement aux projets.
 
 ---
 

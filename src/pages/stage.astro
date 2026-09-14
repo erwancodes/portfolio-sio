@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { realisationBySlug } from '../data/realisations';
+import { stages } from '../data/stages';
+import { frenchText } from '../text';
+
+const firstStage = stages[0];
+const stageProjects = (firstStage.projectSlugs ?? [])
+  .slice().reverse()
+  .map((slug) => realisationBySlug(slug))
+  .filter((realisation): realisation is NonNullable<typeof realisation> => Boolean(realisation));
+---
+
+<Layout title="Stage à la Ville des Andelys - Erwan Sagnardon">
+  <section class="pb-10">
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="rounded border border-border bg-muted px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-muted-foreground">
+        Stage de première année · BTS SIO SLAM
+      </span>
+      <span class="font-mono text-xs text-muted-foreground">{firstStage.period}</span>
+    </div>
+    <h1 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">Stage à la Ville des Andelys</h1>
+    <p class="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
+      De juin à juillet 2026, j’ai intégré le service informatique de la Ville des Andelys
+      pour développer des applications métier et accompagner la dématérialisation des processus internes.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-2">
+      <a href="#collectivite" class="rounded-md bg-accent px-3 py-2 font-mono text-xs font-medium text-accent-foreground transition-colors hover:bg-muted">
+        La collectivité
+      </a>
+      <a href="#stage-1" class="rounded-md border border-border bg-card px-3 py-2 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">
+        Mon stage
+      </a>
+      <a href="#projets" class="rounded-md border border-border bg-card px-3 py-2 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">
+        Les projets
+      </a>
+    </div>
+  </section>
+
+  <section id="collectivite" class="scroll-mt-6 border-t border-border py-10">
+    <p class="font-mono text-xs uppercase tracking-wide text-muted-foreground">Structure d’accueil</p>
+    <h2 class="mt-3 text-2xl font-semibold tracking-tight">La Ville des Andelys</h2>
+    <p class="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
+      La Ville des Andelys est une collectivité territoriale. Contrairement à une entreprise privée,
+      son activité relève du service public local et du fonctionnement des services municipaux.
+    </p>
+    <div class="mt-6 grid gap-6 sm:grid-cols-2">
+      <div class="border-l border-border pl-4">
+        <h3 class="font-medium">Le service informatique</h3>
+        <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+          Mon stage s’est déroulé au sein du service informatique, sur des applications internes
+          utilisées pour la gestion des clés, des entretiens professionnels et du budget.
+        </p>
+      </div>
+      <div class="border-l border-border pl-4">
+        <h3 class="font-medium">Les besoins des services</h3>
+        <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+          Fiabiliser le suivi des opérations, centraliser les informations et dématérialiser
+          les circuits de traitement, en tenant compte des droits d’accès et de la protection des données.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="stage-1" class="scroll-mt-6 border-t border-border py-10">
+    <div class="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
+      <div>
+        <p class="font-mono text-xs uppercase tracking-wide text-muted-foreground">{firstStage.eyebrow}</p>
+        <h2 class="mt-3 text-2xl font-semibold tracking-tight">Mon rôle au service informatique</h2>
+        <p class="mt-2 text-lg font-medium">{firstStage.organization}</p>
+        <p class="mt-1 font-mono text-xs text-muted-foreground">
+          {firstStage.period} &middot; {firstStage.location}
+        </p>
+        <p class="mt-5 leading-relaxed text-muted-foreground">{firstStage.summary}</p>
+        <div class="mt-6 rounded-lg border border-border bg-card p-4">
+          <p class="font-mono text-[10px] uppercase tracking-wide text-muted-foreground">Ce que j’ai réalisé</p>
+          <ul class="mt-3 space-y-2 text-sm text-muted-foreground">
+            {firstStage.missions.map((mission) => (
+              <li class="flex items-start gap-2">
+                <span class="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-foreground"></span>
+                <span>{mission}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div id="projets" class="scroll-mt-6">
+        <div class="flex items-end justify-between gap-3">
+          <div>
+            <p class="font-mono text-xs uppercase tracking-wide text-muted-foreground">Réalisations professionnelles</p>
+            <h3 class="mt-2 text-lg font-semibold tracking-tight">Applications métier développées en stage</h3>
+          </div>
+          <span class="font-mono text-xs text-muted-foreground">{stageProjects.length} projets</span>
+        </div>
+
+        <div class="mt-5 grid grid-cols-1 gap-3">
+          {stageProjects.map((project) => {
+            const imageProof = project.preuves?.flatMap((group) => group.preuves).find((proof) => proof.type === 'image');
+            return (
+              <article class="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card">
+                {imageProof && imageProof.type === 'image' && (
+                  <img
+                    src={imageProof.src}
+                    alt={frenchText(imageProof.caption ?? project.nom)}
+                    loading="lazy"
+                    class="aspect-[16/10] w-full border-b border-border object-cover object-top"
+                  />
+                )}
+                <div class="flex flex-1 flex-col p-4">
+                  <h4 class="font-medium leading-snug">{frenchText(project.nom)}</h4>
+                  <p class="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{frenchText(project.resume ?? '')}</p>
+                  <div class="mt-4 flex flex-wrap gap-1.5">
+                    {project.environnementTechno?.slice(0, 3).map((tech) => (
+                      <span class="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                        {frenchText(tech)}
+                      </span>
+                    ))}
+                  </div>
+                  <a
+                    href={`/realisations/${project.slug}`}
+                    class="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    Voir la fiche <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-border py-10">
+    <div class="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-muted/30 p-5">
+      <div>
+        <p class="font-medium">Réalisations professionnelles</p>
+        <p class="mt-1 text-sm text-muted-foreground">Contexte, choix techniques et résultats de chaque projet.</p>
+      </div>
+      <a href="/realisations" class="rounded-md bg-foreground px-3 py-2 font-mono text-xs font-medium text-background transition-opacity hover:opacity-80">
+        Ouvrir les fiches
+      </a>
+    </div>
+  </section>
+</Layout>

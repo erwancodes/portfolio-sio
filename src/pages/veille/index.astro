@@ -8,6 +8,7 @@ import {
   themeVeille,
   formatDate,
 } from '../../data/veille';
+import { frenchText } from '../../text';
 
 const articlesParBornage = bornages.map((b) => ({
   bornage: b,
@@ -18,25 +19,36 @@ const articlesParBornage = bornages.map((b) => ({
 
 const outilsPermanents = outils.filter((o) => o.type === 'permanent');
 const outilsMensuels = outils.filter((o) => o.type === 'mensuel');
+const articlesVisiblesParBornage = 2;
 ---
 
-<Layout title="Veille - Erwan Sagnardon">
+<Layout title="Veille technologique - Erwan Sagnardon">
   <!-- Hero + theme -->
   <section class="pb-12">
     <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Veille technologique</h1>
-    <p class="mt-2 font-mono text-sm text-muted-foreground">Theme : {themeVeille}</p>
+    <p class="mt-2 font-mono text-sm text-muted-foreground">Thème : {frenchText(themeVeille)}</p>
     <p class="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
-      Suivi des avancees en robotique humanoide et industrielle, et des modeles d'IA
-      capables de simuler le monde physique. Cette veille s'inscrit dans le cadre du BTS
-      SIO (B1.6) et reflete ma curiosite pour les technologies emergentes.
+      Suivi des avancées en robotique humanoïde et industrielle, ainsi que des modèles d&apos;IA
+      capables de simuler le monde physique.
     </p>
+    <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs text-muted-foreground">
+      <span>{articles.length} actualités</span>
+      <span>{outils.length} outils suivis</span>
+      <span>{bornages.length} bornages</span>
+    </div>
+    <nav class="mt-6 flex flex-wrap gap-2" aria-label="Accès rapide dans la veille">
+      <a href="#bornage" class="rounded-md border border-border bg-card px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">Bornage</a>
+      <a href="#outils" class="rounded-md border border-border bg-card px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">Outils</a>
+      <a href="#actualites" class="rounded-md border border-border bg-card px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">Actualités</a>
+      <a href="#mise-en-oeuvre" class="rounded-md border border-border bg-card px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">Mise en œuvre</a>
+    </nav>
   </section>
 
   <!-- Bornage -->
-  <section class="border-t border-border py-12">
+  <section id="bornage" class="scroll-mt-6 border-t border-border py-12">
     <h2 class="text-lg font-semibold tracking-tight">Bornage</h2>
     <p class="mt-2 max-w-2xl text-sm text-muted-foreground">
-      Perimetre de la veille : ce que je suis, et ce que je laisse de cote.
+      Robotique humanoïde open source et modèles de monde pour l’IA robotique.
     </p>
     <div class="mt-6 grid gap-3 sm:grid-cols-2">
       {bornages.map((b) => (
@@ -45,15 +57,15 @@ const outilsMensuels = outils.filter((o) => o.type === 'mensuel');
             <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
               {b.id}
             </span>
-            <h3 class="font-medium leading-snug">{b.titre.replace(/^Bornage \d+ — /, '')}</h3>
+            <h3 class="font-medium leading-snug">{frenchText(b.titre.replace(/^Bornage \d+ — /, ''))}</h3>
           </div>
-          <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{b.description}</p>
+          <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{frenchText(b.description)}</p>
           <div class="mt-3">
-            <p class="font-mono text-[10px] uppercase tracking-wide text-muted-foreground">Mots-cles</p>
+            <p class="font-mono text-[10px] uppercase tracking-wide text-muted-foreground">Mots-clés</p>
             <div class="mt-1.5 flex flex-wrap gap-1.5">
               {b.motsCles.map((mc) => (
                 <span class="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
-                  {mc}
+                  {frenchText(mc)}
                 </span>
               ))}
             </div>
@@ -61,7 +73,7 @@ const outilsMensuels = outils.filter((o) => o.type === 'mensuel');
           {b.exclusions && b.exclusions.length > 0 && (
             <div class="mt-3">
               <p class="font-mono text-[10px] uppercase tracking-wide text-muted-foreground">Exclusions</p>
-              <p class="mt-1 text-xs text-muted-foreground">{b.exclusions.join(' · ')}</p>
+              <p class="mt-1 text-xs text-muted-foreground">{frenchText(b.exclusions.join(' · '))}</p>
             </div>
           )}
         </article>
@@ -70,10 +82,10 @@ const outilsMensuels = outils.filter((o) => o.type === 'mensuel');
   </section>
 
   <!-- Outils de veille -->
-  <section class="border-t border-border py-12">
+  <section id="outils" class="scroll-mt-6 border-t border-border py-12">
     <h2 class="text-lg font-semibold tracking-tight">Outils de veille</h2>
     <p class="mt-2 max-w-2xl text-sm text-muted-foreground">
-      Deux outils permanents, plus un nouvel outil teste chaque mois a partir de mars 2026.
+      Des outils permanents, complétés par un nouvel outil testé chaque mois à partir de mars 2026.
     </p>
 
     <div class="mt-6 space-y-6">
@@ -90,12 +102,12 @@ const outilsMensuels = outils.filter((o) => o.type === 'mensuel');
               <div class="flex items-center justify-between">
                 <h4 class="font-medium group-hover:text-foreground">{o.nom}</h4>
                 <span class="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
-                  {o.categorie}
+                  {frenchText(o.categorie)}
                 </span>
               </div>
-              <p class="mt-2 text-sm text-muted-foreground">{o.description}</p>
-              {o.retourExperience && (
-                <p class="mt-2 text-xs italic text-muted-foreground">{o.retourExperience}</p>
+            <p class="mt-2 text-sm text-muted-foreground">{frenchText(o.description)}</p>
+            {o.retourExperience && (
+                <p class="mt-2 text-xs italic text-muted-foreground">{frenchText(o.retourExperience)}</p>
               )}
             </a>
           ))}
@@ -105,7 +117,7 @@ const outilsMensuels = outils.filter((o) => o.type === 'mensuel');
       {outilsMensuels.length > 0 && (
         <div>
           <h3 class="font-mono text-xs uppercase tracking-wide text-muted-foreground">
-            Outils testes chaque mois
+            Outils testés chaque mois
           </h3>
           <div class="mt-3 grid gap-3 sm:grid-cols-2">
             {outilsMensuels.map((o) => (
@@ -123,10 +135,10 @@ const outilsMensuels = outils.filter((o) => o.type === 'mensuel');
                     </span>
                   )}
                 </div>
-                <p class="mt-1 font-mono text-[10px] text-muted-foreground">{o.categorie}</p>
-                <p class="mt-2 text-sm text-muted-foreground">{o.description}</p>
+                <p class="mt-1 font-mono text-[10px] text-muted-foreground">{frenchText(o.categorie)}</p>
+                <p class="mt-2 text-sm text-muted-foreground">{frenchText(o.description)}</p>
                 {o.retourExperience && (
-                  <p class="mt-2 text-xs italic text-muted-foreground">{o.retourExperience}</p>
+                  <p class="mt-2 text-xs italic text-muted-foreground">{frenchText(o.retourExperience)}</p>
                 )}
               </a>
             ))}
@@ -137,11 +149,10 @@ const outilsMensuels = outils.filter((o) => o.type === 'mensuel');
   </section>
 
   <!-- News par bornage -->
-  <section class="border-t border-border py-12">
-    <h2 class="text-lg font-semibold tracking-tight">News</h2>
+  <section id="actualites" class="scroll-mt-6 border-t border-border py-12">
+    <h2 class="text-lg font-semibold tracking-tight">Actualités</h2>
     <p class="mt-2 max-w-2xl text-sm text-muted-foreground">
-      News regroupees par bornage, triees par ordre chronologique decroissant. Cadence
-      cible : 2 news par mois, avec une news pour chaque bornage.
+      Dernières avancées, projets open source et travaux de recherche.
     </p>
 
     <div class="mt-6 space-y-8">
@@ -151,37 +162,42 @@ const outilsMensuels = outils.filter((o) => o.type === 'mensuel');
             <span class="inline-flex items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
               {bornage.id}
             </span>
-            <h3 class="text-sm font-semibold">{bornage.titre.replace(/^Bornage \d+ — /, '')}</h3>
+            <h3 class="text-sm font-semibold">{frenchText(bornage.titre.replace(/^Bornage \d+ — /, ''))}</h3>
           </header>
           {list.length === 0 ? (
             <p class="mt-3 rounded-lg border border-dashed border-border p-4 text-sm text-muted-foreground">
-              Aucune news pour le moment sur ce bornage.
+              Aucune actualité pour le moment sur ce bornage.
             </p>
           ) : (
-            <div class="mt-3 space-y-3">
-              {list.map((article) => (
+            <>
+            <div id={`archive-${bornage.id}`} class="mt-3 space-y-3">
+              {list.map((article, index) => (
                 <a
                   href={`/veille/${article.slug}`}
-                  class="group block rounded-lg border border-border bg-card p-5 transition-colors hover:bg-accent"
+                  data-archive-item={index >= articlesVisiblesParBornage ? bornage.id : undefined}
+                  class:list={[
+                    'group block rounded-lg border border-border bg-card p-5 transition-colors hover:bg-accent',
+                    index >= articlesVisiblesParBornage && 'hidden',
+                  ]}
                 >
                   <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                     <div class="min-w-0 flex-1">
                       <div class="flex flex-wrap items-center gap-2">
                         <span class="inline-flex items-center rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
-                          {article.tag}
+                          {frenchText(article.tag)}
                         </span>
                         <span class="font-mono text-xs text-muted-foreground">
                           {formatDate(article.date)}
                         </span>
                       </div>
                       <h4 class="mt-2 font-medium leading-snug group-hover:text-foreground">
-                        {article.title}
+                          {frenchText(article.title)}
                       </h4>
                       <p class="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                        {article.summary}
+                        {frenchText(article.summary)}
                       </p>
                       <p class="mt-2 font-mono text-[10px] text-muted-foreground">
-                        Source : {article.sourceLabel}
+                        Source : {frenchText(article.sourceLabel)}
                       </p>
                     </div>
                     <svg
@@ -197,6 +213,19 @@ const outilsMensuels = outils.filter((o) => o.type === 'mensuel');
                 </a>
               ))}
             </div>
+            {list.length > articlesVisiblesParBornage && (
+              <button
+                type="button"
+                data-archive-toggle={bornage.id}
+                data-archive-count={list.length - articlesVisiblesParBornage}
+                aria-expanded="false"
+                aria-controls={`archive-${bornage.id}`}
+                class="mt-3 rounded-md border border-border px-3 py-2 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+              >
+                Voir l&apos;archive ({list.length - articlesVisiblesParBornage})
+              </button>
+            )}
+            </>
           )}
         </div>
       ))}
@@ -204,22 +233,22 @@ const outilsMensuels = outils.filter((o) => o.type === 'mensuel');
   </section>
 
   <!-- Mise en oeuvre -->
-  <section class="border-t border-border py-12">
-    <h2 class="text-lg font-semibold tracking-tight">A quoi sert ma veille ?</h2>
+  <section id="mise-en-oeuvre" class="scroll-mt-6 border-t border-border py-12">
+    <h2 class="text-lg font-semibold tracking-tight">Applications concrètes</h2>
     <p class="mt-2 max-w-2xl text-sm text-muted-foreground">
-      Mises en oeuvre concretes : decisions techniques, projets ou interventions
-      directement issues de cette veille.
+      Mises en œuvre concrètes : décisions techniques, projets ou interventions
+      directement issus de cette veille.
     </p>
     {misesEnOeuvre.length === 0 ? (
       <div class="mt-6 rounded-lg border border-dashed border-border p-4 text-sm text-muted-foreground">
-        A completer : projet ou decision technique directement issu de cette veille.
+        Aucune mise en œuvre publiée pour le moment.
       </div>
     ) : (
       <div class="mt-6 space-y-3">
         {misesEnOeuvre.map((m) => (
           <article class="rounded-lg border border-border bg-card p-4">
-            <h3 class="font-medium">{m.titre}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{m.description}</p>
+            <h3 class="font-medium">{frenchText(m.titre)}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{frenchText(m.description)}</p>
             {m.lien && (
               <a
                 href={m.lien.href}
@@ -227,7 +256,7 @@ const outilsMensuels = outils.filter((o) => o.type === 'mensuel');
                 rel="noopener noreferrer"
                 class="mt-3 inline-flex items-center gap-1.5 font-mono text-xs text-foreground transition-colors hover:underline"
               >
-                {m.lien.label}
+                {frenchText(m.lien.label)}
                 <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path d="M14 3h7v7M10 14L21 3M21 14v7H3V3h7" />
                 </svg>
@@ -239,3 +268,20 @@ const outilsMensuels = outils.filter((o) => o.type === 'mensuel');
     )}
   </section>
 </Layout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-archive-toggle]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const bornageId = button.dataset.archiveToggle;
+      if (!bornageId) return;
+
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll<HTMLElement>(`[data-archive-item="${bornageId}"]`).forEach((article) => {
+        article.classList.toggle('hidden', expanded);
+      });
+      button.setAttribute('aria-expanded', String(!expanded));
+      const count = button.dataset.archiveCount ?? '0';
+      button.textContent = expanded ? `Voir l'archive (${count})` : `Masquer l'archive (${count})`;
+    });
+  });
+</script>
