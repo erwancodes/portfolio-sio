@@ -19,7 +19,7 @@ const detailedCount = realisations.filter(
   <section class="pb-12">
     <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Réalisations professionnelles</h1>
     <p class="mt-2 font-mono text-sm text-muted-foreground">
-      BTS SIO option SLAM &middot; Compétences B1 à B6
+      BTS SIO option SLAM &middot; Bloc 1 — Support et mise à disposition de services informatiques
     </p>
     <p class="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
       Projets de formation et de stage : objectifs, environnement technique et compétences mobilisées.
@@ -134,7 +134,7 @@ const detailedCount = realisations.filter(
                       class="inline-flex items-center rounded border border-border bg-background px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground"
                       title={sub ? frenchText(sub.label) : code}
                     >
-                      {code}
+                      {code.replace(/^B/, 'C')}
                     </span>
                   );
                 })}
@@ -163,7 +163,7 @@ const detailedCount = realisations.filter(
           <summary class="flex cursor-pointer list-none items-start justify-between gap-3 p-5 [&::-webkit-details-marker]:hidden">
             <span class="flex items-start gap-3">
               <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
-                {comp.code}
+                {comp.code.replace(/^B/, 'C')}
               </span>
               <span class="font-medium leading-snug">{frenchText(comp.title)}</span>
             </span>
@@ -176,7 +176,7 @@ const detailedCount = realisations.filter(
               {subsWithRealisations.map(({ sub, realisations: rs }) => (
                 <div>
                   <p class="font-mono text-xs text-muted-foreground">
-                    <span class="text-foreground">{sub.code}</span> &middot; {frenchText(sub.label)}
+                    <span class="text-foreground">{sub.code.replace(/^B/, 'C')}</span> &middot; {frenchText(sub.label)}
                   </p>
                   {rs.length > 0 ? (
                     <ul class="mt-2 space-y-1">

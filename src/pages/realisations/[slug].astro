@@ -24,9 +24,9 @@ const competencesMobilisees = Array.from(
   .filter(Boolean);
 
 const blocLabels: Record<string, string> = {
-  B1: 'Bloc 1 — Support et mise à disposition de services informatiques',
-  B2: 'Bloc 2 — Conception et développement d\'applications',
-  B3: 'Bloc 3 — Cybersécurité des services informatiques',
+  B1: 'Captures et documents',
+  B2: 'Détails techniques',
+  B3: 'Sécurité et bonnes pratiques',
 };
 
 const hasDetails = Boolean(realisation.contexte && realisation.environnementTechno?.length && realisation.preuves?.length);
@@ -77,8 +77,9 @@ const hasDetails = Boolean(realisation.contexte && realisation.environnementTech
     <!-- Competences mobilisees -->
     <section class="mt-10">
       <h2 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-        Compétences et sous-compétences mobilisées
+        Compétences mobilisées — Bloc 1
       </h2>
+      <p class="mt-2 text-sm text-muted-foreground">Support et mise à disposition de services informatiques</p>
       <div class="mt-4 space-y-3">
         {competencesMobilisees.map((comp) => {
           const subsActives = realisation.sousCompetences
@@ -89,14 +90,14 @@ const hasDetails = Boolean(realisation.contexte && realisation.environnementTech
             <div class="rounded-lg border border-border p-4">
               <div class="flex items-start gap-3">
                 <span class="inline-flex flex-shrink-0 items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
-                  {comp.code}
+                  {comp.code.replace(/^B/, 'C')}
                 </span>
                 <div class="min-w-0">
                   <h3 class="font-medium leading-snug">{frenchText(comp.title)}</h3>
                   <ul class="mt-2 space-y-1">
                     {subsActives.map((sub) => (
                       <li class="flex items-start gap-2 text-sm text-muted-foreground">
-                        <span class="font-mono text-[10px] text-foreground">{sub.code}</span>
+                        <span class="font-mono text-[10px] text-foreground">{sub.code.replace(/^B/, 'C')}</span>
                         <span>{frenchText(sub.label)}</span>
                       </li>
                     ))}
