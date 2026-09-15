@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ImageLightbox from '../../components/ImageLightbox.astro';
 import {
   realisations,
   competenceByCode,
@@ -151,9 +152,30 @@ const hasDetails = Boolean(realisation.contexte && realisation.environnementTech
               <div class="mt-3 space-y-3">
                 {groupe.preuves.map((p) => {
                   if (p.type === 'image') {
+                    const imageAlt = p.caption ? frenchText(p.caption) : 'Preuve de la réalisation';
                     return (
                       <figure class="overflow-hidden rounded-lg border border-border bg-card">
-                        <img src={p.src} alt={p.caption ? frenchText(p.caption) : 'Preuve'} loading="lazy" class="h-auto w-full" />
+                        <button
+                          type="button"
+                          class="group relative block w-full cursor-zoom-in text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                          data-image-lightbox-trigger
+                          data-caption={p.caption ? frenchText(p.caption) : ''}
+                          aria-label={`Afficher en plein écran : ${imageAlt}`}
+                        >
+                          <img
+                            src={p.src}
+                            alt={imageAlt}
+                            loading="lazy"
+                            class="h-auto w-full transition duration-200 group-hover:brightness-90 group-focus-visible:brightness-90 motion-reduce:transition-none"
+                          />
+                          <span class="pointer-events-none absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-zinc-950/75 px-2.5 py-1 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 motion-reduce:transition-none">
+                            <svg aria-hidden="true" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                              <circle cx="11" cy="11" r="7" />
+                              <path d="m20 20-3.5-3.5M11 8v6M8 11h6" stroke-linecap="round" />
+                            </svg>
+                            Agrandir
+                          </span>
+                        </button>
                         {p.caption && (
                           <figcaption class="border-t border-border px-4 py-2 font-mono text-xs text-muted-foreground">
                             {frenchText(p.caption)}
@@ -217,4 +239,5 @@ const hasDetails = Boolean(realisation.contexte && realisation.environnementTech
       </section>
     )}
   </article>
+  <ImageLightbox />
 </Layout>
