@@ -1,0 +1,246 @@
+<div class="accessibility-zoom" data-accessibility-zoom>
+  <div
+    id="accessibility-zoom-panel"
+    class="accessibility-zoom__panel hidden"
+    role="group"
+    aria-labelledby="accessibility-zoom-title"
+  >
+    <div class="accessibility-zoom__header">
+      <span id="accessibility-zoom-title">Taille du site</span>
+      <output class="accessibility-zoom__value" data-zoom-value aria-live="polite">100 %</output>
+    </div>
+
+    <div class="accessibility-zoom__controls">
+      <button type="button" data-zoom-out aria-label="Réduire la taille du site" title="Réduire">
+        <span aria-hidden="true">−</span>
+      </button>
+      <button type="button" class="accessibility-zoom__reset" data-zoom-reset>
+        Réinitialiser
+      </button>
+      <button type="button" data-zoom-in aria-label="Agrandir la taille du site" title="Agrandir">
+        <span aria-hidden="true">+</span>
+      </button>
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="accessibility-zoom__trigger"
+    data-zoom-trigger
+    aria-controls="accessibility-zoom-panel"
+    aria-expanded="false"
+  >
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <circle cx="12" cy="4.5" r="2.25" />
+      <path d="M4 8.5h16M12 7v13M7.5 20l4.5-7 4.5 7" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <span>Accessibilité</span>
+  </button>
+</div>
+
+<script>
+  const STORAGE_KEY = 'portfolio-accessibility-zoom';
+  const MIN_ZOOM = 90;
+  const MAX_ZOOM = 150;
+  const ZOOM_STEP = 10;
+
+  const root = document.querySelector<HTMLElement>('[data-accessibility-zoom]');
+
+  if (root) {
+    const trigger = root.querySelector<HTMLButtonElement>('[data-zoom-trigger]');
+    const panel = root.querySelector<HTMLElement>('#accessibility-zoom-panel');
+    const zoomOut = root.querySelector<HTMLButtonElement>('[data-zoom-out]');
+    const zoomIn = root.querySelector<HTMLButtonElement>('[data-zoom-in]');
+    const zoomReset = root.querySelector<HTMLButtonElement>('[data-zoom-reset]');
+    const zoomValue = root.querySelector<HTMLOutputElement>('[data-zoom-value]');
+
+    const savedZoom = Number.parseInt(localStorage.getItem(STORAGE_KEY) ?? '100', 10);
+    let currentZoom = Number.isFinite(savedZoom)
+      ? Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, savedZoom))
+      : 100;
+
+    const renderZoom = () => {
+      document.documentElement.style.fontSize = `${currentZoom}%`;
+      if (zoomValue) zoomValue.textContent = `${currentZoom} %`;
+      if (zoomOut) zoomOut.disabled = currentZoom <= MIN_ZOOM;
+      if (zoomIn) zoomIn.disabled = currentZoom >= MAX_ZOOM;
+      if (zoomReset) zoomReset.disabled = currentZoom === 100;
+    };
+
+    const setZoom = (nextZoom: number) => {
+      currentZoom = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, nextZoom));
+      localStorage.setItem(STORAGE_KEY, String(currentZoom));
+      renderZoom();
+    };
+
+    const closePanel = () => {
+      panel?.classList.add('hidden');
+      trigger?.setAttribute('aria-expanded', 'false');
+    };
+
+    trigger?.addEventListener('click', () => {
+      const willOpen = panel?.classList.contains('hidden') ?? false;
+      panel?.classList.toggle('hidden', !willOpen);
+      trigger.setAttribute('aria-expanded', String(willOpen));
+      if (willOpen) zoomOut?.focus();
+    });
+
+    zoomOut?.addEventListener('click', () => setZoom(currentZoom - ZOOM_STEP));
+    zoomIn?.addEventListener('click', () => setZoom(currentZoom + ZOOM_STEP));
+    zoomReset?.addEventListener('click', () => setZoom(100));
+
+    document.addEventListener('click', (event) => {
+      if (!root.contains(event.target as Node)) closePanel();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && trigger?.getAttribute('aria-expanded') === 'true') {
+        closePanel();
+        trigger.focus();
+      }
+    });
+
+    renderZoom();
+  }
+</script>
+
+<style>
+  .accessibility-zoom {
+    position: fixed;
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.625rem;
+  }
+
+  .accessibility-zoom__trigger {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    background: var(--card);
+    color: var(--card-foreground);
+    padding: 0.625rem 0.875rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.16);
+    transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
+  }
+
+  .accessibility-zoom__trigger:hover {
+    background: var(--accent);
+  }
+
+  .accessibility-zoom__trigger:active {
+    transform: translateY(1px);
+  }
+
+  .accessibility-zoom__trigger svg {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex: none;
+  }
+
+  .accessibility-zoom__panel {
+    width: min(17rem, calc(100vw - 2rem));
+    border: 1px solid var(--border);
+    border-radius: 0.875rem;
+    background: var(--card);
+    color: var(--card-foreground);
+    padding: 0.875rem;
+    box-shadow: 0 18px 45px rgb(0 0 0 / 0.2);
+  }
+
+  .accessibility-zoom__panel.hidden {
+    display: none;
+  }
+
+  .accessibility-zoom__header,
+  .accessibility-zoom__controls {
+    display: flex;
+    align-items: center;
+  }
+
+  .accessibility-zoom__header {
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  .accessibility-zoom__value {
+    color: var(--muted-foreground);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .accessibility-zoom__controls {
+    gap: 0.5rem;
+  }
+
+  .accessibility-zoom__controls button {
+    display: inline-flex;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 0.625rem;
+    background: var(--muted);
+    color: var(--foreground);
+    font-size: 1.125rem;
+    transition: background-color 150ms ease, opacity 150ms ease;
+  }
+
+  .accessibility-zoom__controls button:hover:not(:disabled) {
+    background: var(--accent);
+  }
+
+  .accessibility-zoom__controls button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+
+  .accessibility-zoom__controls .accessibility-zoom__reset {
+    flex: 1;
+    padding-inline: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .accessibility-zoom__trigger:focus-visible,
+  .accessibility-zoom__controls button:focus-visible {
+    outline: 2px solid var(--foreground);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 30rem) {
+    .accessibility-zoom__trigger span {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+
+    .accessibility-zoom__trigger {
+      width: 2.875rem;
+      min-height: 2.875rem;
+      justify-content: center;
+      padding: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .accessibility-zoom__trigger,
+    .accessibility-zoom__controls button {
+      transition: none;
+    }
+  }
+</style>
