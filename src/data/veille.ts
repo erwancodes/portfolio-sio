@@ -441,6 +441,75 @@ L industrialisation des humanoides depend autant du financement, de la fabricati
       { aspect: 'Angle veille', detail: 'Passage de la R&D humanoide a la production et au deploiement commercial' },
     ],
   },
+  {
+    slug: 'generalist-gen-1-5-apprentissage-demonstration-aout-2026',
+    title: 'Generalist GEN-1.5 : apprendre un geste robotique apres une demonstration',
+    date: '2026-08-19',
+    tag: 'IA & Robotique',
+    bornage: 'Bornage 1 — Startups robotique & open source humanoide',
+    bornageId: 'B1',
+    summary: "La startup Generalist presente GEN-1.5, un modele robotique capable d'executer certaines taches courtes apres une seule demonstration de 3 a 12 secondes, sans nouvel entrainement.",
+    description: `Generalist a annonce GEN-1.5 le 19 aout 2026. Ce modele de fondation pour la robotique utilise une courte sequence de demonstration dans son contexte pour deduire la tache a effectuer. Selon l'entreprise, il peut reproduire certaines manipulations apres 3 a 12 secondes d'exemple, sans ajustement de ses poids.
+
+Generalist rapporte un taux de reussite moyen de 59 % sur dix taches courtes avec une seule demonstration. Avec environ cinq minutes de donnees et dix etapes d'adaptation, ce taux atteint 83 %. Le modele peut aussi enchainer deux demonstrations et, dans certains cas, transferer au robot un geste montre par une personne.
+
+Ces resultats restent limites a des manipulations simples et de courte duree, evaluees par Generalist. Pour le bornage 1, ils illustrent la progression d'une startup qui cherche a rendre les robots plus rapides a programmer pour de nouvelles taches physiques.`,
+    source: 'https://generalistai.com/blog/gen-1.5',
+    sourceLabel: 'Generalist AI - annonce officielle',
+    pdf: '/pdfs/news_aout_15_generalist_gen_1_5.pdf',
+    keyPoints: [
+      { aspect: 'Acteur', detail: 'Generalist AI, startup specialisee dans les modeles de fondation robotiques' },
+      { aspect: 'Apprentissage', detail: 'Une demonstration de 3 a 12 secondes, sans fine-tuning pour les essais one-shot' },
+      { aspect: 'Resultat annonce', detail: '59 % de reussite moyenne sur dix taches courtes en one-shot' },
+      { aspect: 'Limite', detail: 'Manipulations simples et de courte duree ; resultats communiques par l entreprise' },
+    ],
+  },
+  {
+    slug: 'world-labs-atlas-world-model-robotique-septembre-2026',
+    title: 'World Labs Atlas : un world model pour simuler des scenes robotiques',
+    date: '2026-09-01',
+    tag: 'World model',
+    bornage: 'Bornage 2 — World Models IA pour la robotique',
+    bornageId: 'B2',
+    summary: 'World Labs presente Atlas, un modele multimodal capable de reconstruire des scenes en 3D et de generer de nouvelles vues utiles aux simulations de navigation et de manipulation robotiques.',
+    description: `World Labs a presente Atlas le 1er septembre 2026. Ce modele multimodal exploite du texte, des images, des videos et des donnees 3D pour generer ou reconstruire des scenes coherentes dans l'espace. Il peut produire des images et des videos avec un controle explicite de la camera et reconstituer des environnements a partir de quelques vues.
+
+Pour la robotique, World Labs montre un usage Real-to-Sim : Atlas reconstruit un espace a partir d'enregistrements reels, puis genere les images RGB et les cartes de profondeur qu'un robot verrait sur differents parcours. Le meme principe peut aider a varier objets, eclairage et mouvements dans une simulation de manipulation.
+
+Cette annonce concerne directement le bornage 2, car elle relie un modele de monde a la creation de donnees et d'environnements d'entrainement robotiques. Les exemples publies sont des demonstrations de recherche ; ils ne prouvent pas a eux seuls un deploiement industriel generalise.`,
+    source: 'https://www.worldlabs.ai/blog/atlas',
+    sourceLabel: 'World Labs - annonce officielle',
+    pdf: '/pdfs/news_septembre_16_world_labs_atlas.pdf',
+    keyPoints: [
+      { aspect: 'Modele', detail: 'Atlas, modele de monde multimodal de World Labs' },
+      { aspect: 'Capacites', detail: 'Generation de vues controlees et reconstruction 3D depuis quelques images' },
+      { aspect: 'Usage robotique', detail: 'Real-to-Sim pour navigation et manipulation, avec vues RGB et profondeur' },
+      { aspect: 'Statut', detail: 'Acces anticipe ; demonstrations de recherche publiees par World Labs' },
+    ],
+  },
+  {
+    slug: 'figure-helix-2-5-generalisation-humanoide-septembre-2026',
+    title: 'Figure Helix 2.5 : un humanoide teste dans 30 maisons inconnues',
+    date: '2026-09-17',
+    tag: 'Humanoide',
+    bornage: 'Bornage 1 — Startups robotique & open source humanoide',
+    bornageId: 'B1',
+    summary: 'La startup Figure annonce avoir evalue Helix 2.5 sur trois taches domestiques dans 30 maisons inconnues du robot, sans collecte de donnees ni adaptation dans ces lieux.',
+    description: `Figure a presente Helix 2.5 le 17 septembre 2026. La startup a entraine son modele robotique sur Index, un jeu de donnees de comportements humains, puis l'a evalue dans 30 maisons qu'il n'avait pas vues pendant l'entrainement. Les trois comportements testes sont ranger des objets, plier des serviettes et faire un lit.
+
+Selon Figure, le pre-entrainement sur Index porte le taux de reussite de 9 % a 56 % dans une comparaison ou les donnees propres aux taches et les autres parametres sont maintenus constants. Le robot ne collecte pas de nouvelles donnees dans les maisons de test et ses poids n'y sont pas adaptes. Les taches ont toutefois ete preparees avec des donnees provenant d'autres environnements.
+
+Pour le bornage 1, l'interet est la capacite annoncee d'une startup humanoide a reutiliser une meme base d'apprentissage dans des lieux differents. Les resultats sont publies par Figure ; ils portent sur trois comportements et ne demontrent pas encore une autonomie generale.`,
+    source: 'https://www.figure.ai/news/helix-2-5-zero-shot-30-home-generalization',
+    sourceLabel: 'Figure - annonce officielle',
+    pdf: '/pdfs/news_septembre_17_figure_helix_2_5.pdf',
+    keyPoints: [
+      { aspect: 'Acteur', detail: 'Figure, startup de robotique humanoide' },
+      { aspect: 'Evaluation', detail: 'Trois comportements dans 30 maisons inconnues du robot' },
+      { aspect: 'Comparaison annoncee', detail: '9 % de reussite sans pre-entrainement Index contre 56 % avec Index' },
+      { aspect: 'Limite', detail: 'Taches preparees ailleurs ; evaluation et resultats publies par Figure' },
+    ],
+  },
 ];
 
 export function formatDate(dateStr: string): string {
